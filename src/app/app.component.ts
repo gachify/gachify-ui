@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { Observable, filter, map, mergeMap } from 'rxjs'
 
+import { asciiArt } from './app-intro-console'
+
 import { Layout } from '@layouts/models'
 
 @Component({
@@ -16,7 +18,9 @@ export class AppComponent {
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-  ) {}
+  ) {
+    console.log(asciiArt)
+  }
 
   private getLayoutType$(): Observable<Layout> {
     return this.router.events.pipe(

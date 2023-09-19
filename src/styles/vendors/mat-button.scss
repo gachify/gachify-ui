@@ -1,0 +1,7 @@
+@use '../tokens' as tokens;
+
+.mdc-button {
+  // --mat-mdc-button-ripple-color: #{rgba(tokens.$color-on-background, .1)};
+  --mat-mdc-button-ripple-color: hsla(0, 0%, 100%, .1);
+  @include label-l;
+}

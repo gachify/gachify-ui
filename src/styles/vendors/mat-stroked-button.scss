@@ -1,0 +1,18 @@
+@use '../tokens' as tokens;
+
+.mat-mdc-outlined-button {
+  --mdc-outlined-button-outline-color: #{tokens.$color-outline};
+  --mdc-outlined-button-label-text-color: #{tokens.$color-primary};
+  --mdc-outlined-button-container-shape: 20px;
+  --mdc-outlined-button-container-height: 40px;
+  padding: 0 24px;
+
+  &:disabled {
+    --mdc-outlined-button-disabled-label-text-color: #{rgba(tokens.$color-on-surface, .38)};
+    --mdc-outlined-button-disabled-outline-color: #{rgba(tokens.$color-on-surface, .12)};
+  }
+}
+
+.mdc-button.mat-mdc-outlined-button {
+  padding: 0 24px;
+}

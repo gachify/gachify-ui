@@ -1,0 +1,39 @@
+// Make all elements from the DOM inherit from the parent box-sizing
+*,
+*::before,
+*::after {
+  // Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`
+  box-sizing: inherit;
+}
+
+body {
+  // Remove the margin in all browsers
+  margin: 0 auto;
+  padding: 0;
+}
+
+html {
+  background-color: $color-surface;
+  box-sizing: border-box;
+  color: $color-on-surface;
+  // Antialiasing
+  -webkit-font-smoothing: antialiased;
+  // Antialiasing
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  text-size-adjust: 100%;
+}
+
+// Add support for document.body.requestFullScreen()
+html::backdrop {
+  background-color: $color-background;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
