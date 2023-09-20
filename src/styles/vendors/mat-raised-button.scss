@@ -1,0 +1,18 @@
+@use '../tokens' as tokens;
+
+.mat-mdc-raised-button {
+  --mdc-protected-button-label-text-color: #{tokens.$color-primary};
+  --mdc-protected-button-container-color: #{tokens.$color-surface-container-low};
+  --mdc-protected-button-container-shape: 20px;
+  --mdc-protected-button-container-height: 40px;
+  --mdc-protected-button-container-elevation: #{tokens.$elevation-1};
+
+  &:disabled {
+    --mdc-protected-button-disabled-label-text-color: #{rgba(tokens.$color-on-surface, .38)};
+    --mdc-protected-button-disabled-container-color: #{rgba(tokens.$color-on-surface, .12)};
+  }
+}
+
+.mdc-button.mat-mdc-raised-button {
+  padding: 0 24px;
+}

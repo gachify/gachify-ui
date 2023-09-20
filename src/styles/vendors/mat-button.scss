@@ -5,3 +5,17 @@
   --mat-mdc-button-ripple-color: hsla(0, 0%, 100%, .1);
   @include label-l;
 }
+
+.mat-mdc-button {
+  --mdc-text-button-label-text-color: #{tokens.$color-primary};
+  --mdc-text-button-container-shape: 20px;
+  --mdc-text-button-container-height: 40px;
+
+  &:disabled {
+    --mdc-text-button-disabled-label-text-color: #{rgba(tokens.$color-on-surface, .38)};
+  }
+}
+
+.mdc-button.mat-mdc-button {
+  padding: 0 12px;
+}
