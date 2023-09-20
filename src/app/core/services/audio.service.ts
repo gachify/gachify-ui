@@ -14,17 +14,7 @@ enum AudioEvents {
 export class AudioService implements OnDestroy {
   private readonly audio = new Audio()
 
-  readonly song = signal<null | Song>({
-    id: '300',
-    name: 'Король и Шут - Фокусник Король и Шут - Фокусник Король и Шут - Фокусник Король и Шут - Фокусник',
-    pictureUrl:
-      'https://i.ytimg.com/vi/s33qYTbmZJM/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDJHq58xBrvAwOL0mcCg_EbqKPsDA',
-    artist: {
-      id: '',
-      name: 'GachiBasser        GachiBasser    GachiBasser',
-    },
-    duration: 212,
-  })
+  readonly song = signal<null | Song>(null)
 
   readonly ready = signal(false)
   readonly playing = signal(false)
@@ -98,7 +88,7 @@ export class AudioService implements OnDestroy {
   }
 
   private load(song: Song) {
-    this.audio.src = `${environment.mediaUrl}/${song.id}`
+    this.audio.src = `${environment.mediaUrl}/${song.id}.mp3`
     this.duration.set(song.duration)
     this.currentTime.set(0)
     this.playing.set(false)
@@ -117,8 +107,6 @@ export class AudioService implements OnDestroy {
 
   private readonly onLoadedMetadata = () => {
     this.ready.set(true)
-    this.playing.set(true)
-    this.audio.play()
     this.duration.set(this.audio.duration)
   }
 

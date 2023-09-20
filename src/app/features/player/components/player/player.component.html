@@ -1,4 +1,6 @@
-<gachi-player-song />
-<gachi-player-controls />
-<gachi-player-playback />
-<gachi-player-volume />
+<ng-container *ngIf="song()">
+  <gachi-player-song />
+  <gachi-player-controls />
+  <gachi-player-playback />
+  <gachi-player-volume />
+</ng-container>

@@ -4,5 +4,5 @@ export const environment: Environment = {
   production: false,
   applicationName: 'Gachify',
   apiUrl: '',
-  mediaUrl: '',
+  mediaUrl: 'http://localhost:4200/assets/songs',
 }

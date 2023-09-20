@@ -1,9 +1,11 @@
 <span class="label-l">{{ currentTime() | duration }}</span>
 
-<mat-slider class="hide-thumb">
+<mat-slider
+  [max]="duration()"
+  [min]="0"
+  class="hide-thumb"
+>
   <input
-    [max]="duration()"
-    [min]="0"
     [value]="currentTime()"
     aria-label="Playback"
     matSliderThumb
