@@ -1,3 +1,5 @@
+@import '../tokens';
+
 @mixin display-hero {
   font-size: $typography-display-hero-size;
   line-height: $typography-display-hero-line-height;

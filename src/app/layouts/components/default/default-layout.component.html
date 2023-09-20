@@ -1,5 +1,5 @@
 <nav>
-  <ul class="label-l">
+  <ul>
     <li
       #home="routerLinkActive"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -44,8 +44,10 @@
   </ul>
 </nav>
 
-<main>
+<header>
   {{ applicationName }}
+</header>
 
+<main>
   <router-outlet></router-outlet>
 </main>

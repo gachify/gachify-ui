@@ -7,6 +7,9 @@
   --mdc-outlined-button-container-height: 40px;
   padding: 0 24px;
 
+  --mat-mdc-button-persistent-ripple-color: #{tokens.$color-primary};
+  --mat-mdc-button-ripple-color: #{rgba(tokens.$color-primary,.1)};
+
   &:disabled {
     --mdc-outlined-button-disabled-label-text-color: #{rgba(tokens.$color-on-surface, .38)};
     --mdc-outlined-button-disabled-outline-color: #{rgba(tokens.$color-on-surface, .12)};

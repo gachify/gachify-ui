@@ -1,27 +1,29 @@
+@import '../tokens';
+
 // Small devices
 @mixin sm {
-  @media (max-width: #{$breakpoint-sm}) {
+  @media (max-width: #{$breakpoint-md}) {
       @content;
   }
 }
 
 // Medium devices
 @mixin md {
-  @media (max-width: #{$breakpoint-md}) {
+  @media (max-width: #{$breakpoint-lg}) {
       @content;
   }
 }
 
 // Large devices
 @mixin lg {
-  @media (max-width: #{$breakpoint-lg}) {
+  @media (max-width: #{$breakpoint-xl}) {
       @content;
   }
 }
 
 // Extra large devices
 @mixin xl {
-  @media (min-width: #{$breakpoint-lg + 1}) {
+  @media (min-width: #{$breakpoint-xl + 1}) {
       @content;
   }
 }

@@ -2,7 +2,6 @@
 *,
 *::before,
 *::after {
-  // Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`
   box-sizing: inherit;
 }
 
@@ -14,7 +13,7 @@ body {
 
 html {
   background-color: $color-surface;
-  box-sizing: border-box;
+  box-sizing: content-box;
   color: $color-on-surface;
   // Antialiasing
   -webkit-font-smoothing: antialiased;
