@@ -5,9 +5,17 @@ mat-slider {
   --mdc-slider-inactive-track-shape: 2px;
   --mdc-slider-inactive-track-color: #{tokens.$color-surface-container-highest};
 
+  &.mat-mdc-slider .mdc-slider__track--inactive {
+    opacity: 1;
+  }
+
   --mdc-slider-active-track-height: 4px;
   --mdc-slider-active-track-shape: 2px;
   --mdc-slider-active-track-color: #{tokens.$color-primary};
+
+  &.hide-thumb > mat-slider-visual-thumb.mdc-slider__thumb {
+    display: none;
+  }
 
   mat-slider-visual-thumb {
     --mdc-slider-handle-shape: #{tokens.$corner-full};
