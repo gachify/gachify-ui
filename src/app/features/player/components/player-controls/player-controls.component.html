@@ -1,0 +1,30 @@
+<!-- <button class="i">
+  <i>shuffle</i>
+</button> -->
+<!-- shuffle_on -->
+<!-- <md-outlined-icon-button (click)="toggleTheme()">
+  <md-icon>{{ darkMode() ? 'light_mode' : 'dark_mode' }}</md-icon>
+</md-outlined-icon-button> -->
+<button
+  mat-icon-button
+  (click)="handleSkipPrevious()"
+>
+  <mat-icon>skip_previous</mat-icon>
+</button>
+<button
+  class="main-btn"
+  mat-icon-button
+  (click)="handleTogglePlay()"
+>
+  <mat-icon>{{ playing() ? 'pause' : 'play_arrow' }}</mat-icon>
+</button>
+<button
+  mat-icon-button
+  (click)="handleSkipNext()"
+>
+  <mat-icon>skip_next</mat-icon>
+</button>
+<!-- <button class="i">
+  <i>repeat</i>
+</button> -->
+<!-- repeat_on -->

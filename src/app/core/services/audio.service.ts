@@ -13,7 +13,18 @@ enum AudioEvents {
 })
 export class AudioService implements OnDestroy {
   private readonly audio = new Audio()
-  private readonly song = signal<null | Song>(null)
+
+  readonly song = signal<null | Song>({
+    id: '300',
+    name: 'Король и Шут - Фокусник Король и Шут - Фокусник Король и Шут - Фокусник Король и Шут - Фокусник',
+    pictureUrl:
+      'https://i.ytimg.com/vi/s33qYTbmZJM/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDJHq58xBrvAwOL0mcCg_EbqKPsDA',
+    artist: {
+      id: '',
+      name: 'GachiBasser        GachiBasser    GachiBasser',
+    },
+    duration: 212,
+  })
 
   readonly ready = signal(false)
   readonly playing = signal(false)
