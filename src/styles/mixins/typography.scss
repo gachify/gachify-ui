@@ -82,6 +82,7 @@
   line-height: $typography-label-l-line-height;
   font-weight: $typography-label-l-weight;
   letter-spacing: $typography-label-l-tracking;
+  font-family: $typography-font-family-variant;
 }
 
 @mixin label-m {
@@ -89,6 +90,7 @@
   line-height: $typography-label-m-line-height;
   font-weight: $typography-label-m-weight;
   letter-spacing: $typography-label-m-tracking;
+  font-family: $typography-font-family-variant;
 }
 
 @mixin label-s {
@@ -96,6 +98,7 @@
   line-height: $typography-label-s-line-height;
   font-weight: $typography-label-s-weight;
   letter-spacing: $typography-label-s-tracking;
+  font-family: $typography-font-family-variant;
 }
 
 @mixin body-l {

@@ -21,6 +21,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   text-size-adjust: 100%;
+
+  --mdc-theme-on-primary: #{$color-on-primary};
+  --mdc-theme-primary: #{$color-primary};
 }
 
 // Add support for document.body.requestFullScreen()

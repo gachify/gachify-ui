@@ -17,6 +17,9 @@ mat-slider {
     display: none;
   }
 
+  --mdc-slider-label-container-color: #{tokens.$color-primary};
+  --mdc-slider-label-label-text-color: #{tokens.$color-on-primary};
+
   mat-slider-visual-thumb {
     --mdc-slider-handle-shape: #{tokens.$corner-full};
     --mdc-slider-handle-width: 20px;

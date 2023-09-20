@@ -39,9 +39,11 @@ nav {
     flex-grow: 1;
 
     @include mixins.label-l;
+    font-family: #{tokens.$typography-font-family};
 
     @include mixins.lg {
       @include mixins.label-m;
+      font-family: #{tokens.$typography-font-family};
     }
   }
 
@@ -63,6 +65,7 @@ nav {
       display: flex;
       flex-direction: column;
       padding: 0;
+      margin-bottom: 14px;
     }
   }
   

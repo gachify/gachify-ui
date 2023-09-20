@@ -1,3 +1,6 @@
+$typography-font-family: 'Noto Sans', Roboto, Helvetica, Arial, sans-serif;
+$typography-font-family-variant: 'Roboto Mono', Roboto, Helvetica, Arial, monospace;
+
 // Display hero
 $typography-display-hero-size: 112px;
 $typography-display-hero-line-height: 1;
@@ -36,7 +39,7 @@ $typography-headline-l-weight: 400;
 
 // Headline M
 $typography-headline-m-size: 28px;
-$typography-headline-m-line-height: 36px;
+$typography-headline-m-line-height: 1.28;
 $typography-headline-m-tracking: 0;
 $typography-headline-m-weight: 400;
 
@@ -48,19 +51,19 @@ $typography-headline-s-weight: 400;
 
 // Title L
 $typography-title-l-size: 22px;
-$typography-title-l-line-height: 30px;
+$typography-title-l-line-height: 1.28;
 $typography-title-l-tracking: 0;
 $typography-title-l-weight: 400;
 
 // Title M
 $typography-title-m-size: 16px;
-$typography-title-m-line-height: 24px;
+$typography-title-m-line-height: 1.5;
 $typography-title-m-tracking: 0;
 $typography-title-m-weight: 500;
 
 // Title S
 $typography-title-s-size: 14px;
-$typography-title-s-line-height: 20px;
+$typography-title-s-line-height: 1.43;
 $typography-title-s-tracking: 0;
 $typography-title-s-weight: 500;
 

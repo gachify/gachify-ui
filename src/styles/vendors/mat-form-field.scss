@@ -16,6 +16,7 @@ mat-form-field {
   --mdc-filled-text-field-label-text-size: #{tokens.$typography-body-l-size};
   --mdc-filled-text-field-label-text-weight: #{tokens.$typography-body-l-weight};
   --mdc-filled-text-field-label-text-tracking: #{tokens.$typography-body-l-tracking};
+  --mdc-filled-text-field-label-text-font: #{tokens.$typography-font-family};
 
   --mdc-filled-text-field-input-text-color: #{tokens.$color-on-surface};
   --mdc-filled-text-field-caret-color: #{tokens.$color-primary};
@@ -42,6 +43,10 @@ mat-form-field {
 
   --mdc-outlined-text-field-label-text-color: #{tokens.$color-on-surface-variant};
   --mdc-outlined-text-field-focus-label-text-color: #{tokens.$color-primary};
+  --mdc-outlined-text-field-label-text-font: #{tokens.$typography-font-family};
+  --mdc-outlined-text-field-label-text-weight: #{tokens.$typography-body-l-weight};
+  --mdc-outlined-text-field-label-text-tracking: #{tokens.$typography-body-l-tracking};
+  --mat-form-field-outlined-label-text-populated-size: #{tokens.$typography-body-l-size};
 
   .mdc-text-field--outlined .mat-mdc-form-field-infix {
     padding-top: 16px;

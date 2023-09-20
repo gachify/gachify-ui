@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', Verdana, sans-serif;
+  font-family: $typography-font-family;
   @include body-l
 }
 
