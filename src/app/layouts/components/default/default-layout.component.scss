@@ -113,6 +113,26 @@ nav {
 header {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
+  box-sizing: border-box;
+  max-width: 1440px;
+  padding: 0 60px;
+  width: 100%;
+  justify-self: center;
+  display: flex;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    color: white;
+    @include mixins.headline-s;
+  }
+
+  img {
+    margin-right: 12px;
+  }
 }
 
 main {
