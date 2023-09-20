@@ -1,0 +1,21 @@
+@use '../tokens' as tokens;
+
+mat-slider {
+  --mdc-slider-inactive-track-height: 4px;
+  --mdc-slider-inactive-track-shape: 2px;
+  --mdc-slider-inactive-track-color: #{tokens.$color-surface-container-highest};
+
+  --mdc-slider-active-track-height: 4px;
+  --mdc-slider-active-track-shape: 2px;
+  --mdc-slider-active-track-color: #{tokens.$color-primary};
+
+  mat-slider-visual-thumb {
+    --mdc-slider-handle-shape: #{tokens.$corner-full};
+    --mdc-slider-handle-width: 20px;
+    --mdc-slider-handle-height: 20px;
+    --mdc-slider-handle-color: #{tokens.$color-primary};
+  
+    --mdc-slider-focus-handle-color: #{tokens.$color-primary};
+  }
+}
+

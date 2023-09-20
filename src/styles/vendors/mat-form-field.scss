@@ -40,6 +40,9 @@ mat-form-field {
   --mdc-outlined-text-field-outline-color: #{tokens.$color-outline};
   --mdc-outlined-text-field-focus-outline-color: #{tokens.$color-primary};
 
+  --mdc-outlined-text-field-label-text-color: #{tokens.$color-on-surface-variant};
+  --mdc-outlined-text-field-focus-label-text-color: #{tokens.$color-primary};
+
   .mdc-text-field--outlined .mat-mdc-form-field-infix {
     padding-top: 16px;
     padding-bottom: 16px;
