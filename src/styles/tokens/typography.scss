@@ -23,7 +23,7 @@ $typography-display-l-weight: 400;
 $typography-display-m-size: 45px;
 $typography-display-m-line-height: 52px;
 $typography-display-m-tracking: 0;
-$typography-display-m-weight: 400;
+$typography-display-m-weight: 500;
 
 // Display S
 $typography-display-s-size: 36px;
@@ -68,21 +68,21 @@ $typography-title-s-tracking: 0;
 $typography-title-s-weight: 500;
 
 // Label L
-$typography-label-l-size: 0.875rem;
-$typography-label-l-line-height: 1.25rem;
-$typography-label-l-tracking: 0.00625rem;
+$typography-label-l-size: 14px;
+$typography-label-l-line-height: 1.45;
+$typography-label-l-tracking: 0.5px;
 $typography-label-l-weight: 500;
 
 // Label M
 $typography-label-m-size: 12px;
-$typography-label-m-line-height: 16px;
-$typography-label-m-tracking: 0.1px;
+$typography-label-m-line-height: 1.3;
+$typography-label-m-tracking: 0.5px;
 $typography-label-m-weight: 500;
 
 // Label S
 $typography-label-s-size: 11px;
-$typography-label-s-line-height: 16px;
-$typography-label-s-tracking: 0.1px;
+$typography-label-s-line-height: 1.45;
+$typography-label-s-tracking: 0.5px;
 $typography-label-s-weight: 500;
 
 // Body L

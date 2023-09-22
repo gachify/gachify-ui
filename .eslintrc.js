@@ -143,6 +143,12 @@ module.exports = {
             "prefix": "gachi",
             "style": "kebab-case"
           }
+        ],
+        "@angular-eslint/no-host-metadata-property": [
+          "error",
+          {
+            "allowStatic": true
+          }
         ]
       }
     },

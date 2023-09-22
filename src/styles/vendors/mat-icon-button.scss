@@ -1,0 +1,9 @@
+.mat-mdc-icon-button {
+  --mat-mdc-button-ripple-color: hsla(0, 0%, 100%, .1);
+  --mat-mdc-button-persistent-ripple-color: hsla(0, 0%, 100%, .1);
+  --mdc-icon-button-icon-color: inherit;
+
+  &:hover .mat-mdc-button-persistent-ripple::before {
+    opacity: .38;
+  }
+}

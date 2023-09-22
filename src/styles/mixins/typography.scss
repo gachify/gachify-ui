@@ -83,6 +83,7 @@
   font-weight: $typography-label-l-weight;
   letter-spacing: $typography-label-l-tracking;
   font-family: $typography-font-family-variant;
+  text-transform: uppercase;
 }
 
 @mixin label-m {
@@ -91,6 +92,7 @@
   font-weight: $typography-label-m-weight;
   letter-spacing: $typography-label-m-tracking;
   font-family: $typography-font-family-variant;
+  text-transform: uppercase;
 }
 
 @mixin label-s {
@@ -99,6 +101,7 @@
   font-weight: $typography-label-s-weight;
   letter-spacing: $typography-label-s-tracking;
   font-family: $typography-font-family-variant;
+  text-transform: uppercase;
 }
 
 @mixin body-l {

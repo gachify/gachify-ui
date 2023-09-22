@@ -6,6 +6,7 @@ import { environment } from '@environment'
 enum AudioEvents {
   TIME_UPDATE = 'timeupdate',
   LOADED_METADATA = 'loadedmetadata',
+  ENDED = 'ended',
 }
 
 @Injectable({
@@ -98,11 +99,13 @@ export class AudioService implements OnDestroy {
   private registerEvents() {
     this.audio.addEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
     this.audio.addEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
+    this.audio.addEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private removeEvents() {
     this.audio.removeEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
     this.audio.removeEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
+    this.audio.removeEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private readonly onLoadedMetadata = () => {
@@ -112,5 +115,9 @@ export class AudioService implements OnDestroy {
 
   private readonly onTimeUpdate = () => {
     this.currentTime.set(this.audio.currentTime)
+  }
+
+  private readonly onEnded = () => {
+    this.playing.set(false)
   }
 }
