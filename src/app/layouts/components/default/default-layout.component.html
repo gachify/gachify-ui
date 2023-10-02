@@ -2,39 +2,53 @@
   <ul>
     <li
       #home="routerLinkActive"
+      [matRippleDisabled]="home.isActive"
       [routerLinkActiveOptions]="{ exact: true }"
+      matRipple
       routerLink=""
       routerLinkActive="active"
     >
       <mat-icon [outlined]="!home.isActive">home</mat-icon>
       Home
     </li>
+
     <li
       #search="routerLinkActive"
+      [matRippleDisabled]="search.isActive"
+      matRipple
       routerLink="/search"
       routerLinkActive="active"
     >
       <mat-icon [outlined]="!search.isActive">search</mat-icon>
       Search
     </li>
+
     <li
       #playlist="routerLinkActive"
+      [matRippleDisabled]="playlist.isActive"
+      matRipple
       routerLink="/playlists"
       routerLinkActive="active"
     >
       <mat-icon [outlined]="!playlist.isActive">queue_music</mat-icon>
       Playlists
     </li>
+
     <li
       #songs="routerLinkActive"
+      [matRippleDisabled]="songs.isActive"
+      matRipple
       routerLink="/songs"
       routerLinkActive="active"
     >
       <mat-icon [outlined]="!songs.isActive">music_note</mat-icon>
       Songs
     </li>
+
     <li
       #genres="routerLinkActive"
+      [matRippleDisabled]="genres.isActive"
+      matRipple
       routerLink="/genres"
       routerLinkActive="active"
     >

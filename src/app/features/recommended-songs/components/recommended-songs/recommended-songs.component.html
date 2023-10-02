@@ -5,16 +5,22 @@
 <mat-nav-list *ngIf="songs()">
   <mat-list-item
     *ngFor="let song of songs()"
+    [ngClass]="{ activated: song.id === currentSongId() }"
     (click)="handleSongClick(song)"
   >
+    <mat-icon matListItemIcon>volume_up</mat-icon>
+
     <img
       [src]="song.pictureUrl"
       alt=""
       matListItemAvatar
       matListItemLeadingImage
     />
+
     <div matListItemTitle>{{ song.name }}</div>
+
     <div matListItemLine>{{ song.artist.name }}</div>
+
     <div matListItemMeta>{{ song.duration | duration }}</div>
   </mat-list-item>
 </mat-nav-list>

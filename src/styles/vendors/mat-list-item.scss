@@ -42,3 +42,7 @@ mat-list-item {
 mat-list-item.mdc-list-item--with-leading-avatar.mdc-list-item--with-two-lines.mdc-list-item--with-trailing-meta .mdc-list-item__end {
   line-height: 72px;
 }
+
+mat-list-item.mdc-list-item--activated {
+  --mdc-list-list-item-container-color: #{tokens.$color-surface-container-highest};
+}

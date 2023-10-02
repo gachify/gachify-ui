@@ -27,15 +27,6 @@ export class AudioService implements OnDestroy {
 
   constructor() {
     this.registerEvents()
-
-    effect(
-      () => {
-        if (this.song()) {
-          this.load(this.song() as Song)
-        }
-      },
-      { allowSignalWrites: true },
-    )
   }
 
   ngOnDestroy() {
@@ -89,7 +80,12 @@ export class AudioService implements OnDestroy {
     this.audio.muted = newValue
   }
 
-  private load(song: Song) {
+  load(song: Song) {
+    if (song.id === this.song()?.id) {
+      return
+    }
+
+    this.song.set(song)
     this.audio.src = `${environment.mediaUrl}/${song.id}.mp3`
     this.duration.set(song.duration)
     this.currentTime.set(0)

@@ -1,5 +1,32 @@
+@use 'tokens' as tokens;
+
 mat-nav-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 8px;
+
+  
+}
+
+mat-list-item {
+  mat-icon {
+    display: none;
+  }
+
+  &.activated {
+    --mdc-list-list-item-container-color: #{tokens.$color-surface-container-highest};
+
+    img {
+      opacity: 0.2;
+    }
+  
+    mat-icon {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      font-size: 32px;
+      display: inherit;
+      margin: 20px 28px;
+    }
+  }
 }

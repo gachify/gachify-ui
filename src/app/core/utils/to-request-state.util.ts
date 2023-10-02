@@ -9,7 +9,7 @@ export interface HttpRequestState<T> {
   error?: HttpErrorResponse | Error
 }
 
-export const toRequestState = <T>(request: Observable<T>): Signal<HttpRequestState<T>> =>
+export const toRequestState = <T>(request: Observable<T>, defaultValue?: T): Signal<HttpRequestState<T>> =>
   toSignal(
     request.pipe(
       delay(2000), // For testing purpose
@@ -20,6 +20,7 @@ export const toRequestState = <T>(request: Observable<T>): Signal<HttpRequestSta
     {
       initialValue: {
         loading: false,
+        data: defaultValue,
       } as HttpRequestState<T>,
     },
   )

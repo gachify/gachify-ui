@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 
 import { Song } from '@core/models'
 import { AudioService } from '@core/services'
@@ -16,9 +16,10 @@ export class RecommendedSongsComponent {
 
   readonly loading = this.recommendedSongsService.loading
 
+  readonly currentSongId = computed(() => this.audioService.song()?.id)
   readonly songs = this.recommendedSongsService.songs
 
   handleSongClick(song: Song): void {
-    this.audioService.song.set(song)
+    this.audioService.load(song)
   }
 }
