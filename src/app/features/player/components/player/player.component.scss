@@ -1,7 +1,7 @@
 @use 'tokens' as tokens;
 @use 'mixins' as mixins;
 
-:host {
+.player {
   position: fixed;
   bottom: 0;
   left: 0;

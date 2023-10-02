@@ -5,6 +5,7 @@ import { environment } from '@environment'
 
 enum AudioEvents {
   TIME_UPDATE = 'timeupdate',
+  LOADED_DATA = 'loadeddata',
   LOADED_METADATA = 'loadedmetadata',
   ENDED = 'ended',
 }
@@ -17,7 +18,7 @@ export class AudioService implements OnDestroy {
 
   readonly song = signal<null | Song>(null)
 
-  readonly ready = signal(false)
+  readonly sync = signal(false)
   readonly playing = signal(false)
   readonly duration = signal(0)
   readonly muted = signal(false)
@@ -93,23 +94,30 @@ export class AudioService implements OnDestroy {
     this.duration.set(song.duration)
     this.currentTime.set(0)
     this.playing.set(false)
+    this.sync.set(true)
     this.audio.load()
   }
 
   private registerEvents() {
     this.audio.addEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
+    this.audio.addEventListener(AudioEvents.LOADED_DATA, this.onLoadedData)
     this.audio.addEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
     this.audio.addEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private removeEvents() {
     this.audio.removeEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
+    this.audio.removeEventListener(AudioEvents.LOADED_DATA, this.onLoadedData)
     this.audio.removeEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
     this.audio.removeEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
+  private readonly onLoadedData = () => {
+    this.play()
+    this.sync.set(false)
+  }
+
   private readonly onLoadedMetadata = () => {
-    this.ready.set(true)
     this.duration.set(this.audio.duration)
   }
 

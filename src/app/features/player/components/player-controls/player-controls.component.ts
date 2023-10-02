@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 
 import { AudioService } from '@core/services/audio.service'
 
@@ -13,6 +13,7 @@ export class PlayerControlsComponent {
   // private readonly playlistService = inject(PlaylistService)
 
   readonly playing = this.audioService.playing
+  readonly sync = this.audioService.sync
 
   handleTogglePlay() {
     this.audioService.togglePlay()

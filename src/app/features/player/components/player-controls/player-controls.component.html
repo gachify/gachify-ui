@@ -11,13 +11,21 @@
 >
   <mat-icon>skip_previous</mat-icon>
 </button>
+
+<mat-spinner
+  *ngIf="sync()"
+  [diameter]="48"
+/>
+
 <button
+  *ngIf="!sync()"
   class="main-btn"
   mat-icon-button
   (click)="handleTogglePlay()"
 >
   <mat-icon>{{ playing() ? 'pause' : 'play_arrow' }}</mat-icon>
 </button>
+
 <button
   mat-icon-button
   (click)="handleSkipNext()"

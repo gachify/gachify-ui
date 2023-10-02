@@ -1,6 +1,9 @@
-<ng-container *ngIf="song()">
+<div
+  *ngIf="song()"
+  class="player"
+>
   <gachi-player-song />
   <gachi-player-controls />
   <gachi-player-playback />
   <gachi-player-volume />
-</ng-container>
+</div>

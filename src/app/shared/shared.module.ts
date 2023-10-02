@@ -5,10 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgLetDirective, DataCyDirective, MatIconOutlinedDirective, MatListItemMediaDirective } from './directives'
 import { DurationPipe } from './pipes'
 import { MaterialModule } from './material.module'
+import { MatListItemSkeletonComponent } from './components'
 
 @NgModule({
   imports: [CommonModule, FormsModule, MaterialModule],
-  declarations: [DataCyDirective, DurationPipe, MatIconOutlinedDirective, MatListItemMediaDirective, NgLetDirective],
+  declarations: [
+    DataCyDirective,
+    DurationPipe,
+    MatIconOutlinedDirective,
+    MatListItemMediaDirective,
+    MatListItemSkeletonComponent,
+    NgLetDirective,
+  ],
   exports: [
     CommonModule,
     DataCyDirective,
@@ -17,6 +25,7 @@ import { MaterialModule } from './material.module'
     MaterialModule,
     MatIconOutlinedDirective,
     MatListItemMediaDirective,
+    MatListItemSkeletonComponent,
     NgLetDirective,
     ReactiveFormsModule,
   ],
