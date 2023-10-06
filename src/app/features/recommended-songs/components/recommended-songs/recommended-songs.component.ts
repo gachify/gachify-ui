@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core'
+import { toSignal } from '@angular/core/rxjs-interop'
+import { Store } from '@ngxs/store'
 
 import { Song } from '@core/models'
 import { AudioService } from '@core/services'
-import { RecommendedSongsService } from '@features/recommended-songs/services'
+import { RecommendedSongsActions, RecommendedSongsSelectors } from '@features/recommended-songs/state'
 
 @Component({
   selector: 'gachi-recommended-songs',
@@ -10,14 +12,18 @@ import { RecommendedSongsService } from '@features/recommended-songs/services'
   styleUrls: ['recommended-songs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RecommendedSongsComponent {
-  private readonly recommendedSongsService = inject(RecommendedSongsService)
+export class RecommendedSongsComponent implements OnInit {
+  private readonly store = inject(Store)
   private readonly audioService = inject(AudioService)
 
-  readonly loading = this.recommendedSongsService.loading
-
   readonly currentSongId = computed(() => this.audioService.song()?.id)
-  readonly songs = this.recommendedSongsService.songs
+
+  readonly loading = toSignal(this.store.select(RecommendedSongsSelectors.slices.loading))
+  readonly songs = toSignal(this.store.select(RecommendedSongsSelectors.slices.songs))
+
+  ngOnInit(): void {
+    this.store.dispatch(new RecommendedSongsActions.Fetch())
+  }
 
   handleSongClick(song: Song): void {
     this.audioService.load(song)

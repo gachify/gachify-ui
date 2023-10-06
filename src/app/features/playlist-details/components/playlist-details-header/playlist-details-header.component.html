@@ -1,0 +1,12 @@
+<img
+  [ngSrc]="playlist.pictureUrl"
+  alt=""
+  height="264"
+  width="264"
+/>
+
+<div class="metadata">
+  <h1 class="display-m">{{ playlist.name }}</h1>
+
+  <span class="title-m">{{ playlist.songs.length }} songs · {{ totalDuration | extendedDuration }}</span>
+</div>

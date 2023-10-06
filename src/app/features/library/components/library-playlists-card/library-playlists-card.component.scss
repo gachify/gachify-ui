@@ -1,0 +1,18 @@
+@use 'tokens' as tokens;
+
+mat-card {
+  cursor: pointer;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 8px;
+  position: inherit !important;
+}
+
+span {
+  color: tokens.$color-on-surface-variant;
+}

@@ -1,32 +1,43 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { CommonModule, NgOptimizedImage } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { NgLetDirective, DataCyDirective, MatIconOutlinedDirective, MatListItemMediaDirective } from './directives'
-import { DurationPipe } from './pipes'
+import { DurationPipe, ExtendedDurationPipe } from './pipes'
 import { MaterialModule } from './material.module'
-import { MatListItemSkeletonComponent } from './components'
+import {
+  CategoryNavigationComponent,
+  CategoryNavigationItemComponent,
+  MatListItemSkeletonComponent,
+} from './components'
 
 @NgModule({
-  imports: [CommonModule, FormsModule, MaterialModule],
+  imports: [CommonModule, FormsModule, MaterialModule, NgOptimizedImage],
   declarations: [
+    CategoryNavigationComponent,
+    CategoryNavigationItemComponent,
     DataCyDirective,
     DurationPipe,
+    ExtendedDurationPipe,
     MatIconOutlinedDirective,
     MatListItemMediaDirective,
     MatListItemSkeletonComponent,
     NgLetDirective,
   ],
   exports: [
+    CategoryNavigationComponent,
+    CategoryNavigationItemComponent,
     CommonModule,
     DataCyDirective,
     DurationPipe,
+    ExtendedDurationPipe,
     FormsModule,
     MaterialModule,
     MatIconOutlinedDirective,
     MatListItemMediaDirective,
     MatListItemSkeletonComponent,
     NgLetDirective,
+    NgOptimizedImage,
     ReactiveFormsModule,
   ],
 })

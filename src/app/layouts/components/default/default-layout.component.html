@@ -2,9 +2,7 @@
   <ul>
     <li
       #home="routerLinkActive"
-      [matRippleDisabled]="home.isActive"
       [routerLinkActiveOptions]="{ exact: true }"
-      matRipple
       routerLink=""
       routerLinkActive="active"
     >
@@ -14,46 +12,21 @@
 
     <li
       #search="routerLinkActive"
-      [matRippleDisabled]="search.isActive"
-      matRipple
+      disabled
       routerLink="/search"
       routerLinkActive="active"
     >
       <mat-icon [outlined]="!search.isActive">search</mat-icon>
-      Search
+      Explore
     </li>
 
     <li
-      #playlist="routerLinkActive"
-      [matRippleDisabled]="playlist.isActive"
-      matRipple
-      routerLink="/playlists"
+      #library="routerLinkActive"
+      routerLink="/library"
       routerLinkActive="active"
     >
-      <mat-icon [outlined]="!playlist.isActive">queue_music</mat-icon>
-      Playlists
-    </li>
-
-    <li
-      #songs="routerLinkActive"
-      [matRippleDisabled]="songs.isActive"
-      matRipple
-      routerLink="/songs"
-      routerLinkActive="active"
-    >
-      <mat-icon [outlined]="!songs.isActive">music_note</mat-icon>
-      Songs
-    </li>
-
-    <li
-      #genres="routerLinkActive"
-      [matRippleDisabled]="genres.isActive"
-      matRipple
-      routerLink="/genres"
-      routerLinkActive="active"
-    >
-      <mat-icon [outlined]="!genres.isActive">library_music</mat-icon>
-      Genres
+      <mat-icon [outlined]="!library.isActive">library_music</mat-icon>
+      Library
     </li>
   </ul>
 </nav>

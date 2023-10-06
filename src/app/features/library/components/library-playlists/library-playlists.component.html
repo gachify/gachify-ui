@@ -1,0 +1,9 @@
+<ng-container *ngIf="loading(); else content"> Loading... </ng-container>
+
+<ng-template #content>
+  <div class="grid">
+    <ng-container *ngFor="let playlist of playlists()">
+      <gachi-library-playlists-card [playlist]="playlist" />
+    </ng-container>
+  </div>
+</ng-template>

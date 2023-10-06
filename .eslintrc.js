@@ -97,6 +97,8 @@ module.exports = {
         // Disallow shorthand type conversion
         "no-implicit-coercion": "error",
 
+        "@typescript-eslint/no-namespace": "off",
+
         // Angular Rules
 
         // Ensures component's changeDetection is set to ChangeDetectionStrategy.OnPush

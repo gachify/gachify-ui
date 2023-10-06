@@ -13,6 +13,21 @@ const routes: Routes = [
     },
     pathMatch: 'full',
   },
+  {
+    path: 'library',
+    loadChildren: () => import('./pages/library/library-page.module').then((m) => m.LibraryPageModule),
+    data: {
+      layout: Layout.Default,
+    },
+  },
+  {
+    path: 'playlist/:id',
+    loadChildren: () =>
+      import('./pages/playlist-details/playlist-details-page.module').then((m) => m.PlaylistDetailsPageModule),
+    data: {
+      layout: Layout.Default,
+    },
+  },
   { path: '**', redirectTo: '404', pathMatch: 'full' },
 ]
 
@@ -20,6 +35,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
+      bindToComponentInputs: true,
     }),
   ],
   providers: [

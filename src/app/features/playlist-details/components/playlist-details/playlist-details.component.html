@@ -1,0 +1,5 @@
+<ng-container *ngIf="loading(); else content">Loading...</ng-container>
+
+<ng-template #content>
+  <gachi-playlist-details-header [playlist]="playlist()" />
+</ng-template>

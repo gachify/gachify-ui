@@ -1,0 +1,37 @@
+@use 'tokens' as tokens;
+@use 'mixins' as mixins;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 8px;
+  border-radius: 32px;
+  height: 100%;
+  cursor: pointer;
+  @include mixins.title-m;
+
+  &:hover {
+    background: linear-gradient(rgba(tokens.$color-on-surface, .08), rgba(tokens.$color-on-surface, .08));
+  }
+
+  &[disabled] {
+    opacity: 0.38;
+    cursor: default;
+  
+    &:hover {
+      background: none;
+    }
+  }
+}
+
+:host(.active) {
+  color: tokens.$color-on-secondary-container;
+  background: tokens.$color-secondary-container;
+
+  &:hover {
+    background: linear-gradient(rgba(tokens.$color-on-surface, .08), rgba(tokens.$color-on-surface, .08)),
+                linear-gradient(tokens.$color-secondary-container, tokens.$color-secondary-container);
+  }
+}

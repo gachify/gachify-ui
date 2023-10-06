@@ -1,0 +1,17 @@
+<mat-card
+  appearance="outlined"
+  matRipple
+>
+  <img
+    [ngSrc]="playlist.pictureUrl"
+    alt=""
+    fill
+    mat-card-image
+  />
+
+  <mat-card-content>
+    <h2 class="body-l">{{ playlist.name }}</h2>
+
+    <span class="body-m">{{ playlist.songs.length }} songs · {{ totalDuration | extendedDuration }}</span>
+  </mat-card-content>
+</mat-card>

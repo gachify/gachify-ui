@@ -1,7 +1,11 @@
-import { Injectable, OnDestroy, effect, signal } from '@angular/core'
+import { Injectable, OnDestroy, inject, signal } from '@angular/core'
+
+import { CookieService } from './cookie.service'
 
 import { Song } from '@core/models'
 import { environment } from '@environment'
+
+const VOLUME_COOKIE = 'gachi-volume'
 
 enum AudioEvents {
   TIME_UPDATE = 'timeupdate',
@@ -14,6 +18,7 @@ enum AudioEvents {
   providedIn: 'root',
 })
 export class AudioService implements OnDestroy {
+  private readonly cookieService = inject(CookieService)
   private readonly audio = new Audio()
 
   readonly song = signal<null | Song>(null)
@@ -22,7 +27,7 @@ export class AudioService implements OnDestroy {
   readonly playing = signal(false)
   readonly duration = signal(0)
   readonly muted = signal(false)
-  readonly volume = signal(100)
+  readonly volume = signal(Number(this.cookieService.get(VOLUME_COOKIE)) || 100)
   readonly currentTime = signal(0)
 
   constructor() {
@@ -66,6 +71,7 @@ export class AudioService implements OnDestroy {
 
     this.volume.set(volume)
     this.audio.volume = Number((volume / 100).toFixed(2))
+    this.cookieService.set(VOLUME_COOKIE, String(volume), 30)
 
     if (this.audio.volume === 0) {
       this.muted.set(true)
@@ -86,11 +92,13 @@ export class AudioService implements OnDestroy {
     }
 
     this.song.set(song)
-    this.audio.src = `${environment.mediaUrl}/${song.id}.mp3`
     this.duration.set(song.duration)
     this.currentTime.set(0)
     this.playing.set(false)
     this.sync.set(true)
+
+    this.audio.volume = Number((this.volume() / 100).toFixed(2))
+    this.audio.src = `${environment.mediaUrl}/${song.id}.mp3`
     this.audio.load()
   }
 

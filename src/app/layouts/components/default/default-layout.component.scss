@@ -1,19 +1,19 @@
 @use 'tokens' as tokens;
 @use 'mixins' as mixins;
 
-$header-hight: 88px;
-$drawer-width: 320px;
+$header-height: 88px;
+$drawer-width: 280px;
 $rail-width: 80px;
 
 :host {
   display: grid;
   grid-template-columns: $drawer-width 1fr;
-  grid-template-rows: $header-hight 1fr;
+  grid-template-rows: $header-height 1fr;
   justify-content: center;
 
   @include mixins.lg {
     grid-template-columns: $rail-width 1fr;
-    grid-template-rows: $header-hight 1fr;
+    grid-template-rows: $header-height 1fr;
   }
 }
 
@@ -36,7 +36,6 @@ nav {
     padding: 24px 0;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 
     @include mixins.label-l;
     font-family: #{tokens.$typography-font-family};
@@ -67,6 +66,19 @@ nav {
       padding: 0;
       margin-bottom: 14px;
     }
+
+    &[disabled] {
+      cursor: default;
+      opacity: 0.38;
+
+      &:not(.active):hover {
+        background-color: transparent;
+
+        mat-icon {
+          background-color: transparent;
+        }
+      }
+    }
   }
   
   li.active {
@@ -81,11 +93,6 @@ nav {
       }
     }
   }
-  
-  // li.active:hover {
-  //   background: linear-gradient(rgba(tokens.$color-on-secondary-container, .08), rgba(tokens.$color-on-secondary-container, .08)), linear-gradient(#{tokens.$color-secondary-container}, #{tokens.$color-secondary-container});
-  //   opacity: 1;
-  // }
   
   li:hover:not(.active) {
     transition: 0.2s;
@@ -110,6 +117,10 @@ nav {
       margin-right: 0;
       margin-bottom: 4px;
     }
+  }
+
+  mat-divider {
+    margin: 0 24px;
   }
 }
 
