@@ -1,0 +1,6 @@
+<ng-container *ngFor="let song of playlist.songs; let songIndex = index">
+  <gachi-playlist-details-list-item
+    [index]="songIndex + 1"
+    [song]="song"
+  />
+</ng-container>

@@ -1,0 +1,14 @@
+<span>{{ index }}</span>
+
+<img
+  [ngSrc]="song.pictureUrl"
+  alt=""
+  height="56"
+  width="56"
+/>
+
+<span class="body-l">{{ song.name }}</span>
+
+<span class="body-m">{{ song.artist.name }}</span>
+
+<span class="label-l duration">{{ song.duration | duration }}</span>
