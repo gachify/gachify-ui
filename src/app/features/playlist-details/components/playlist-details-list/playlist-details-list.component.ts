@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core'
 
-import { Playlist } from '@core/models'
+import { Playlist, Song } from '@core/models'
+import { AudioService, PlaylistService } from '@core/services'
 
 @Component({
   selector: 'gachi-playlist-details-list',
@@ -9,5 +10,14 @@ import { Playlist } from '@core/models'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaylistDetailsListComponent {
+  private readonly audioService = inject(AudioService)
+  private readonly playlistService = inject(PlaylistService)
+
   @Input({ required: true }) playlist: Playlist
+
+  readonly currentSong = this.audioService.song
+
+  handleSongClick(song: Song) {
+    this.playlistService.load(this.playlist, song)
+  }
 }

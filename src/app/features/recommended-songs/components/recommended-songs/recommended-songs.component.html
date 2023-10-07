@@ -11,7 +11,7 @@
       [ngClass]="{ activated: song.id === currentSongId() }"
       (click)="handleSongClick(song)"
     >
-      <mat-icon matListItemIcon>volume_up</mat-icon>
+      <mat-icon matListItemIcon>play_arrow</mat-icon>
 
       <img
         [ngSrc]="song.pictureUrl"

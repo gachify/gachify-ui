@@ -124,3 +124,9 @@
   font-weight: $typography-body-s-weight;
   letter-spacing: $typography-body-s-tracking;
 }
+
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

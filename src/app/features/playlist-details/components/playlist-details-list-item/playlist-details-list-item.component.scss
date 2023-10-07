@@ -1,19 +1,73 @@
 @use 'tokens' as tokens;
+@use 'mixins' as mixins;
 
 :host {
-  padding: 8px 16px;
+  height: 72px;
+  padding: 8px 24px;
   display: grid;
   gap: 24px;
   align-items: center;
-  grid-template-columns: 16px 56px 2fr 3fr minmax(120px,1fr);
+  grid-template-columns: 32px 56px 2fr 3fr minmax(80px, 1fr);
   border-top: 1px solid tokens.$color-outline-variant;
+
+  &:hover {
+    border-top-color: transparent;
+    border-radius: tokens.$corner-medium;
+    background-color: rgba(tokens.$color-on-surface, 0.08);
+
+    mat-icon {
+      display: inherit;
+    }
+
+    .index {
+      display: none;
+    }
+  }
+}
+
+:host(.active) {
+  border-top-color: transparent;
+  border-radius: tokens.$corner-medium;
+  color: tokens.$color-on-primary-container;
+  background-color: tokens.$color-primary-container;
+  box-shadow: tokens.$elevation-1;
+
+  mat-icon {
+    display: inherit;
+  }
+
+  .index {
+    display: none;
+  }
+}
+
+mat-icon {
+  display: none;
+  justify-self: center;
 }
 
 img {
   object-fit: cover;
 }
 
+.index {
+  text-align: center;
+  color: tokens.$color-on-surface-variant;
+}
+
+.name {
+  @include mixins.truncate;
+  font-weight: 500;
+}
+
+.artist {
+  @include mixins.truncate;
+  color: tokens.$color-on-surface-variant;
+}
+
 .duration {
   display: flex;
   justify-content: flex-end;
+  color: tokens.$color-on-surface-variant;
 }
+ 

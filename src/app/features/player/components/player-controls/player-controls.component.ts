@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 
+import { PlaylistService } from '@core/services'
 import { AudioService } from '@core/services/audio.service'
 
 @Component({
@@ -10,7 +11,7 @@ import { AudioService } from '@core/services/audio.service'
 })
 export class PlayerControlsComponent {
   private readonly audioService = inject(AudioService)
-  // private readonly playlistService = inject(PlaylistService)
+  private readonly playlistService = inject(PlaylistService)
 
   readonly playing = this.audioService.playing
   readonly sync = this.audioService.sync
@@ -20,10 +21,10 @@ export class PlayerControlsComponent {
   }
 
   handleSkipNext() {
-    // this.playlistService.nextTrack()
+    this.playlistService.nextTrack()
   }
 
   handleSkipPrevious() {
-    // this.playlistService.previousTrack()
+    this.playlistService.previousTrack()
   }
 }

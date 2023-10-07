@@ -1,4 +1,5 @@
-<span>{{ index }}</span>
+<span class="label-l index">{{ index }}</span>
+<mat-icon>play_arrow</mat-icon>
 
 <img
   [ngSrc]="song.pictureUrl"
@@ -7,8 +8,8 @@
   width="56"
 />
 
-<span class="body-l">{{ song.name }}</span>
+<span class="body-l name">{{ song.name }}</span>
 
-<span class="body-m">{{ song.artist.name }}</span>
+<span class="body-m artist">{{ song.artist.name }}</span>
 
-<span class="label-l duration">{{ song.duration | duration }}</span>
+<span class="label-m duration">{{ song.duration | duration }}</span>

@@ -1,14 +1,21 @@
 @use 'tokens' as tokens;
 
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
 gachi-playlist-details-list-item:first-child {
   border-top-color: transparent;
 }
 
 gachi-playlist-details-list-item:hover {
-  border-top-color: transparent;
-  border-radius: tokens.$corner-medium;
-  background-color: rgba(tokens.$color-on-surface, 0.08);
+  & + gachi-playlist-details-list-item {
+    border-top-color: transparent;
+  }
+}
 
+gachi-playlist-details-list-item.active {
   & + gachi-playlist-details-list-item {
     border-top-color: transparent;
   }

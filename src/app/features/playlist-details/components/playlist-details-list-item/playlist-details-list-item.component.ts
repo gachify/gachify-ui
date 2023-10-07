@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core'
 
 import { Song } from '@core/models'
 
@@ -11,4 +19,15 @@ import { Song } from '@core/models'
 export class PlaylistDetailsListItemComponent {
   @Input({ required: true }) index: number
   @Input({ required: true }) song: Song
+
+  @HostBinding('class.active')
+  @Input()
+  active = false
+
+  @Output()
+  handleClick = new EventEmitter<Song>()
+
+  @HostListener('click', ['$event.target']) onClick() {
+    this.handleClick.emit(this.song)
+  }
 }

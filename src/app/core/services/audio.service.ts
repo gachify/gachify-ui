@@ -1,6 +1,7 @@
-import { Injectable, OnDestroy, inject, signal } from '@angular/core'
+import { Injectable, Injector, OnDestroy, inject, signal } from '@angular/core'
 
 import { CookieService } from './cookie.service'
+import { PlaylistService } from './playlist.service'
 
 import { Song } from '@core/models'
 import { environment } from '@environment'
@@ -19,6 +20,7 @@ enum AudioEvents {
 })
 export class AudioService implements OnDestroy {
   private readonly cookieService = inject(CookieService)
+  private readonly injector = inject(Injector)
   private readonly audio = new Audio()
 
   readonly song = signal<null | Song>(null)
@@ -131,5 +133,6 @@ export class AudioService implements OnDestroy {
 
   private readonly onEnded = () => {
     this.playing.set(false)
+    this.injector.get(PlaylistService).nextTrack()
   }
 }
