@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgxsModule } from '@ngxs/store'
 
 import { EnsureModuleLoadedOnceGuard } from './guards'
+import { AuthState } from './state'
 
 import { environment } from '@environment'
 
@@ -13,7 +14,7 @@ import { environment } from '@environment'
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    NgxsModule.forRoot([], {
+    NgxsModule.forRoot([AuthState], {
       developmentMode: !environment.production,
     }),
     CommonModule,
