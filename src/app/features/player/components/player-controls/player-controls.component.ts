@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 
 import { PlaylistService } from '@core/services'
 import { AudioService } from '@core/services/audio.service'

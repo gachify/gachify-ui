@@ -24,7 +24,7 @@
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: linear-gradient(0deg, rgba(tokens.$color-surface-container-high, 0.6), rgba(tokens.$color-surface-container-high, 0.6)), url(/assets/img/oh-shit.jpg);
+  background: linear-gradient(0deg, rgba(tokens.$color-surface-container-high, 0.7), rgba(tokens.$color-surface-container-high, 0.7)), url(/assets/img/oh-shit.jpg);
   background-position: center;
   background-size: cover;
 }
@@ -38,11 +38,3 @@ button {
   margin-top: 16px;
 }
 
-a {
-  text-decoration: underline;
-  color: tokens.$color-primary;
-
-  &:hover {
-    color: tokens.$color-on-primary-container;
-  }
-}

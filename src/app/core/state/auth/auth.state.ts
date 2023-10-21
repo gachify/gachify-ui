@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core'
-import { Action, Selector, State, StateContext } from '@ngxs/store'
+import { Action, State, StateContext } from '@ngxs/store'
 import { tap } from 'rxjs'
 
 import { AuthActions } from './auth.actions'
@@ -36,8 +36,7 @@ export class AuthState {
 
   @Action(AuthActions.Logout)
   logout(ctx: StateContext<AuthStateModel>) {
-    const state = ctx.getState()
-    return this.authService.logout(state.token).pipe(
+    return this.authService.logout().pipe(
       tap(() => {
         ctx.setState({
           token: null,

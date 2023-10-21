@@ -31,7 +31,17 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/home/home-page.module').then((m) => m.HomePageModule),
+    loadChildren: () => import('./pages/login/login-page.module').then((m) => m.LoginPageModule),
+    data: {
+      layout: Layout.SideBanner,
+    },
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./pages/registration/registration-page.module').then((m) => m.RegistrationPageModule),
+    data: {
+      layout: Layout.SideBanner,
+    },
   },
   {
     path: '404',

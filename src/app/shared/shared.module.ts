@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core'
 import { CommonModule, NgOptimizedImage } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
-import { NgLetDirective, DataCyDirective, MatIconOutlinedDirective, MatListItemMediaDirective } from './directives'
+import {
+  NgLetDirective,
+  DataCyDirective,
+  MatIconOutlinedDirective,
+  MatListItemMediaDirective,
+  ValidationErrorDirective,
+} from './directives'
 import { DurationPipe, ExtendedDurationPipe } from './pipes'
 import { MaterialModule } from './material.module'
 import {
@@ -23,6 +29,7 @@ import {
     MatListItemMediaDirective,
     MatListItemSkeletonComponent,
     NgLetDirective,
+    ValidationErrorDirective,
   ],
   exports: [
     CategoryNavigationComponent,
@@ -39,6 +46,7 @@ import {
     NgLetDirective,
     NgOptimizedImage,
     ReactiveFormsModule,
+    ValidationErrorDirective,
   ],
 })
 export class SharedModule {}

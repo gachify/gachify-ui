@@ -72,3 +72,12 @@ p,
 .body-s {
   @include body-s
 }
+
+a {
+  text-decoration: underline;
+  color: $color-primary;
+
+  &:hover {
+    color: $color-on-primary-container;
+  }
+}

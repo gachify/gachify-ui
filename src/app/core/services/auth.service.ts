@@ -13,7 +13,7 @@ export class AuthService {
     return this.httpClient.post<{ token: string }>(environment.apiUrl, payload)
   }
 
-  logout(token: string | null) {
+  logout() {
     return this.httpClient.get(environment.apiUrl)
   }
 }

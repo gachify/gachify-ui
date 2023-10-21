@@ -1,0 +1,8 @@
+@use '../tokens' as tokens;
+
+mat-checkbox {
+  --mdc-checkbox-state-layer-size: 18px;
+  --mdc-checkbox-unselected-icon-color: #{tokens.$color-on-surface-variant};
+  --mdc-checkbox-selected-checkmark-color: #{tokens.$color-primary};
+  --mdc-checkbox-selected-hover-state-layer-color: #{tokens.$color-primary};
+}

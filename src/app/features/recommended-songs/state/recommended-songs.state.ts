@@ -21,7 +21,7 @@ export interface RecommendedSongsStateModel {
 })
 @Injectable()
 export class RecommendedSongsState {
-  private readonly RecommendedSongsPlaylistsService = inject(RecommendedSongsService)
+  private readonly recommendedSongsPlaylistsService = inject(RecommendedSongsService)
 
   @Action(RecommendedSongsActions.Fetch)
   fetchById(ctx: StateContext<RecommendedSongsStateModel>) {
@@ -33,7 +33,7 @@ export class RecommendedSongsState {
 
     ctx.patchState({ loading: true })
 
-    return this.RecommendedSongsPlaylistsService.fetchAll().pipe(
+    return this.recommendedSongsPlaylistsService.fetchAll().pipe(
       tap((songs) =>
         ctx.setState({
           songs,

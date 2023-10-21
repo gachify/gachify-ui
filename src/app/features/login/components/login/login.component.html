@@ -1,0 +1,55 @@
+<h1 class="headline-l">Sign in to Gachify</h1>
+
+<div
+  *ngIf="isInvalidCredentials$ | async"
+  class="invalid-credentials-banner"
+>
+  Sorry, couldn’t find an account matching the username and password you entered. Please try again.
+</div>
+
+<form [formGroup]="form">
+  <fieldset>
+    <mat-label>Username</mat-label>
+
+    <mat-form-field>
+      <input
+        formControlName="username"
+        matInput
+        type="text"
+      />
+    </mat-form-field>
+  </fieldset>
+
+  <fieldset>
+    <mat-label>Password</mat-label>
+
+    <mat-form-field>
+      <input
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        matInput
+      />
+
+      <button
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+      >
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </fieldset>
+
+  <button
+    [disabled]="isLoading$ | async"
+    class="submit-button"
+    mat-flat-button
+    (click)="handleSubmit()"
+  >
+    Sign In
+  </button>
+</form>
+
+<p class="link">Don't have an account? <a routerLink="/registration">Sign up</a></p>

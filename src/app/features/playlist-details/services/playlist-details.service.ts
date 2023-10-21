@@ -14,7 +14,7 @@ export interface PlaylistDetailsState {
 export class PlaylistDetailsService {
   private readonly httpClient = inject(HttpClient)
 
-  fetchById(playlistId: string) {
+  fetchById(_playlistId: string) {
     return this.httpClient.get<Playlist[]>(`${environment.apiUrl}/assets/mocks/library-playlists.json`).pipe(
       delay(3000),
       map((response) => response[0]),
