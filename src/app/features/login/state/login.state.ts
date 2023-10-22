@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { LoginService } from '../services'
 import { LoginActions } from './login.actions'
 
+import { AuthActions } from '@core/state'
+
 export interface LoginStateModel {
   loading: boolean
   invalidCredentials: boolean
@@ -27,10 +29,11 @@ export class LoginState {
     ctx.patchState({ loading: true, invalidCredentials: false })
 
     return this.loginService.login(action.payload).pipe(
-      tap(() => {
+      tap((response) => {
         ctx.patchState({
           loading: false,
         })
+        ctx.dispatch(new AuthActions.Login({ username: response.username }))
       }),
       catchError((error) => {
         ctx.patchState({

@@ -3,7 +3,7 @@ export namespace RegistrationActions {
 
   export class Register {
     static readonly type = `${prefix} Register`
-    constructor(public payload: { username: string; password: string }) {}
+    constructor(public payload: { username: string; email: string; password: string }) {}
   }
 
   export class HandleError {

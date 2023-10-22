@@ -61,6 +61,10 @@ mat-form-field {
     padding-bottom: 16px;
   }
 
+  .mat-mdc-form-field-icon-suffix {
+    display: flex;
+  }
+
   mat-error {
     color: tokens.$color-error;
     @include mixins.body-s;

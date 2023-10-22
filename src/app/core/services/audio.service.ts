@@ -73,7 +73,7 @@ export class AudioService implements OnDestroy {
 
     this.volume.set(volume)
     this.audio.volume = Number((volume / 100).toFixed(2))
-    this.cookieService.set(VOLUME_COOKIE, String(volume), 30)
+    this.cookieService.set({ name: VOLUME_COOKIE, value: String(volume), expires: 30 })
 
     if (this.audio.volume === 0) {
       this.muted.set(true)

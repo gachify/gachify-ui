@@ -17,6 +17,21 @@
         matInput
         type="text"
       />
+
+      <mat-icon
+        *ngIf="form.controls.username.errors && form.controls.username.touched"
+        color="error"
+        matSuffix
+      >
+        error
+      </mat-icon>
+
+      <mat-error
+        [control]="form.controls.username"
+        [valid]="form.controls.username.valid"
+        fieldName="Username"
+        validationError
+      ></mat-error>
     </mat-form-field>
   </fieldset>
 
@@ -25,20 +40,25 @@
 
     <mat-form-field>
       <input
-        [type]="hide ? 'password' : 'text'"
         formControlName="password"
         matInput
+        type="password"
       />
 
-      <button
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-        mat-icon-button
+      <mat-icon
+        *ngIf="form.controls.password.errors && form.controls.password.touched"
+        color="error"
         matSuffix
-        (click)="hide = !hide"
       >
-        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-      </button>
+        error
+      </mat-icon>
+
+      <mat-error
+        [control]="form.controls.password"
+        [valid]="form.controls.password.valid"
+        fieldName="Password"
+        validationError
+      ></mat-error>
     </mat-form-field>
   </fieldset>
 

@@ -9,6 +9,6 @@ export class LibraryPlaylistsService {
   private readonly httpClient = inject(HttpClient)
 
   fetchAll() {
-    return this.httpClient.get<Playlist[]>(`${environment.apiUrl}/assets/mocks/library-playlists.json`)
+    return this.httpClient.get<Playlist[]>(`${environment.apiUrl}/playlists/my`)
   }
 }

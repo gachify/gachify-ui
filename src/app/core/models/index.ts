@@ -1,3 +1,4 @@
+export * from './auth-response.model'
 export * from './environment.model'
 export * from './ng-changes.model'
 export * from './playlist.model'

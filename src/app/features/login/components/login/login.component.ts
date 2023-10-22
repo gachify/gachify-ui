@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngxs/store'
 
 import { LoginActions, LoginSelectors } from '@features/login/state'
@@ -16,8 +16,6 @@ export class LoginComponent {
   readonly isInvalidCredentials$ = this.store.select(LoginSelectors.isInvalidCredentials)
   readonly isLoading$ = this.store.select(LoginSelectors.isLoading)
 
-  hide = true
-
   form = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -29,6 +27,8 @@ export class LoginComponent {
       const password = this.form.controls.password.value || ''
 
       this.store.dispatch(new LoginActions.Login({ username, password }))
+    } else {
+      this.form.markAllAsTouched()
     }
   }
 }

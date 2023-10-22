@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common'
 import { Inject, Injectable } from '@angular/core'
 
-export type SameSite = 'Lax' | 'None' | 'Strict'
+type SameSite = 'Lax' | 'None' | 'Strict'
 
-export interface CookieOptions {
+interface CookieOptions {
+  name: string
+  value: string
   expires?: number | Date
-  path?: string
-  domain?: string
   secure?: boolean
   sameSite?: SameSite
 }
@@ -37,84 +37,31 @@ export class CookieService {
     return ''
   }
 
-  set(
-    name: string,
-    value: string,
-    expiresOrOptions?: CookieOptions['expires'] | CookieOptions,
-    path?: CookieOptions['path'],
-    domain?: CookieOptions['domain'],
-    secure?: CookieOptions['secure'],
-    sameSite?: SameSite,
-  ): void {
-    if (
-      typeof expiresOrOptions === 'number' ||
-      expiresOrOptions instanceof Date ||
-      path ||
-      domain ||
-      secure ||
-      sameSite
-    ) {
-      const optionsBody = {
-        expires: expiresOrOptions as CookieOptions['expires'],
-        path,
-        domain,
-        secure,
-        sameSite: sameSite ? sameSite : 'Lax',
-      }
-
-      this.set(name, value, optionsBody)
-
-      return
-    }
-
+  set({ name, value, expires, secure }: CookieOptions): void {
     let cookieString: string = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';'
 
-    const options = expiresOrOptions ? expiresOrOptions : {}
+    if (expires) {
+      if (typeof expires === 'number') {
+        const dateExpires: Date = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24)
 
-    if (options.expires) {
-      if (typeof options.expires === 'number') {
-        const dateExpires: Date = new Date(new Date().getTime() + options.expires * 1000 * 60 * 60 * 24)
-
-        cookieString += 'expires=' + dateExpires.toUTCString() + ';'
+        cookieString += 'Expires=' + dateExpires.toUTCString() + ';'
       } else {
-        cookieString += 'expires=' + options.expires.toUTCString() + ';'
+        cookieString += 'Expires=' + (expires as Date).toUTCString() + ';'
       }
     }
 
-    if (options.path) {
-      cookieString += 'path=' + options.path + ';'
+    if (secure) {
+      cookieString += 'Secure;'
     }
 
-    if (options.domain) {
-      cookieString += 'domain=' + options.domain + ';'
-    }
-
-    if (options.secure === false && options.sameSite === 'None') {
-      options.secure = true
-    }
-
-    if (options.secure) {
-      cookieString += 'secure;'
-    }
-
-    if (!options.sameSite) {
-      options.sameSite = 'Lax'
-    }
-
-    cookieString += 'sameSite=' + options.sameSite + ';'
+    cookieString += 'SameSite=Strict;'
 
     this.document.cookie = cookieString
   }
 
-  delete(
-    name: string,
-    path?: CookieOptions['path'],
-    domain?: CookieOptions['domain'],
-    secure?: CookieOptions['secure'],
-    sameSite: SameSite = 'Lax',
-  ): void {
-    const expiresDate = new Date('Thu, 01 Jan 1970 00:00:01 GMT')
-    this.set(name, '', { expires: expiresDate, path, domain, secure, sameSite })
+  delete(name: string): void {
+    const expires = new Date('Thu, 01 Jan 1970 00:00:01 GMT')
+    this.set({ name, value: '', expires })
   }
 
   private static getCookieRegExp(name: string): RegExp {

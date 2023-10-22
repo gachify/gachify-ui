@@ -1,19 +1,14 @@
-import { Injectable, inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Injectable, inject } from '@angular/core'
 
+import { AuthResponse } from '@core/models'
 import { environment } from '@environment'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly httpClient = inject(HttpClient)
 
-  login(payload: { username: string; password: string }) {
-    return this.httpClient.post<{ token: string }>(environment.apiUrl, payload)
-  }
-
-  logout() {
-    return this.httpClient.get(environment.apiUrl)
+  whoAmI() {
+    return this.httpClient.get<AuthResponse>(`${environment.apiUrl}/auth/whoami`)
   }
 }

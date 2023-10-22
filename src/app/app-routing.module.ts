@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes, TitleStrategy } from '@angular/router'
 
-import { AuthGuard } from '@core/guards'
+import { canActivateAuthorized, canActivateUnauthorized } from '@core/guards'
 import { PageTitleStrategy } from '@core/strategies'
 import { Layout } from '@layouts/models'
 
@@ -11,7 +11,7 @@ const routes: Routes = [
     data: {
       layout: Layout.Default,
     },
-    canActivate: [AuthGuard],
+    canActivate: [canActivateAuthorized],
     children: [
       {
         path: '',
@@ -27,6 +27,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/playlist-details/playlist-details-page.module').then((m) => m.PlaylistDetailsPageModule),
       },
+      {
+        path: 'explore',
+        loadChildren: () => import('./pages/explore/explore-page.module').then((m) => m.ExplorePageModule),
+      },
     ],
   },
   {
@@ -35,6 +39,7 @@ const routes: Routes = [
     data: {
       layout: Layout.SideBanner,
     },
+    canActivate: [canActivateUnauthorized],
   },
   {
     path: 'registration',
@@ -42,6 +47,7 @@ const routes: Routes = [
     data: {
       layout: Layout.SideBanner,
     },
+    canActivate: [canActivateUnauthorized],
   },
   {
     path: '404',

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 
+import { AuthResponse } from '@core/models'
 import { environment } from '@environment'
 
 @Injectable()
@@ -8,6 +9,6 @@ export class RegistrationService {
   private readonly httpClient = inject(HttpClient)
 
   register(payload: { username: string; password: string }) {
-    return this.httpClient.post<{ token: string }>(`${environment.apiUrl}/auth/register`, payload)
+    return this.httpClient.post<AuthResponse>(`${environment.apiUrl}/auth/register`, payload)
   }
 }

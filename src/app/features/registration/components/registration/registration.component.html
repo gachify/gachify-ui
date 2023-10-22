@@ -1,5 +1,10 @@
 <h1 class="headline-l">Sign up to Gachify</h1>
 
+<div class="error-banner">
+  <p *ngIf="isUsernameTaken$ | async">Username has already been taken</p>
+  <p *ngIf="isEmailTaken$ | async">Email has already been taken</p>
+</div>
+
 <form [formGroup]="form">
   <fieldset>
     <mat-label>Username</mat-label>
@@ -35,7 +40,7 @@
       <input
         formControlName="email"
         matInput
-        type="text"
+        type="email"
       />
 
       <mat-icon
@@ -65,6 +70,16 @@
         matInput
       />
 
+      <button
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+      >
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+
       <mat-icon
         *ngIf="form.controls.password.errors && form.controls.password.touched"
         color="error"
@@ -85,6 +100,7 @@
   <!-- <mat-checkbox>I agree with <a>Terms of Service</a></mat-checkbox> -->
 
   <button
+    [disabled]="isLoading$ | async"
     class="submit-button"
     mat-flat-button
     (click)="handleSubmit()"
