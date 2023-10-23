@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common'
+import { CommonModule, IMAGE_LOADER, ImageLoaderConfig } from '@angular/common'
 import { NgModule, Optional, SkipSelf } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgxsModule } from '@ngxs/store'
 
 import { EnsureModuleLoadedOnceGuard } from './guards'
 import { AuthState } from './state'
+import { WithCredentialsInterceptor } from './interceptors'
 
 import { environment } from '@environment'
 
@@ -19,6 +20,17 @@ import { environment } from '@environment'
     }),
     CommonModule,
     HttpClientModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: WithCredentialsInterceptor,
+      multi: true,
+    },
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => `${environment.apiUrl}/media/${config.src}.png`,
+    },
   ],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

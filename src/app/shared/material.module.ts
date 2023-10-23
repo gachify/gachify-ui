@@ -32,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatListModule } from '@angular/material/list'
 import { MatTreeModule } from '@angular/material/tree'
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 @NgModule({
   exports: [
@@ -53,6 +54,7 @@ import { MatTreeModule } from '@angular/material/tree'
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
+    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,

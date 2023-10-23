@@ -1,6 +1,8 @@
 <img
-  [src]="song()!.pictureUrl"
+  [ngSrc]="song()!.uuid"
   alt=""
+  height="56"
+  width="56"
 />
 <div class="title">
   <p class="title-m">{{ song()!.artist.name }}</p>

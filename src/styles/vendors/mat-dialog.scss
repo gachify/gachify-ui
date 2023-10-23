@@ -1,0 +1,23 @@
+@use '../tokens' as tokens;
+
+mat-dialog-container.mat-mdc-dialog-container {
+  // --mat-dialog-transition-duration
+  --mdc-dialog-container-shape: #{tokens.$corner-extra-large};
+  --mdc-dialog-container-elevation: #{tokens.$elevation-3};
+  --mdc-dialog-container-color: #{tokens.$color-surface-container-high};
+}
+
+mat-dialog-content {
+  --mdc-dialog-supporting-text-color: #{tokens.$color-on-surface-variant};
+  padding: 24px;
+
+  // font-family: var(--mdc-dialog-supporting-text-font, Roboto, sans-serif);
+  // line-height: var(--mdc-dialog-supporting-text-line-height, 1.5rem);
+  // font-size: var(--mdc-dialog-supporting-text-size, 1rem);
+  // font-weight: var(--mdc-dialog-supporting-text-weight, 400);
+  // letter-spacing: var(--mdc-dialog-supporting-text-tracking, 0.03125em);
+}
+
+mat-dialog-actions.mat-mdc-dialog-actions {
+  padding: 0 24px 24px 24px;
+}

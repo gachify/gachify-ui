@@ -89,7 +89,7 @@ export class AudioService implements OnDestroy {
   }
 
   load(song: Song) {
-    if (song.id === this.song()?.id) {
+    if (song.uuid === this.song()?.uuid) {
       return
     }
 
@@ -100,7 +100,7 @@ export class AudioService implements OnDestroy {
     this.sync.set(true)
 
     this.audio.volume = Number((this.volume() / 100).toFixed(2))
-    this.audio.src = `${environment.mediaUrl}/${song.id}.mp3`
+    this.audio.src = `${environment.apiUrl}/songs/${song.uuid}/stream`
     this.audio.load()
   }
 

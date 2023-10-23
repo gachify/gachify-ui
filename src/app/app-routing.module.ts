@@ -28,8 +28,8 @@ const routes: Routes = [
           import('./pages/playlist-details/playlist-details-page.module').then((m) => m.PlaylistDetailsPageModule),
       },
       {
-        path: 'explore',
-        loadChildren: () => import('./pages/explore/explore-page.module').then((m) => m.ExplorePageModule),
+        path: 'songs',
+        loadChildren: () => import('./pages/songs/songs-page.module').then((m) => m.SongsPageModule),
       },
     ],
   },

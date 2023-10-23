@@ -8,13 +8,13 @@
   <mat-nav-list>
     <mat-list-item
       *ngFor="let song of songs()"
-      [ngClass]="{ activated: song.id === currentSongId() }"
+      [ngClass]="{ activated: song.uuid === currentSongId() }"
       (click)="handleSongClick(song)"
     >
       <mat-icon matListItemIcon>play_arrow</mat-icon>
 
       <img
-        [ngSrc]="song.pictureUrl"
+        [ngSrc]="song.uuid"
         alt=""
         height="56"
         matListItemAvatar

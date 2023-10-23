@@ -1,18 +1,30 @@
 <gachi-category-navigation>
-  <gachi-category-navigation-item [active]="true">
+  <gachi-category-navigation-item
+    [active]="activeTab() === tabs.Playlists"
+    matRipple
+    (click)="toggleTab(tabs.Playlists)"
+  >
     <mat-icon>library_music</mat-icon>
     Playlists
   </gachi-category-navigation-item>
 
-  <gachi-category-navigation-item disabled>
+  <gachi-category-navigation-item
+    [active]="activeTab() === tabs.Songs"
+    matRipple
+    (click)="toggleTab(tabs.Songs)"
+  >
     <mat-icon>music_note</mat-icon>
     Songs
   </gachi-category-navigation-item>
 
-  <gachi-category-navigation-item disabled>
+  <gachi-category-navigation-item
+    [active]="activeTab() === tabs.Artists"
+    matRipple
+    (click)="toggleTab(tabs.Artists)"
+  >
     <mat-icon>person</mat-icon>
     Artists
   </gachi-category-navigation-item>
 </gachi-category-navigation>
 
-<gachi-library-playlists />
+<gachi-library-playlists *ngIf="activeTab() === tabs.Playlists" />

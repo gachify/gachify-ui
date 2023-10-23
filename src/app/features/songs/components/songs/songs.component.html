@@ -1,0 +1,43 @@
+<button
+  class="submit-button"
+  mat-stroked-button
+  (click)="handleAddSong()"
+>
+  <mat-icon>add</mat-icon>
+  Add song
+</button>
+
+<mat-nav-list>
+  <mat-list-item
+    *ngFor="let song of songs()"
+    [ngClass]="{ activated: song.uuid === currentSongId() }"
+    (click)="handleSongClick(song)"
+  >
+    <mat-icon matListItemIcon>play_arrow</mat-icon>
+
+    <img
+      [ngSrc]="song.uuid"
+      alt=""
+      height="56"
+      matListItemAvatar
+      matListItemLeadingImage
+      width="56"
+    />
+
+    <div matListItemTitle>{{ song.name }}</div>
+
+    <div matListItemLine>{{ song.artist.name }}</div>
+
+    <div matListItemMeta>{{ song.duration | duration }}</div>
+  </mat-list-item>
+</mat-nav-list>
+
+<mat-paginator
+  *ngIf="isFirstLoadComplete()"
+  [length]="itemCount()"
+  [pageIndex]="page()"
+  [pageSize]="take()"
+  [pageSizeOptions]="[5, 10, 25, 50]"
+  (page)="handlePageEvent($event)"
+>
+</mat-paginator>

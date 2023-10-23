@@ -1,5 +1,7 @@
 export * from './auth-response.model'
 export * from './environment.model'
 export * from './ng-changes.model'
+export * from './page-options.model'
+export * from './page-response.model'
 export * from './playlist.model'
 export * from './song.model'

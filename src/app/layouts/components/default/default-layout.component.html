@@ -11,12 +11,21 @@
     </li>
 
     <li
-      #search="routerLinkActive"
-      routerLink="/explore"
+      #songs="routerLinkActive"
+      routerLink="/songs"
       routerLinkActive="active"
     >
-      <mat-icon [outlined]="!search.isActive">search</mat-icon>
-      Explore
+      <mat-icon [outlined]="!songs.isActive">music_note</mat-icon>
+      Songs
+    </li>
+
+    <li
+      #artists="routerLinkActive"
+      routerLink="/artists"
+      routerLinkActive="active"
+    >
+      <mat-icon [outlined]="!artists.isActive">person</mat-icon>
+      Artists
     </li>
 
     <li

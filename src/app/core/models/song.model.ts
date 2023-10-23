@@ -1,10 +1,10 @@
 export interface Song {
-  id: string
-  pictureUrl: string
+  uuid: string
   name: string
   artist: {
-    id: string
+    uuid: string
     name: string
   }
+  playbackCount: number
   duration: number
 }

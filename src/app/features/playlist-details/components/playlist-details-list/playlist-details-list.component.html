@@ -1,6 +1,6 @@
 <ng-container *ngFor="let song of playlist.songs; let songIndex = index">
   <gachi-playlist-details-list-item
-    [active]="currentSong()?.id === song.id"
+    [active]="currentSong()?.uuid === song.uuid"
     [index]="songIndex + 1"
     [song]="song"
     (handleClick)="handleSongClick($event)"

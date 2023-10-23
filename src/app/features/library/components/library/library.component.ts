@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core'
+
+enum Tabs {
+  Playlists = 'playlists',
+  Songs = 'songs',
+  Artists = 'artists',
+}
 
 @Component({
   selector: 'gachi-library',
@@ -6,4 +12,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   styleUrls: ['library.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LibraryComponent {}
+export class LibraryComponent {
+  readonly activeTab = signal(Tabs.Playlists)
+
+  readonly tabs = Tabs
+
+  toggleTab(tab: Tabs): void {
+    this.activeTab.set(tab)
+  }
+}
