@@ -4,20 +4,25 @@ import { Playlist, Song } from '@core/models'
 import { AudioService, PlaylistService } from '@core/services'
 
 @Component({
-  selector: 'gachi-playlist-details-list',
-  templateUrl: 'playlist-details-list.component.html',
-  styleUrls: ['playlist-details-list.component.scss'],
+  selector: 'gachi-song-list',
+  templateUrl: 'song-list.component.html',
+  styleUrls: ['song-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaylistDetailsListComponent {
+export class SongListComponent {
   private readonly audioService = inject(AudioService)
   private readonly playlistService = inject(PlaylistService)
 
-  @Input({ required: true }) playlist: Playlist
+  @Input() playlist?: Playlist
+  @Input() songs?: Song[]
 
   readonly currentSong = this.audioService.song
 
   handleSongClick(song: Song) {
-    this.playlistService.load(this.playlist, song)
+    if (this.playlist) {
+      this.playlistService.load(this.playlist, song)
+    } else {
+      this.audioService.load(song)
+    }
   }
 }

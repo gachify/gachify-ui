@@ -7,6 +7,7 @@ import { NgChanges } from '@core/models'
 const VALIDATION_MESSAGES = {
   required: '{{fieldName}} is required',
   email: '{{fieldName}} must be in the format name@example.com',
+  pattern: '{{fieldName}} has invalid format',
   minlength: '{{fieldName}} is less than {{requiredLength}} characters long',
 }
 

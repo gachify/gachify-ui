@@ -28,8 +28,8 @@
 :host(.active) {
   border-top-color: transparent;
   border-radius: tokens.$corner-medium;
-  color: tokens.$color-on-primary-container;
-  background-color: tokens.$color-primary-container;
+  color: tokens.$color-on-primary-fixed;
+  background-color: tokens.$color-primary-fixed-dim;
   box-shadow: tokens.$elevation-1;
 
   mat-icon {
@@ -52,7 +52,6 @@ img {
 
 .index {
   text-align: center;
-  color: tokens.$color-on-surface-variant;
 }
 
 .name {
@@ -62,12 +61,10 @@ img {
 
 .artist {
   @include mixins.truncate;
-  color: tokens.$color-on-surface-variant;
 }
 
 .duration {
   display: flex;
   justify-content: flex-end;
-  color: tokens.$color-on-surface-variant;
 }
  

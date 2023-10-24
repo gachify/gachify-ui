@@ -46,8 +46,9 @@
   >
     <img
       alt=""
-      height="28px"
+      height="28"
       src="/assets/svg/male-symbol.svg"
+      width="28"
     />
     <h1>{{ applicationName }}</h1>
   </div>
@@ -55,6 +56,6 @@
 
 <gachi-player />
 
-<main>
+<main [ngClass]="{ extend: isPlayerVisible() }">
   <router-outlet></router-outlet>
 </main>

@@ -158,5 +158,10 @@ main {
   padding: 0 60px;
   width: 100%;
   justify-self: center;
-  margin-bottom: 104px;
+  margin-bottom: 24px;
+  transition: margin-bottom 0.3s;
+
+  &.extend {
+    margin-bottom: 104px;
+  }
 }

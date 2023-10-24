@@ -17,7 +17,7 @@ export class SongsUploadDialogComponent {
   readonly uploading = toSignal(this.store.select(SongsSelectors.uploading))
 
   form = new FormGroup({
-    youtubeUrl: new FormControl('', [Validators.required, Validators.pattern(/^https:\/\/youtu\.be\/[A-Za-z0-9]+$/)]),
+    youtubeUrl: new FormControl('', [Validators.required, Validators.pattern(/^https:\/\/youtu\.be\/[A-Za-z0-9_-]+$/)]),
   })
 
   constructor() {
