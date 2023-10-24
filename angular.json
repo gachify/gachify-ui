@@ -49,7 +49,8 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/assets"
+              "src/assets",
+              { "glob": "**/robots.txt", "input": "./src/assets", "output": "./" }
             ],
             "styles": [
               "src/styles/main.scss"
