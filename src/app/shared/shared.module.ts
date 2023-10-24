@@ -15,8 +15,7 @@ import {
   CategoryNavigationComponent,
   CategoryNavigationItemComponent,
   MatListItemSkeletonComponent,
-  SongListComponent,
-  SongListItemComponent,
+  SongsListItemComponent,
 } from './components'
 
 @NgModule({
@@ -31,8 +30,7 @@ import {
     MatListItemMediaDirective,
     MatListItemSkeletonComponent,
     NgLetDirective,
-    SongListComponent,
-    SongListItemComponent,
+    SongsListItemComponent,
     ValidationErrorDirective,
   ],
   exports: [
@@ -50,8 +48,7 @@ import {
     NgLetDirective,
     NgOptimizedImage,
     ReactiveFormsModule,
-    SongListComponent,
-    SongListItemComponent,
+    SongsListItemComponent,
     ValidationErrorDirective,
   ],
 })

@@ -7,7 +7,14 @@
   Add song
 </button>
 
-<gachi-song-list [songs]="songs()" />
+<mat-nav-list>
+  <ng-container *ngFor="let song of songs()">
+    <gachi-song-list-item
+      [song]="song"
+      (handleSongClick)="handleSongClick($event)"
+    />
+  </ng-container>
+</mat-nav-list>
 
 <mat-paginator
   *ngIf="isFirstLoadComplete()"

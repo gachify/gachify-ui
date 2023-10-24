@@ -1,0 +1,15 @@
+<span class="label-l index">{{ index }}</span>
+<mat-icon>play_arrow</mat-icon>
+
+<img
+  [ngSrc]="song.uuid"
+  alt=""
+  height="56"
+  width="56"
+/>
+
+<span class="body-l name">{{ song.name }}</span>
+
+<span class="body-m artist">{{ song.artist.name }}</span>
+
+<span class="label-m duration">{{ song.duration | duration }}</span>

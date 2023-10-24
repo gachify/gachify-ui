@@ -1,70 +1,26 @@
 @use 'tokens' as tokens;
-@use 'mixins' as mixins;
 
-:host {
-  height: 72px;
-  padding: 8px 24px;
-  display: grid;
-  gap: 24px;
-  align-items: center;
-  grid-template-columns: 32px 56px 2fr 3fr minmax(80px, 1fr);
-  border-top: 1px solid tokens.$color-outline-variant;
-
-  &:hover {
-    border-top-color: transparent;
-    border-radius: tokens.$corner-medium;
-    background-color: rgba(tokens.$color-on-surface, 0.08);
-
-    mat-icon {
-      display: inherit;
-    }
-
-    .index {
-      display: none;
-    }
-  }
-}
-
-:host(.active) {
-  border-top-color: transparent;
-  border-radius: tokens.$corner-medium;
-  color: tokens.$color-on-primary-fixed;
-  background-color: tokens.$color-primary-fixed-dim;
-  box-shadow: tokens.$elevation-1;
-
+mat-list-item {
   mat-icon {
-    display: inherit;
-  }
-
-  .index {
     display: none;
   }
-}
 
-mat-icon {
-  display: none;
-  justify-self: center;
-}
+  &.activated {
+    --mdc-list-list-item-container-color: #{tokens.$color-primary-container};
+    --mdc-list-list-item-label-text-color: #{tokens.$color-on-primary-container};
 
-img {
-  object-fit: cover;
+    img {
+      opacity: 0.3;
+    }
+  
+    mat-icon {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      font-size: 32px;
+      z-index: 2;
+      display: inherit;
+      margin: 20px 28px;
+    }
+  }
 }
-
-.index {
-  text-align: center;
-}
-
-.name {
-  @include mixins.truncate;
-  font-weight: 500;
-}
-
-.artist {
-  @include mixins.truncate;
-}
-
-.duration {
-  display: flex;
-  justify-content: flex-end;
-}
- 

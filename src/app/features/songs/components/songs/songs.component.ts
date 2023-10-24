@@ -22,8 +22,6 @@ export class SongsComponent implements OnInit {
   private readonly playlistService = inject(PlaylistService)
   private readonly dialog = inject(MatDialog)
 
-  readonly currentSongId = computed(() => this.audioService.song()?.uuid)
-
   readonly loading = toSignal(this.store.select(SongsSelectors.loading))
   readonly songs = toSignal(this.store.select(SongsSelectors.songs))
   readonly take = toSignal(this.store.select(SongsSelectors.take))

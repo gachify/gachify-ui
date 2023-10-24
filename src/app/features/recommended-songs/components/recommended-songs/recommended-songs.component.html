@@ -6,27 +6,11 @@
 
 <ng-template #content>
   <mat-nav-list>
-    <mat-list-item
-      *ngFor="let song of songs()"
-      [ngClass]="{ activated: song.uuid === currentSongId() }"
-      (click)="handleSongClick(song)"
-    >
-      <mat-icon matListItemIcon>play_arrow</mat-icon>
-
-      <img
-        [ngSrc]="song.uuid"
-        alt=""
-        height="56"
-        matListItemAvatar
-        matListItemLeadingImage
-        width="56"
+    <ng-container *ngFor="let song of songs()">
+      <gachi-song-list-item
+        [song]="song"
+        (handleSongClick)="handleSongClick($event)"
       />
-
-      <div matListItemTitle>{{ song.name }}</div>
-
-      <div matListItemLine>{{ song.artist.name }}</div>
-
-      <div matListItemMeta>{{ song.duration | duration }}</div>
-    </mat-list-item>
+    </ng-container>
   </mat-nav-list>
 </ng-template>

@@ -9,6 +9,6 @@ export class RecommendedSongsService {
   private readonly httpClient = inject(HttpClient)
 
   fetchAll() {
-    return this.httpClient.get<Song[]>(`${environment.apiUrl}/assets/mocks/recommended-songs.json`)
+    return this.httpClient.get<Song[]>(`${environment.apiUrl}/songs/popular`)
   }
 }

@@ -1,15 +1,21 @@
-<span class="label-l index">{{ index }}</span>
-<mat-icon>play_arrow</mat-icon>
+<mat-list-item
+  [ngClass]="{ activated: song.uuid === currentSongId() }"
+  (click)="handleSongClick.emit(song)"
+>
+  <mat-icon matListItemIcon>play_arrow</mat-icon>
 
-<img
-  [ngSrc]="song.uuid"
-  alt=""
-  height="56"
-  width="56"
-/>
+  <img
+    [ngSrc]="song.uuid"
+    alt=""
+    height="56"
+    matListItemAvatar
+    matListItemLeadingImage
+    width="56"
+  />
 
-<span class="body-l name">{{ song.name }}</span>
+  <div matListItemTitle>{{ song.name }}</div>
 
-<span class="body-m artist">{{ song.artist.name }}</span>
+  <div matListItemLine>{{ song.artist.name }}</div>
 
-<span class="label-m duration">{{ song.duration | duration }}</span>
+  <div matListItemMeta>{{ song.duration | duration }}</div>
+</mat-list-item>

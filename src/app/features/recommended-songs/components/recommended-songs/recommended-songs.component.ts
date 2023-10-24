@@ -16,8 +16,6 @@ export class RecommendedSongsComponent implements OnInit {
   private readonly store = inject(Store)
   private readonly audioService = inject(AudioService)
 
-  readonly currentSongId = computed(() => this.audioService.song()?.uuid)
-
   readonly loading = toSignal(this.store.select(RecommendedSongsSelectors.slices.loading))
   readonly songs = toSignal(this.store.select(RecommendedSongsSelectors.slices.songs))
 
