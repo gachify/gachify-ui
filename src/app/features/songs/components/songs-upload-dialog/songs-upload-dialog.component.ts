@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngxs/store'
 import { toSignal } from '@angular/core/rxjs-interop'
@@ -19,6 +19,14 @@ export class SongsUploadDialogComponent {
   form = new FormGroup({
     youtubeUrl: new FormControl('', [Validators.required]),
   })
+
+  constructor() {
+    effect(() => {
+      if (!this.uploading()) {
+        this.form.reset()
+      }
+    })
+  }
 
   handleSubmit(): void {
     if (this.form.valid) {
