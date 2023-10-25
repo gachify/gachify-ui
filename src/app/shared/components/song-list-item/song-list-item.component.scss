@@ -1,5 +1,9 @@
 @use 'tokens' as tokens;
 
+:host {
+  min-width: 0px;
+}
+
 mat-list-item {
   mat-icon {
     display: none;
