@@ -15,9 +15,14 @@ export class PlayerControlsComponent {
 
   readonly playing = this.audioService.playing
   readonly sync = this.audioService.sync
+  readonly repeat = this.audioService.repeat
 
   handleTogglePlay() {
     this.audioService.togglePlay()
+  }
+
+  handleToggleRepeat() {
+    this.audioService.toggleRepeat()
   }
 
   handleSkipNext() {

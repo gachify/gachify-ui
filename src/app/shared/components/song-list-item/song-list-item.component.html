@@ -1,8 +1,8 @@
 <mat-list-item
-  [ngClass]="{ activated: song.uuid === currentSongId() }"
-  (click)="handleSongClick.emit(song)"
+  [ngClass]="{ activated: isCurrentSong() }"
+  (click)="handleClick()"
 >
-  <mat-icon matListItemIcon>play_arrow</mat-icon>
+  <mat-icon matListItemIcon>{{ icon() }}</mat-icon>
 
   <img
     [ngSrc]="song.uuid"

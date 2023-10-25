@@ -16,5 +16,17 @@ export class SongsListItemComponent {
 
   @Output() handleSongClick = new EventEmitter<Song>()
 
-  readonly currentSongId = computed(() => this.audioService.song()?.uuid)
+  readonly isCurrentSong = computed(() => this.audioService.song()?.uuid === this.song.uuid)
+
+  readonly icon = computed(() =>
+    this.audioService.sync() ? 'sync' : this.audioService.playing() ? 'pause' : 'play_arrow',
+  )
+
+  handleClick(): void {
+    if (this.isCurrentSong()) {
+      this.audioService.togglePlay()
+    } else {
+      this.handleSongClick.emit(this.song)
+    }
+  }
 }

@@ -32,7 +32,11 @@
 >
   <mat-icon>skip_next</mat-icon>
 </button>
-<!-- <button class="i">
-  <i>repeat</i>
-</button> -->
-<!-- repeat_on -->
+
+<button
+  [ngClass]="{ inactive: !repeat() }"
+  mat-icon-button
+  (click)="handleToggleRepeat()"
+>
+  <mat-icon>{{ repeat() ? 'repeat_one' : 'repeat' }}</mat-icon>
+</button>

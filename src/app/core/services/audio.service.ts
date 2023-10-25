@@ -26,6 +26,7 @@ export class AudioService implements OnDestroy {
   readonly song = signal<null | Song>(null)
 
   readonly sync = signal(false)
+  readonly repeat = signal(false)
   readonly playing = signal(false)
   readonly duration = signal(0)
   readonly muted = signal(false)
@@ -54,6 +55,10 @@ export class AudioService implements OnDestroy {
       this.playing.set(false)
       this.audio.pause()
     }
+  }
+
+  toggleRepeat() {
+    this.repeat.update((oldValue) => !oldValue)
   }
 
   pause() {
@@ -132,7 +137,11 @@ export class AudioService implements OnDestroy {
   }
 
   private readonly onEnded = () => {
-    this.playing.set(false)
-    this.injector.get(PlaylistService).nextTrack()
+    if (this.repeat()) {
+      this.play()
+    } else {
+      this.playing.set(false)
+      this.injector.get(PlaylistService).nextTrack()
+    }
   }
 }
