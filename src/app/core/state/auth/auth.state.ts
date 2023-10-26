@@ -1,11 +1,8 @@
 import { Injectable, inject } from '@angular/core'
 import { Action, State, StateContext } from '@ngxs/store'
 import { Router } from '@angular/router'
-import { catchError, of, tap } from 'rxjs'
 
 import { AuthActions } from './auth.actions'
-
-import { AuthService } from '@core/services'
 
 export interface AuthStateModel {
   initialCheck: boolean

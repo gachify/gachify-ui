@@ -10,7 +10,8 @@
     "test": "jest --verbose",
     "test:watch": "jest --watch",
     "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/gachify-ui/stats.json",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "dependencies": {
     "@angular/animations": "^16.2.0",

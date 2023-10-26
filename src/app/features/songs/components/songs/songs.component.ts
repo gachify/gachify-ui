@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { Store } from '@ngxs/store'
 import { PageEvent } from '@angular/material/paginator'
