@@ -1,17 +1,17 @@
 <mat-dialog-content>
   <form [formGroup]="form">
     <fieldset>
-      <mat-label>Youtube link</mat-label>
+      <mat-label>Video link</mat-label>
 
       <mat-form-field>
         <input
-          formControlName="youtubeUrl"
+          formControlName="videoUrl"
           matInput
           type="text"
         />
 
         <mat-icon
-          *ngIf="form.controls.youtubeUrl.errors && form.controls.youtubeUrl.touched"
+          *ngIf="form.controls.videoUrl.errors && form.controls.videoUrl.touched"
           color="error"
           matSuffix
         >
@@ -19,9 +19,9 @@
         </mat-icon>
 
         <mat-error
-          [control]="form.controls.youtubeUrl"
-          [valid]="form.controls.youtubeUrl.valid"
-          fieldName="Youtube link"
+          [control]="form.controls.videoUrl"
+          [valid]="form.controls.videoUrl.valid"
+          fieldName="Video link"
           validationError
         ></mat-error>
       </mat-form-field>

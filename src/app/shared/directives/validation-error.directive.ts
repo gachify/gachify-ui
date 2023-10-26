@@ -2,13 +2,14 @@ import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit } from '@ang
 import { FormControl } from '@angular/forms'
 import { Subject, takeUntil } from 'rxjs'
 
-import { NgChanges } from '@core/models'
+import { CustomValidationError, NgChanges } from '@core/models'
 
 const VALIDATION_MESSAGES = {
   required: '{{fieldName}} is required',
   email: '{{fieldName}} must be in the format name@example.com',
   pattern: '{{fieldName}} has invalid format',
   minlength: '{{fieldName}} is less than {{requiredLength}} characters long',
+  [CustomValidationError.YOUTUBE_URL]: '{{fieldName}} is not valid Youtube link',
 }
 
 @Directive({

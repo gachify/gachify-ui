@@ -38,7 +38,7 @@ export class SongsComponent implements OnInit {
   }
 
   handleAddSong() {
-    this.dialog.open(SongsUploadDialogComponent, { maxWidth: 560, minWidth: 280, disableClose: true })
+    this.dialog.open(SongsUploadDialogComponent, { width: '300px', disableClose: true })
   }
 
   handleSongClick(song: Song) {

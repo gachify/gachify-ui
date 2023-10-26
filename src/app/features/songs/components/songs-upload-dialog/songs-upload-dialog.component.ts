@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store'
 import { toSignal } from '@angular/core/rxjs-interop'
 
 import { SongsActions, SongsSelectors } from '@features/songs/state'
+import { CustomValidators } from '@core/utils'
 
 @Component({
   selector: 'gachi-songs-upload-dialog',
@@ -17,7 +18,7 @@ export class SongsUploadDialogComponent {
   readonly uploading = toSignal(this.store.select(SongsSelectors.uploading))
 
   form = new FormGroup({
-    youtubeUrl: new FormControl('', [Validators.required, Validators.pattern(/^https:\/\/youtu\.be\/[A-Za-z0-9_-]+$/)]),
+    videoUrl: new FormControl('', [Validators.required, CustomValidators.youtubeUrl]),
   })
 
   constructor() {
@@ -30,7 +31,7 @@ export class SongsUploadDialogComponent {
 
   handleSubmit(): void {
     if (this.form.valid) {
-      const youtubeUrl = this.form.controls.youtubeUrl.value || ''
+      const youtubeUrl = this.form.controls.videoUrl.value || ''
       this.store.dispatch(new SongsActions.Upload({ youtubeUrl }))
     } else {
       this.form.markAllAsTouched()
