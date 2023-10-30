@@ -8,7 +8,7 @@ import { environment } from '@environment'
 export class LoginService {
   private readonly httpClient = inject(HttpClient)
 
-  login(payload: { username: string; password: string }) {
+  login(payload: { email: string; password: string }) {
     return this.httpClient.post<AuthResponse>(`${environment.apiUrl}/auth/login`, payload)
   }
 }

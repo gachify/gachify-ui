@@ -9,17 +9,17 @@
 
 <form [formGroup]="form">
   <fieldset>
-    <mat-label>Username</mat-label>
+    <mat-label>Email</mat-label>
 
     <mat-form-field>
       <input
-        formControlName="username"
+        formControlName="email"
         matInput
         type="text"
       />
 
       <mat-icon
-        *ngIf="form.controls.username.errors && form.controls.username.touched"
+        *ngIf="form.controls.email.errors && form.controls.email.touched"
         color="error"
         matSuffix
       >
@@ -27,9 +27,9 @@
       </mat-icon>
 
       <mat-error
-        [control]="form.controls.username"
-        [valid]="form.controls.username.valid"
-        fieldName="Username"
+        [control]="form.controls.email"
+        [valid]="form.controls.email.valid"
+        fieldName="Email"
         validationError
       ></mat-error>
     </mat-form-field>

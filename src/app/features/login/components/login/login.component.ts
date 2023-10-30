@@ -17,16 +17,16 @@ export class LoginComponent {
   readonly isLoading$ = this.store.select(LoginSelectors.isLoading)
 
   form = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   })
 
   handleSubmit(): void {
     if (this.form.valid) {
-      const username = this.form.controls.username.value || ''
+      const email = this.form.controls.email.value || ''
       const password = this.form.controls.password.value || ''
 
-      this.store.dispatch(new LoginActions.Login({ username, password }))
+      this.store.dispatch(new LoginActions.Login({ email, password }))
     } else {
       this.form.markAllAsTouched()
     }
