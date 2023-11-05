@@ -1,10 +1,8 @@
+import { Artist } from './artist.model'
+
 export interface Song {
-  uuid: string
-  name: string
-  artist: {
-    uuid: string
-    name: string
-  }
-  playbackCount: number
+  id: string
+  title: string
+  artist: Artist
   duration: number
 }

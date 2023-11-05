@@ -1,0 +1,13 @@
+@use 'tokens' as tokens;
+
+.mat-mdc-menu-panel {
+  --mat-menu-container-color: #{tokens.$color-surface-container};
+
+  --mat-menu-item-label-text-font: #{tokens.$typography-font-family};
+  --mat-menu-item-label-text-line-height: #{tokens.$typography-body-l-line-height};
+  --mat-menu-item-label-text-size: #{tokens.$typography-body-l-size};
+  --mat-menu-item-label-text-tracking: #{tokens.$typography-body-l-tracking};
+  --mat-menu-item-label-text-weight: #{tokens.$typography-body-l-weight};
+
+  box-shadow: tokens.$elevation-2 !important;
+}

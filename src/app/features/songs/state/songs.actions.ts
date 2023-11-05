@@ -11,9 +11,4 @@ export namespace SongsActions {
     static readonly type = `${prefix} Update page options`
     constructor(public payload: PageOptions) {}
   }
-
-  export class Upload {
-    static readonly type = `${prefix} Upload song`
-    constructor(public payload: { youtubeUrl: string }) {}
-  }
 }

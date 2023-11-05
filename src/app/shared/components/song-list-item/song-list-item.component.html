@@ -1,11 +1,15 @@
 <mat-list-item
   [ngClass]="{ activated: isCurrentSong() }"
-  (click)="handleClick()"
+  (click)="handleSongClick.emit(song)"
 >
-  <mat-icon matListItemIcon>{{ icon() }}</mat-icon>
+  <gachi-play-button
+    [status]="status()"
+    matListItemIcon
+  />
+  <!-- <mat-icon matListItemIcon>{{ icon() }}</mat-icon> -->
 
   <img
-    [ngSrc]="song.uuid"
+    [ngSrc]="imageUrl"
     alt=""
     height="56"
     matListItemAvatar
@@ -13,9 +17,32 @@
     width="56"
   />
 
-  <div matListItemTitle>{{ song.name }}</div>
+  <div matListItemTitle>{{ song.title }}</div>
 
   <div matListItemLine>{{ song.artist.name }}</div>
 
-  <div matListItemMeta>{{ song.duration | duration }}</div>
+  <div
+    class="duration"
+    matListItemMeta
+  >
+    {{ song.duration | duration }}
+  </div>
+
+  <button
+    #menuTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="menu"
+    class="menu-button"
+    mat-icon-button
+    matListItemMeta
+    (click)="openMenu($event)"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>playlist_add</mat-icon>
+      <span>Add to playlist</span>
+    </button>
+  </mat-menu>
 </mat-list-item>

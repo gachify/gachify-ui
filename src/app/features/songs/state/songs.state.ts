@@ -3,9 +3,9 @@ import { Action, State, StateContext } from '@ngxs/store'
 import { tap } from 'rxjs'
 
 import { SongsActions } from './songs.actions'
-import { SongsService } from '../services'
 
 import { Song } from '@core/models'
+import { SongService } from '@core/services'
 
 export interface SongsStateModel {
   songs: Song[]
@@ -13,7 +13,6 @@ export interface SongsStateModel {
   take: number
   itemCount: number | null
   loading: boolean
-  uploading: boolean
 }
 
 @State<SongsStateModel>({
@@ -24,12 +23,11 @@ export interface SongsStateModel {
     page: 0,
     take: 25,
     loading: false,
-    uploading: false,
   },
 })
 @Injectable()
 export class SongsState {
-  private readonly songsService = inject(SongsService)
+  private readonly songService = inject(SongService)
 
   @Action(SongsActions.Fetch)
   fetch(ctx: StateContext<SongsStateModel>) {
@@ -37,7 +35,7 @@ export class SongsState {
 
     ctx.patchState({ loading: true })
 
-    return this.songsService.getSongs({ take: state.take, page: state.page }).pipe(
+    return this.songService.getSongs({ take: state.take, page: state.page }).pipe(
       tap((response) =>
         ctx.patchState({
           songs: response.data,
@@ -52,20 +50,5 @@ export class SongsState {
   updatePageOptions(ctx: StateContext<SongsStateModel>, action: SongsActions.UpdatePageOptions) {
     ctx.patchState({ ...action.payload })
     ctx.dispatch(new SongsActions.Fetch())
-  }
-
-  @Action(SongsActions.Upload)
-  upload(ctx: StateContext<SongsStateModel>, action: SongsActions.Upload) {
-    ctx.patchState({ uploading: true })
-
-    return this.songsService.uploadSong(action.payload.youtubeUrl).pipe(
-      tap(() => {
-        ctx.patchState({
-          uploading: false,
-        })
-
-        ctx.dispatch(new SongsActions.Fetch())
-      }),
-    )
   }
 }

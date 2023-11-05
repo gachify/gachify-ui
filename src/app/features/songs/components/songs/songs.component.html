@@ -1,12 +1,3 @@
-<button
-  class="submit-button"
-  mat-stroked-button
-  (click)="handleAddSong()"
->
-  <mat-icon>add</mat-icon>
-  Add song
-</button>
-
 <mat-nav-list>
   <ng-container *ngFor="let song of songs()">
     <gachi-song-list-item

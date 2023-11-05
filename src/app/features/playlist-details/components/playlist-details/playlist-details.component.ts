@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store'
 import { toSignal } from '@angular/core/rxjs-interop'
 
 import { PlaylistDetailsActions, PlaylistDetailsSelectors } from '@features/playlist-details/state'
+import { Song } from '@core/models'
 
 @Component({
   selector: 'gachi-playlist-details',
@@ -20,5 +21,9 @@ export class PlaylistDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new PlaylistDetailsActions.FetchById(this.id))
+  }
+
+  handleSongClick(song: Song): void {
+    // this.playlistService.load(this.playlist()!, song)
   }
 }

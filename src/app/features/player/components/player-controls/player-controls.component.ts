@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { toSignal } from '@angular/core/rxjs-interop'
+import { Store } from '@ngxs/store'
 
-import { PlaylistService } from '@core/services'
-import { AudioService } from '@core/services/audio.service'
+import { PlayerActions, PlayerSelectors } from '@core/state'
+import { RepeatOption } from '@core/models'
 
 @Component({
   selector: 'gachi-player-controls',
@@ -10,26 +12,27 @@ import { AudioService } from '@core/services/audio.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerControlsComponent {
-  private readonly audioService = inject(AudioService)
-  private readonly playlistService = inject(PlaylistService)
+  private readonly store = inject(Store)
 
-  readonly playing = this.audioService.playing
-  readonly sync = this.audioService.sync
-  readonly repeat = this.audioService.repeat
+  readonly repeatOption = RepeatOption
+
+  readonly repeat = toSignal(this.store.select(PlayerSelectors.repeat))
+  readonly status = toSignal(this.store.select(PlayerSelectors.status))
+  readonly playlist = toSignal(this.store.select(PlayerSelectors.playlist))
 
   handleTogglePlay() {
-    this.audioService.togglePlay()
+    this.store.dispatch(new PlayerActions.TogglePlay())
   }
 
   handleToggleRepeat() {
-    this.audioService.toggleRepeat()
+    this.store.dispatch(new PlayerActions.ToggleRepeat())
   }
 
   handleSkipNext() {
-    this.playlistService.nextTrack()
+    this.store.dispatch(new PlayerActions.NextSong())
   }
 
   handleSkipPrevious() {
-    this.playlistService.previousTrack()
+    this.store.dispatch(new PlayerActions.PreviousSong())
   }
 }

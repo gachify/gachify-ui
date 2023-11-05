@@ -5,7 +5,10 @@
   <p *ngIf="isEmailTaken$ | async">Email has already been taken</p>
 </div>
 
-<form [formGroup]="form">
+<form
+  [formGroup]="form"
+  autocomplete="off"
+>
   <fieldset>
     <mat-label>Username</mat-label>
 

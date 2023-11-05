@@ -21,3 +21,15 @@ mat-dialog-content {
 mat-dialog-actions.mat-mdc-dialog-actions {
   padding: 0 24px 24px 24px;
 }
+
+mat-dialog-container .mat-mdc-dialog-title {
+  --mdc-dialog-subhead-color: #{tokens.$color-on-surface};
+  
+  --mdc-dialog-subhead-font: #{tokens.$typography-font-family};
+  --mdc-dialog-subhead-line-height: #{tokens.$typography-headline-s-line-height};
+  --mdc-dialog-subhead-size: #{tokens.$typography-headline-s-size};
+  --mdc-dialog-subhead-weight: #{tokens.$typography-headline-s-tracking};
+  --mdc-dialog-subhead-tracking: #{tokens.$typography-headline-s-weight};
+
+  margin-bottom: 16px;
+}

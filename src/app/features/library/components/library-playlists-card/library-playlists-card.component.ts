@@ -22,4 +22,8 @@ export class LibraryPlaylistsCardComponent {
   get totalDuration(): number {
     return this.playlist.songs.reduce((sum, song) => sum + song.duration, 0)
   }
+
+  get imageUrl(): string {
+    return this.playlist.songs.length ? this.playlist.songs[0].id : '/assets/img/playlist-placeholder.png'
+  }
 }

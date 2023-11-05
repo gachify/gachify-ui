@@ -4,11 +4,9 @@ import { Store } from '@ngxs/store'
 import { PageEvent } from '@angular/material/paginator'
 import { MatDialog } from '@angular/material/dialog'
 
-import { SongsUploadDialogComponent } from '../'
-
 import { Song } from '@core/models'
-import { AudioService, PlaylistService } from '@core/services'
 import { SongsActions, SongsSelectors } from '@features/songs/state'
+import { PlayerActions } from '@core/state'
 
 @Component({
   selector: 'gachi-songs',
@@ -18,8 +16,6 @@ import { SongsActions, SongsSelectors } from '@features/songs/state'
 })
 export class SongsComponent implements OnInit {
   private readonly store = inject(Store)
-  private readonly audioService = inject(AudioService)
-  private readonly playlistService = inject(PlaylistService)
   private readonly dialog = inject(MatDialog)
 
   readonly loading = toSignal(this.store.select(SongsSelectors.loading))
@@ -37,12 +33,7 @@ export class SongsComponent implements OnInit {
     this.store.dispatch(new SongsActions.UpdatePageOptions({ take: pageSize, page: pageIndex }))
   }
 
-  handleAddSong() {
-    this.dialog.open(SongsUploadDialogComponent, { width: '300px', disableClose: true })
-  }
-
   handleSongClick(song: Song) {
-    // this.playlistService.load(, song)
-    this.audioService.load(song)
+    this.store.dispatch(new PlayerActions.Load({ song }))
   }
 }

@@ -11,8 +11,6 @@ export class SongsSelectors {
 
   static page = createSelector([SongsState], (state: SongsStateModel) => state.page)
 
-  static uploading = createSelector([SongsState], (state: SongsStateModel) => state.uploading)
-
   static isFirstLoadComplete = createSelector(
     [SongsState],
     (state: SongsStateModel) => !state.loading && state.itemCount !== null,

@@ -15,6 +15,7 @@ import {
   CategoryNavigationComponent,
   CategoryNavigationItemComponent,
   MatListItemSkeletonComponent,
+  PlayButtonComponent,
   SongsListItemComponent,
 } from './components'
 
@@ -30,6 +31,7 @@ import {
     MatListItemMediaDirective,
     MatListItemSkeletonComponent,
     NgLetDirective,
+    PlayButtonComponent,
     SongsListItemComponent,
     ValidationErrorDirective,
   ],
@@ -47,6 +49,7 @@ import {
     MatListItemSkeletonComponent,
     NgLetDirective,
     NgOptimizedImage,
+    PlayButtonComponent,
     ReactiveFormsModule,
     SongsListItemComponent,
     ValidationErrorDirective,

@@ -3,9 +3,9 @@ import { Action, State, StateContext } from '@ngxs/store'
 import { tap } from 'rxjs'
 
 import { RecommendedSongsActions } from './recommended-songs.actions'
-import { RecommendedSongsService } from '../services'
 
 import { Song } from '@core/models'
+import { SongService } from '@core/services'
 
 export interface RecommendedSongsStateModel {
   songs: Song[]
@@ -21,7 +21,7 @@ export interface RecommendedSongsStateModel {
 })
 @Injectable()
 export class RecommendedSongsState {
-  private readonly recommendedSongsPlaylistsService = inject(RecommendedSongsService)
+  private readonly songService = inject(SongService)
 
   @Action(RecommendedSongsActions.Fetch)
   fetchById(ctx: StateContext<RecommendedSongsStateModel>) {
@@ -33,10 +33,10 @@ export class RecommendedSongsState {
 
     ctx.patchState({ loading: true })
 
-    return this.recommendedSongsPlaylistsService.fetchAll().pipe(
-      tap((songs) =>
+    return this.songService.getPopular().pipe(
+      tap((response) =>
         ctx.setState({
-          songs,
+          songs: response.data,
           loading: false,
         }),
       ),

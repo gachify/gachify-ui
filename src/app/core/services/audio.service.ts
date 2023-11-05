@@ -1,17 +1,12 @@
-import { Injectable, Injector, OnDestroy, inject, signal } from '@angular/core'
+import { Injectable, OnDestroy, inject } from '@angular/core'
+import { Store } from '@ngxs/store'
 
-import { CookieService } from './cookie.service'
-import { PlaylistService } from './playlist.service'
-
-import { Song } from '@core/models'
 import { environment } from '@environment'
-
-const VOLUME_COOKIE = 'gachi-volume'
+import { PlayerActions } from '@core/state/player'
 
 enum AudioEvents {
   TIME_UPDATE = 'timeupdate',
   LOADED_DATA = 'loadeddata',
-  LOADED_METADATA = 'loadedmetadata',
   ENDED = 'ended',
 }
 
@@ -19,19 +14,8 @@ enum AudioEvents {
   providedIn: 'root',
 })
 export class AudioService implements OnDestroy {
-  private readonly cookieService = inject(CookieService)
-  private readonly injector = inject(Injector)
   private readonly audio = new Audio()
-
-  readonly song = signal<null | Song>(null)
-
-  readonly sync = signal(false)
-  readonly repeat = signal(false)
-  readonly playing = signal(false)
-  readonly duration = signal(0)
-  readonly muted = signal(false)
-  readonly volume = signal(Number(this.cookieService.get(VOLUME_COOKIE)) || 100)
-  readonly currentTime = signal(0)
+  private readonly store = inject(Store)
 
   constructor() {
     this.registerEvents()
@@ -43,105 +27,60 @@ export class AudioService implements OnDestroy {
   }
 
   play() {
-    this.playing.set(true)
     this.audio.play()
   }
 
-  togglePlay() {
-    if (this.audio.paused || this.audio.ended) {
-      this.playing.set(true)
-      this.audio.play()
-    } else {
-      this.playing.set(false)
-      this.audio.pause()
-    }
-  }
-
-  toggleRepeat() {
-    this.repeat.update((oldValue) => !oldValue)
-  }
-
   pause() {
-    this.playing.set(false)
     this.audio.pause()
   }
 
+  // https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/buffering_seeking_time_ranges
   seek(seconds: number) {
     this.audio.currentTime = seconds
   }
 
   setVolume(volume: number) {
     if (this.audio.muted) {
-      this.muted.set(false)
       this.audio.muted = false
     }
 
-    this.volume.set(volume)
-    this.audio.volume = Number((volume / 100).toFixed(2))
-    this.cookieService.set({ name: VOLUME_COOKIE, value: String(volume), expires: 30 })
-
     if (this.audio.volume === 0) {
-      this.muted.set(true)
       this.audio.muted = true
     }
+
+    this.audio.volume = Number((volume / 100).toFixed(2))
   }
 
   toggleMute() {
-    const newValue = !this.audio.muted
-
-    this.muted.set(newValue)
-    this.audio.muted = newValue
+    this.audio.muted = !this.audio.muted
   }
 
-  load(song: Song) {
-    if (song.uuid === this.song()?.uuid) {
-      return
-    }
-
-    this.song.set(song)
-    this.duration.set(song.duration)
-    this.currentTime.set(0)
-    this.playing.set(false)
-    this.sync.set(true)
-
-    this.audio.volume = Number((this.volume() / 100).toFixed(2))
-    this.audio.src = `${environment.apiUrl}/songs/${song.uuid}/stream`
+  load(songId: string) {
+    this.audio.src = `${environment.apiUrl}/songs/${songId}/stream`
     this.audio.load()
   }
 
   private registerEvents() {
-    this.audio.addEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
     this.audio.addEventListener(AudioEvents.LOADED_DATA, this.onLoadedData)
     this.audio.addEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
     this.audio.addEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private removeEvents() {
-    this.audio.removeEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
     this.audio.removeEventListener(AudioEvents.LOADED_DATA, this.onLoadedData)
     this.audio.removeEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
     this.audio.removeEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private readonly onLoadedData = () => {
-    this.play()
-    this.sync.set(false)
-  }
-
-  private readonly onLoadedMetadata = () => {
-    this.duration.set(this.audio.duration)
+    this.store.dispatch(new PlayerActions.Play())
   }
 
   private readonly onTimeUpdate = () => {
-    this.currentTime.set(this.audio.currentTime)
+    this.store.dispatch(new PlayerActions.SetCurrentTime({ time: Math.round(this.audio.currentTime) }))
   }
 
   private readonly onEnded = () => {
-    if (this.repeat()) {
-      this.play()
-    } else {
-      this.playing.set(false)
-      this.injector.get(PlaylistService).nextTrack()
-    }
+    this.store.dispatch(new PlayerActions.SongEnded())
   }
 }

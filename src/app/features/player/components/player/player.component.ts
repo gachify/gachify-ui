@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { Store } from '@ngxs/store'
 
-import { AudioService } from '@core/services/audio.service'
+import { PlayerSelectors } from '@core/state'
 
 @Component({
   selector: 'gachi-player',
@@ -9,7 +10,7 @@ import { AudioService } from '@core/services/audio.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerComponent {
-  private readonly audioService = inject(AudioService)
+  private readonly store = inject(Store)
 
-  song = this.audioService.song
+  readonly isActive$ = this.store.select(PlayerSelectors.active)
 }

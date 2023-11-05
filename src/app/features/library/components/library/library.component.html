@@ -10,8 +10,7 @@
 
   <gachi-category-navigation-item
     [active]="activeTab() === tabs.Songs"
-    matRipple
-    (click)="toggleTab(tabs.Songs)"
+    disabled
   >
     <mat-icon>music_note</mat-icon>
     Songs
@@ -19,8 +18,7 @@
 
   <gachi-category-navigation-item
     [active]="activeTab() === tabs.Artists"
-    matRipple
-    (click)="toggleTab(tabs.Artists)"
+    disabled
   >
     <mat-icon>person</mat-icon>
     Artists

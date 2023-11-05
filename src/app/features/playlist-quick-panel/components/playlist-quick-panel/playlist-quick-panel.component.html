@@ -1,0 +1,15 @@
+<mat-divider></mat-divider>
+
+<ng-container *ngIf="isLoading(); else content">Loading...</ng-container>
+
+<ng-template #content>
+  <ul>
+    <li
+      *ngFor="let playlist of playlists()"
+      [attr.class.active]="currentPlaylist()?.id === playlist.id"
+      class="body-m"
+    >
+      {{ playlist.name }}
+    </li>
+  </ul>
+</ng-template>

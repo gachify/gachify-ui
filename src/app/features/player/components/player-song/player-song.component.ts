@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { Store } from '@ngxs/store'
+import { toSignal } from '@angular/core/rxjs-interop'
 
-import { AudioService } from '@core/services/audio.service'
+import { environment } from '@environment'
+import { PlayerSelectors } from '@core/state'
 
 @Component({
   selector: 'gachi-player-song',
@@ -9,7 +12,11 @@ import { AudioService } from '@core/services/audio.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerSongComponent {
-  private readonly audioService = inject(AudioService)
+  private readonly store = inject(Store)
 
-  song = this.audioService.song
+  readonly song = toSignal(this.store.select(PlayerSelectors.currentSong))
+
+  get imageUrl(): string {
+    return `${environment.apiUrl}/media/${this.song()?.id}_x56.png`
+  }
 }

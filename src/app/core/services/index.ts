@@ -1,4 +1,6 @@
+export * from './artist.service'
 export * from './audio.service'
 export * from './auth.service'
-export * from './cookie.service'
 export * from './playlist.service'
+export * from './song.service'
+export * from './tracking.service'

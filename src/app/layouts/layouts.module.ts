@@ -6,9 +6,10 @@ import { BlankLayoutComponent, DefaultLayoutComponent, SideBannerLayoutComponent
 
 import { SharedModule } from '@shared/shared.module'
 import { PlayerModule } from '@features/player'
+import { PlaylistQuickPanelModule } from '@features/playlist-quick-panel'
 
 @NgModule({
-  imports: [CommonModule, PlayerModule, RouterModule, SharedModule],
+  imports: [CommonModule, PlayerModule, PlaylistQuickPanelModule, RouterModule, SharedModule],
   declarations: [BlankLayoutComponent, DefaultLayoutComponent, SideBannerLayoutComponent],
   exports: [BlankLayoutComponent, DefaultLayoutComponent, SideBannerLayoutComponent],
 })

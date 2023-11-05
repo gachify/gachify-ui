@@ -30,13 +30,15 @@
 
     <li
       #library="routerLinkActive"
-      disabled
+      routerLink="/library"
       routerLinkActive="active"
     >
       <mat-icon [outlined]="!library.isActive">library_music</mat-icon>
       Library
     </li>
   </ul>
+
+  <gachi-playlist-quick-panel />
 </nav>
 
 <header>
@@ -56,6 +58,6 @@
 
 <gachi-player />
 
-<main [ngClass]="{ extend: isPlayerVisible() }">
+<main [ngClass]="{ extend: isActive$ | async }">
   <router-outlet></router-outlet>
 </main>

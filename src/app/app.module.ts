@@ -14,3 +14,9 @@ import { SharedModule } from '@shared/shared.module'
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+// Sidebar - list of user`s playlists
+// Sidebar - add playlist -> update user`s playlists
+// Library user's playlists
+// Player - current playlist with songs
+// Song card - add to user`s playlist / create new user`s playlist and add song

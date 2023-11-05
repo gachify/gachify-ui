@@ -3,9 +3,9 @@ import { Action, State, StateContext } from '@ngxs/store'
 import { tap } from 'rxjs'
 
 import { PlaylistDetailsActions } from './playlist-details.actions'
-import { PlaylistDetailsService } from '../services'
 
 import { Playlist } from '@core/models'
+import { PlaylistService } from '@core/services'
 
 export interface PlaylistDetailsStateModel {
   playlist?: Playlist
@@ -20,7 +20,7 @@ export interface PlaylistDetailsStateModel {
 })
 @Injectable()
 export class PlaylistDetailsState {
-  private readonly playlistDetailsService = inject(PlaylistDetailsService)
+  private readonly playlistService = inject(PlaylistService)
 
   @Action(PlaylistDetailsActions.FetchById)
   fetchById(ctx: StateContext<PlaylistDetailsStateModel>, action: PlaylistDetailsActions.FetchById) {
@@ -32,7 +32,7 @@ export class PlaylistDetailsState {
 
     ctx.patchState({ loading: true })
 
-    return this.playlistDetailsService.fetchById(action.playlistId).pipe(
+    return this.playlistService.getById(action.playlistId).pipe(
       tap((playlist) =>
         ctx.setState({
           playlist,

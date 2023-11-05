@@ -3,8 +3,8 @@ import { toSignal } from '@angular/core/rxjs-interop'
 import { Store } from '@ngxs/store'
 
 import { Song } from '@core/models'
-import { AudioService } from '@core/services'
 import { RecommendedSongsActions, RecommendedSongsSelectors } from '@features/recommended-songs/state'
+import { PlayerActions } from '@core/state'
 
 @Component({
   selector: 'gachi-recommended-songs',
@@ -14,7 +14,6 @@ import { RecommendedSongsActions, RecommendedSongsSelectors } from '@features/re
 })
 export class RecommendedSongsComponent implements OnInit {
   private readonly store = inject(Store)
-  private readonly audioService = inject(AudioService)
 
   readonly loading = toSignal(this.store.select(RecommendedSongsSelectors.slices.loading))
   readonly songs = toSignal(this.store.select(RecommendedSongsSelectors.slices.songs))
@@ -24,6 +23,6 @@ export class RecommendedSongsComponent implements OnInit {
   }
 
   handleSongClick(song: Song): void {
-    this.audioService.load(song)
+    this.store.dispatch(new PlayerActions.Load({ song }))
   }
 }

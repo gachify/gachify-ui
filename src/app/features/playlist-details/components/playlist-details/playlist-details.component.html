@@ -3,5 +3,11 @@
 <ng-template #content>
   <gachi-playlist-details-header [playlist]="playlist()" />
 
-  <!-- <gachi-song-list [playlist]="playlist()" /> -->
+  <mat-nav-list>
+    <gachi-song-list-item
+      *ngFor="let song of playlist()?.songs"
+      [song]="song"
+      (handleSongClick)="handleSongClick($event)"
+    />
+  </mat-nav-list>
 </ng-template>

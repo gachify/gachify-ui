@@ -1,10 +1,12 @@
-<img
-  [ngSrc]="song()!.uuid"
-  alt=""
-  height="56"
-  width="56"
-/>
-<div class="title">
-  <p class="title-m">{{ song()!.artist.name }}</p>
-  <p class="body-m">{{ song()!.name }}</p>
-</div>
+<ng-container *ngIf="song()">
+  <img
+    [ngSrc]="imageUrl"
+    alt=""
+    height="56"
+    width="56"
+  />
+  <div class="title">
+    <p class="title-m">{{ song()?.artist?.name }}</p>
+    <p class="body-m">{{ song()?.title }}</p>
+  </div>
+</ng-container>

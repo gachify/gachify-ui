@@ -1,7 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, computed, inject } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  computed,
+  inject,
+} from '@angular/core'
+import { toSignal } from '@angular/core/rxjs-interop'
+import { Store } from '@ngxs/store'
+import { MatMenuTrigger } from '@angular/material/menu'
 
 import { Song } from '@core/models'
-import { AudioService } from '@core/services'
+import { environment } from '@environment'
+import { PlayerSelectors } from '@core/state'
 
 @Component({
   selector: 'gachi-song-list-item',
@@ -10,23 +23,25 @@ import { AudioService } from '@core/services'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SongsListItemComponent {
-  private readonly audioService = inject(AudioService)
+  private readonly store = inject(Store)
 
   @Input({ required: true }) song: Song
 
   @Output() handleSongClick = new EventEmitter<Song>()
 
-  readonly isCurrentSong = computed(() => this.audioService.song()?.uuid === this.song.uuid)
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger
 
-  readonly icon = computed(() =>
-    this.audioService.sync() ? 'sync' : this.audioService.playing() ? 'pause' : 'play_arrow',
-  )
+  readonly status = toSignal(this.store.select(PlayerSelectors.status))
+  readonly currentSong = toSignal(this.store.select(PlayerSelectors.currentSong))
 
-  handleClick(): void {
-    if (this.isCurrentSong()) {
-      this.audioService.togglePlay()
-    } else {
-      this.handleSongClick.emit(this.song)
-    }
+  readonly isCurrentSong = computed(() => this.currentSong()?.id === this.song.id)
+
+  get imageUrl(): string {
+    return `${environment.apiUrl}/media/${this.song.id}_x56.png`
+  }
+
+  openMenu(event: Event) {
+    event.stopImmediatePropagation()
+    this.menuTrigger.openMenu()
   }
 }

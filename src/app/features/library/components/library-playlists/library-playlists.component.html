@@ -2,6 +2,8 @@
 
 <ng-template #content>
   <div class="grid">
+    <gachi-library-playlists-add-card />
+
     <ng-container *ngFor="let playlist of playlists()">
       <gachi-library-playlists-card [playlist]="playlist" />
     </ng-container>

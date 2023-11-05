@@ -1,5 +1,5 @@
 <div
-  *ngIf="song()"
+  *ngIf="isActive$ | async"
   class="player"
 >
   <gachi-player-song />

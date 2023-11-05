@@ -2,31 +2,22 @@
   <i>shuffle</i>
 </button> -->
 <!-- shuffle_on -->
-<!-- <md-outlined-icon-button (click)="toggleTheme()">
-  <md-icon>{{ darkMode() ? 'light_mode' : 'dark_mode' }}</md-icon>
-</md-outlined-icon-button> -->
+
 <button
+  [disabled]="playlist()?.songs?.length === 1"
   mat-icon-button
   (click)="handleSkipPrevious()"
 >
   <mat-icon>skip_previous</mat-icon>
 </button>
 
-<mat-spinner
-  *ngIf="sync()"
-  [diameter]="48"
+<gachi-play-button
+  [status]="status()"
+  (click)="handleTogglePlay()"
 />
 
 <button
-  *ngIf="!sync()"
-  class="main-btn"
-  mat-icon-button
-  (click)="handleTogglePlay()"
->
-  <mat-icon>{{ playing() ? 'pause' : 'play_arrow' }}</mat-icon>
-</button>
-
-<button
+  [disabled]="playlist()?.songs?.length === 1"
   mat-icon-button
   (click)="handleSkipNext()"
 >
@@ -38,5 +29,16 @@
   mat-icon-button
   (click)="handleToggleRepeat()"
 >
-  <mat-icon>{{ repeat() ? 'repeat_one' : 'repeat' }}</mat-icon>
+  <ng-container [ngSwitch]="repeat()">
+    <mat-icon
+      *ngSwitchCase="repeatOption.None"
+      class="inactive"
+    >
+      repeat
+    </mat-icon>
+
+    <mat-icon *ngSwitchCase="repeatOption.All">repeat</mat-icon>
+
+    <mat-icon *ngSwitchCase="repeatOption.Single">repeat_one</mat-icon>
+  </ng-container>
 </button>
