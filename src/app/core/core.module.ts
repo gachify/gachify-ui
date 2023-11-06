@@ -6,7 +6,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgxsModule } from '@ngxs/store'
 
 import { EnsureModuleLoadedOnceGuard } from './guards'
-import { AuthState, PlayerState, UserPlaylistsState } from './state'
+import { AudioState, AuthState, PlaybackState, UserPlaylistsState } from './state'
 import { WithCredentialsInterceptor } from './interceptors'
 
 import { environment } from '@environment'
@@ -15,7 +15,7 @@ import { environment } from '@environment'
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    NgxsModule.forRoot([AuthState, PlayerState, UserPlaylistsState], {
+    NgxsModule.forRoot([AuthState, AudioState, PlaybackState, UserPlaylistsState], {
       developmentMode: !environment.production,
     }),
     CommonModule,
@@ -27,10 +27,6 @@ import { environment } from '@environment'
       useClass: WithCredentialsInterceptor,
       multi: true,
     },
-    // {
-    //   provide: IMAGE_LOADER,
-    //   useValue: (config: ImageLoaderConfig) => `${environment.apiUrl}/media/${config.src}.png`,
-    // },
   ],
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

@@ -1,5 +1,7 @@
 export const shuffle = <T extends unknown[]>(array: T): T => {
-  let currentIndex = array.length,
+  const arrayCopy = [...array] as T
+
+  let currentIndex = arrayCopy.length,
     temporaryValue,
     randomIndex
 
@@ -9,10 +11,10 @@ export const shuffle = <T extends unknown[]>(array: T): T => {
     currentIndex -= 1
 
     // And swap it with the current element.
-    temporaryValue = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = temporaryValue
+    temporaryValue = arrayCopy[currentIndex]
+    arrayCopy[currentIndex] = arrayCopy[randomIndex]
+    arrayCopy[randomIndex] = temporaryValue
   }
 
-  return array
+  return arrayCopy
 }

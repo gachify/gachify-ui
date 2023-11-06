@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store'
 
 import { Song } from '@core/models'
 import { RecommendedSongsActions, RecommendedSongsSelectors } from '@features/recommended-songs/state'
-import { PlayerActions } from '@core/state'
+import { PlaybackActions } from '@core/state'
 
 @Component({
   selector: 'gachi-recommended-songs',
@@ -23,6 +23,6 @@ export class RecommendedSongsComponent implements OnInit {
   }
 
   handleSongClick(song: Song): void {
-    this.store.dispatch(new PlayerActions.Load({ song }))
+    this.store.dispatch(new PlaybackActions.Play({ song }))
   }
 }

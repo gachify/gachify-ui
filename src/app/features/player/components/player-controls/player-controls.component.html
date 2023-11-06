@@ -1,10 +1,13 @@
-<!-- <button class="i">
-  <i>shuffle</i>
-</button> -->
-<!-- shuffle_on -->
+<button
+  [ngClass]="{ inactive: !shuffle() }"
+  mat-icon-button
+  (click)="handleToggleShuffle()"
+>
+  <mat-icon>shuffle</mat-icon>
+</button>
 
 <button
-  [disabled]="playlist()?.songs?.length === 1"
+  [disabled]="!hasPreviousSong()"
   mat-icon-button
   (click)="handleSkipPrevious()"
 >
@@ -17,7 +20,7 @@
 />
 
 <button
-  [disabled]="playlist()?.songs?.length === 1"
+  [disabled]="!hasNextSong()"
   mat-icon-button
   (click)="handleSkipNext()"
 >

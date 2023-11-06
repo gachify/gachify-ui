@@ -5,24 +5,29 @@ import { PlaybackState, PlaybackStateModel } from './playback.state'
 import { RepeatOption } from '@core/models'
 
 export class PlaybackSelectors {
-  static repeat = createSelector([PlaybackState], (state: PlaybackStateModel) => state.repeat)
+  static repeat = createSelector([PlaybackState], ({ repeat }: PlaybackStateModel) => repeat)
 
-  static currentSong = createSelector([PlaybackState], (state: PlaybackStateModel) => state.currentSong)
+  static currentSong = createSelector([PlaybackState], ({ currentSong }: PlaybackStateModel) => currentSong)
 
-  static songs = createSelector([PlaybackState], (state: PlaybackStateModel) => state.songs)
+  static songs = createSelector([PlaybackState], ({ shuffledSongs }: PlaybackStateModel) => shuffledSongs)
 
-  static shuffle = createSelector([PlaybackState], (state: PlaybackStateModel) => state.shuffle)
+  static shuffle = createSelector([PlaybackState], ({ shuffle }: PlaybackStateModel) => shuffle)
+
+  static artist = createSelector([PlaybackState], ({ artist }: PlaybackStateModel) => artist)
+
+  static playlist = createSelector([PlaybackState], ({ playlist }: PlaybackStateModel) => playlist)
 
   static hasPreviousSong = createSelector(
     [PlaybackState],
-    (state: PlaybackStateModel) =>
-      state.currentSong && (state.songs.indexOf(state.currentSong) > 0 || state.repeat === RepeatOption.All),
+    ({ currentSong, repeat, shuffledSongs }: PlaybackStateModel) =>
+      currentSong && (shuffledSongs.findIndex((song) => song.id === currentSong.id) > 0 || repeat === RepeatOption.All),
   )
 
   static hasNextSong = createSelector(
     [PlaybackState],
-    (state: PlaybackStateModel) =>
-      state.currentSong &&
-      (state.songs.indexOf(state.currentSong) < state.songs.length - 1 || state.repeat === RepeatOption.All),
+    ({ currentSong, repeat, shuffledSongs }: PlaybackStateModel) =>
+      currentSong &&
+      (shuffledSongs.findIndex((song) => song.id === currentSong.id) < shuffledSongs.length - 1 ||
+        repeat === RepeatOption.All),
   )
 }

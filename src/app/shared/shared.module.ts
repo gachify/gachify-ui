@@ -12,6 +12,7 @@ import {
 import { DurationPipe, ExtendedDurationPipe } from './pipes'
 import { MaterialModule } from './material.module'
 import {
+  AddSongToPlaylistDialogComponent,
   CategoryNavigationComponent,
   CategoryNavigationItemComponent,
   MatListItemSkeletonComponent,
@@ -22,6 +23,7 @@ import {
 @NgModule({
   imports: [CommonModule, FormsModule, MaterialModule, NgOptimizedImage],
   declarations: [
+    AddSongToPlaylistDialogComponent,
     CategoryNavigationComponent,
     CategoryNavigationItemComponent,
     DataCyDirective,

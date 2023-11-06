@@ -1,17 +1,22 @@
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Action, State, StateContext } from '@ngxs/store'
+import { tap } from 'rxjs'
 
-import { shuffle as shuffleFunction } from '../../utils'
 import { PlaybackActions } from './playback.actions'
 import { AudioActions } from '../audio'
 
-import { RepeatOption, Song } from '@core/models'
+import { shuffle as shuffleFunction } from '@core/utils'
+import { Artist, Playlist, RepeatOption, Song } from '@core/models'
+import { ArtistService } from '@core/services'
 
 export interface PlaybackStateModel {
   shuffle: boolean
   repeat: RepeatOption
   songs: Song[]
+  shuffledSongs: Song[]
   currentSong: Song | null
+  playlist: Playlist | null
+  artist: Artist | null
 }
 
 @State<PlaybackStateModel>({
@@ -19,12 +24,48 @@ export interface PlaybackStateModel {
   defaults: {
     shuffle: false,
     repeat: RepeatOption.None,
+    artist: null,
+    playlist: null,
     songs: [],
+    shuffledSongs: [],
     currentSong: null,
   },
 })
 @Injectable()
 export class PlaybackState {
+  private readonly artistService = inject(ArtistService)
+
+  @Action(PlaybackActions.Play)
+  play(ctx: StateContext<PlaybackStateModel>, { payload }: PlaybackActions.Play) {
+    const { currentSong, playlist } = ctx.getState()
+
+    if (payload.playlist && payload.playlist.id !== playlist?.id) {
+      ctx.patchState({
+        currentSong: payload.song,
+        songs: payload.playlist.songs,
+        artist: null,
+      })
+    }
+
+    if (!payload.playlist && currentSong?.artist.id !== payload.song.artist.id) {
+      ctx.dispatch(new PlaybackActions.FetchArtist({ artistId: payload.song.artist.id }))
+
+      ctx.patchState({
+        artist: null,
+        playlist: null,
+        currentSong: payload.song,
+        songs: [payload.song],
+      })
+    }
+
+    if (currentSong?.id === payload.song.id) {
+      ctx.dispatch(new AudioActions.TogglePlay())
+    } else {
+      ctx.dispatch(new AudioActions.Load({ song: payload.song }))
+      ctx.patchState({ currentSong: payload.song })
+    }
+  }
+
   @Action(PlaybackActions.NextSong)
   nextSong(ctx: StateContext<PlaybackStateModel>) {
     const { currentSong, songs } = ctx.getState()
@@ -33,7 +74,7 @@ export class PlaybackState {
       return
     }
 
-    const currentIndex = songs.indexOf(currentSong)
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id)
     let nextSong: Song
 
     if (currentIndex < songs.length - 1) {
@@ -54,7 +95,7 @@ export class PlaybackState {
       return
     }
 
-    const currentIndex = songs.indexOf(currentSong)
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id)
     let nextSong: Song
 
     if (currentIndex > 0) {
@@ -90,13 +131,35 @@ export class PlaybackState {
     const { shuffle, songs } = ctx.getState()
     const newShuffleState = !shuffle
 
-    if (newShuffleState) {
-      // Current song should be first so remove before shuffle and add after
-      // Should store original array
-      // Original array should always have same order (BE)
-      const shuffledArray = shuffleFunction(songs)
-    }
+    ctx.patchState({ shuffle: newShuffleState, shuffledSongs: newShuffleState ? shuffleFunction(songs) : songs })
+  }
 
-    ctx.patchState({ shuffle: newShuffleState })
+  @Action(PlaybackActions.SongEnded)
+  songEnded(ctx: StateContext<PlaybackStateModel>) {
+    const { currentSong, repeat, shuffledSongs } = ctx.getState()
+
+    switch (repeat) {
+      case RepeatOption.Single:
+        ctx.dispatch(new AudioActions.Play())
+        break
+      case RepeatOption.All:
+        ctx.dispatch(new PlaybackActions.NextSong())
+        break
+      case RepeatOption.None:
+      default:
+        if (currentSong && shuffledSongs.findIndex((song) => song.id === currentSong.id) < shuffledSongs.length - 1) {
+          ctx.dispatch(new PlaybackActions.NextSong())
+        }
+        break
+    }
+  }
+
+  @Action(PlaybackActions.FetchArtist)
+  fetchArtist(ctx: StateContext<PlaybackStateModel>, action: PlaybackActions.FetchArtist) {
+    return this.artistService.getSongs(action.payload.artistId).pipe(
+      tap((response) => {
+        ctx.patchState({ songs: response.data, artist: response.data[0].artist, shuffledSongs: response.data })
+      }),
+    )
   }
 }

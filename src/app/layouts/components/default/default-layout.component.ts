@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { Store } from '@ngxs/store'
 
-import { PlayerSelectors } from '@core/state'
+import { AudioSelectors } from '@core/state'
 import { environment } from '@environment'
 
 @Component({
@@ -13,7 +13,7 @@ import { environment } from '@environment'
 export class DefaultLayoutComponent {
   private readonly store = inject(Store)
 
-  readonly isActive$ = this.store.select(PlayerSelectors.active)
+  readonly isActive$ = this.store.select(AudioSelectors.active)
 
   readonly applicationName = environment.applicationName
 }

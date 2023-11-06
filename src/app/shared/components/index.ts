@@ -1,3 +1,4 @@
+export * from './add-song-to-playlist-dialog/add-song-to-playlist-dialog.component'
 export * from './category-navigation/category-navigation-item.component'
 export * from './category-navigation/category-navigation.component'
 export * from './play-button/play-button.component'

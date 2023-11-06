@@ -2,7 +2,7 @@
 
 mat-list-item {
   --mdc-list-list-item-two-line-container-height: 72px;
-  --mdc-list-list-item-container-color: #{tokens.$color-surface};
+  --mdc-list-list-item-container-color: transparent;
   --mdc-list-list-item-hover-state-layer-color: #{tokens.$color-on-surface};
   --mdc-list-list-item-hover-state-layer-opacity: .08;
 
@@ -26,6 +26,8 @@ mat-list-item {
   --mdc-list-list-item-trailing-supporting-text-weight: #{tokens.$typography-label-s-weight};
   --mdc-list-list-item-trailing-supporting-text-tracking: #{tokens.$typography-label-s-tracking};
   --mdc-list-list-item-trailing-supporting-text-color: #{tokens.$color-on-surface-variant};
+
+  --mdc-list-list-item-one-line-container-height: 56px;
 }
 
 .mat-mdc-list-item-avatar {

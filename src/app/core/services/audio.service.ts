@@ -2,7 +2,7 @@ import { Injectable, OnDestroy, inject } from '@angular/core'
 import { Store } from '@ngxs/store'
 
 import { environment } from '@environment'
-import { PlayerActions } from '@core/state/player'
+import { AudioActions, PlaybackActions } from '@core/state'
 
 enum AudioEvents {
   TIME_UPDATE = 'timeupdate',
@@ -73,14 +73,14 @@ export class AudioService implements OnDestroy {
   }
 
   private readonly onLoadedData = () => {
-    this.store.dispatch(new PlayerActions.Play())
+    this.store.dispatch(new AudioActions.Play())
   }
 
   private readonly onTimeUpdate = () => {
-    this.store.dispatch(new PlayerActions.SetCurrentTime({ time: Math.round(this.audio.currentTime) }))
+    this.store.dispatch(new AudioActions.SetCurrentTime({ time: Math.round(this.audio.currentTime) }))
   }
 
   private readonly onEnded = () => {
-    this.store.dispatch(new PlayerActions.SongEnded())
+    this.store.dispatch(new PlaybackActions.SongEnded())
   }
 }

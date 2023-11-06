@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add to playlist</h1>
+
+<mat-dialog-content>
+  <mat-nav-list>
+    <mat-list-item
+      *ngFor="let playlist of playlists()"
+      (click)="handleAddSongToPlaylist(playlist.id)"
+    >
+      <span matListItemTitle>{{ playlist.name }}</span>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-dialog-content>

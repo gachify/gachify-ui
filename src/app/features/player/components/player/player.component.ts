@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { Store } from '@ngxs/store'
 
-import { PlayerSelectors } from '@core/state'
+import { AudioSelectors } from '@core/state'
 
 @Component({
   selector: 'gachi-player',
@@ -12,5 +12,5 @@ import { PlayerSelectors } from '@core/state'
 export class PlayerComponent {
   private readonly store = inject(Store)
 
-  readonly isActive$ = this.store.select(PlayerSelectors.active)
+  readonly isActive$ = this.store.select(AudioSelectors.active)
 }

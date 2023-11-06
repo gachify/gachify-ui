@@ -22,4 +22,10 @@ export class PlaylistService {
       .get<Playlist>(`${environment.apiUrl}/playlists/${playlistId}`)
       .pipe(map((response) => response))
   }
+
+  addSong(playlistId: string, songId: string) {
+    return this.httpClient
+      .put<Playlist>(`${environment.apiUrl}/playlists/${playlistId}`, { addSong: songId })
+      .pipe(map((response) => response))
+  }
 }

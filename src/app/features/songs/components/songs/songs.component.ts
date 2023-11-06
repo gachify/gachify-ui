@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog'
 
 import { Song } from '@core/models'
 import { SongsActions, SongsSelectors } from '@features/songs/state'
-import { PlayerActions } from '@core/state'
+import { PlaybackActions } from '@core/state'
 
 @Component({
   selector: 'gachi-songs',
@@ -34,6 +34,6 @@ export class SongsComponent implements OnInit {
   }
 
   handleSongClick(song: Song) {
-    this.store.dispatch(new PlayerActions.Load({ song }))
+    this.store.dispatch(new PlaybackActions.Play({ song }))
   }
 }

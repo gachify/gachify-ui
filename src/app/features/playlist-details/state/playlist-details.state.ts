@@ -26,7 +26,7 @@ export class PlaylistDetailsState {
   fetchById(ctx: StateContext<PlaylistDetailsStateModel>, action: PlaylistDetailsActions.FetchById) {
     const state = ctx.getState()
 
-    if (state.playlist) {
+    if (state.playlist?.id === action.playlistId) {
       return
     }
 

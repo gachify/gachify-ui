@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { Store } from '@ngxs/store'
 import { toSignal } from '@angular/core/rxjs-interop'
 
-import { PlayerActions, PlayerSelectors } from '@core/state'
+import { AudioActions, AudioSelectors } from '@core/state'
 
 @Component({
   selector: 'gachi-player-volume',
@@ -13,15 +13,15 @@ import { PlayerActions, PlayerSelectors } from '@core/state'
 export class PlayerVolumeComponent {
   private readonly store = inject(Store)
 
-  readonly muted = toSignal(this.store.select(PlayerSelectors.muted))
-  readonly volume = toSignal(this.store.select(PlayerSelectors.volume))
+  readonly muted = toSignal(this.store.select(AudioSelectors.muted))
+  readonly volume = toSignal(this.store.select(AudioSelectors.volume))
 
   changeVolume(event: Event) {
     const volume = Number((event.target as HTMLInputElement).value)
-    this.store.dispatch(new PlayerActions.SetVolume({ volume }))
+    this.store.dispatch(new AudioActions.SetVolume({ volume }))
   }
 
   toggleMute() {
-    this.store.dispatch(new PlayerActions.ToggleMute())
+    this.store.dispatch(new AudioActions.ToggleMute())
   }
 }

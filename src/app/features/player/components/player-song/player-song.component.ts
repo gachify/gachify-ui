@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store'
 import { toSignal } from '@angular/core/rxjs-interop'
 
 import { environment } from '@environment'
-import { PlayerSelectors } from '@core/state'
+import { PlaybackSelectors } from '@core/state'
 
 @Component({
   selector: 'gachi-player-song',
@@ -14,7 +14,7 @@ import { PlayerSelectors } from '@core/state'
 export class PlayerSongComponent {
   private readonly store = inject(Store)
 
-  readonly song = toSignal(this.store.select(PlayerSelectors.currentSong))
+  readonly song = toSignal(this.store.select(PlaybackSelectors.currentSong))
 
   get imageUrl(): string {
     return `${environment.apiUrl}/media/${this.song()?.id}_x56.png`

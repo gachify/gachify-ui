@@ -40,7 +40,10 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button
+      mat-menu-item
+      (click)="handleAddToPlaylist()"
+    >
       <mat-icon>playlist_add</mat-icon>
       <span>Add to playlist</span>
     </button>

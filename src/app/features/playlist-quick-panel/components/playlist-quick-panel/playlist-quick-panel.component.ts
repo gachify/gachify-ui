@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store'
 import { toSignal } from '@angular/core/rxjs-interop'
 
 import { Playlist, Song } from '@core/models'
-import { PlayerSelectors, UserPlaylistsState } from '@core/state'
+import { PlaybackSelectors, UserPlaylistsState } from '@core/state'
 
 @Component({
   selector: 'gachi-playlist-quick-panel',
@@ -17,7 +17,7 @@ export class PlaylistQuickPanelComponent {
   readonly isLoading = toSignal(this.store.select(UserPlaylistsState.isLoading()))
   readonly playlists = toSignal(this.store.select(UserPlaylistsState.data<Playlist[]>()))
 
-  readonly currentPlaylist = toSignal(this.store.select(PlayerSelectors.playlist))
+  readonly currentPlaylist = toSignal(this.store.select(PlaybackSelectors.playlist))
 
   handleSongClick(song: Song): void {
     // this.playlistService.load(this.playlist()!, song)

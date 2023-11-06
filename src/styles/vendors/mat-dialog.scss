@@ -20,6 +20,8 @@ mat-dialog-content {
 
 mat-dialog-actions.mat-mdc-dialog-actions {
   padding: 0 24px 24px 24px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 mat-dialog-container .mat-mdc-dialog-title {

@@ -149,6 +149,12 @@ header {
   }
 }
 
+gachi-playlist-quick-panel {
+  @include mixins.lg {
+    display: none;
+  }
+}
+
 main {
   box-sizing: border-box;
   grid-column: 2 / 3;
