@@ -43,6 +43,7 @@ export class PlaybackState {
       ctx.patchState({
         currentSong: payload.song,
         songs: payload.playlist.songs,
+        shuffledSongs: payload.playlist.songs,
         artist: null,
       })
     }

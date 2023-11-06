@@ -24,6 +24,8 @@ export class LibraryPlaylistsCardComponent {
   }
 
   get imageUrl(): string {
-    return this.playlist.songs.length ? this.playlist.songs[0].id : '/assets/img/playlist-placeholder.png'
+    return this.playlist.songs.length
+      ? `/media/${this.playlist.songs[0].id}.png`
+      : '/assets/img/playlist-placeholder.png'
   }
 }
