@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostListener, Input, inject } from 
 import { Router } from '@angular/router'
 
 import { Playlist } from '@core/models'
+import { environment } from '@environment'
 
 @Component({
   selector: 'gachi-library-playlists-card',
@@ -25,7 +26,7 @@ export class LibraryPlaylistsCardComponent {
 
   get imageUrl(): string {
     return this.playlist.songs.length
-      ? `/media/${this.playlist.songs[0].id}.png`
+      ? `${environment.apiUrl}/media/${this.playlist.songs[0].id}.png`
       : '/assets/img/playlist-placeholder.png'
   }
 }
