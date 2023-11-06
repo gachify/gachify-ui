@@ -30,7 +30,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: gachify.club
+          projectName: gachify-ui
           directory: /dist/gachify-ui
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: master
