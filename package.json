@@ -50,6 +50,6 @@
     "jest-preset-angular": "^13.1.1",
     "prettier": "^3.0.3",
     "typescript": "~5.1.0",
-    "webpack-bundle-analyzer": "4.9.1"
+    "webpack-bundle-analyzer": "4.10.1"
   }
 }
