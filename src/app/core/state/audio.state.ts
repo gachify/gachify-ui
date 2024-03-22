@@ -29,7 +29,7 @@ export class AudioState implements StateModel<AudioStateModel> {
 
   readonly active = computed(() => this.status() !== PlayerStatus.Pending)
   readonly playing = computed(() => this.status() === PlayerStatus.Playing)
-  readonly duration = computed(() => this.remix()?.duration || 0)
+  readonly duration = computed(() => this.remix()?.duration ?? 0)
 
   constructor() {
     const volume = this.cookieService.get(VOLUME_COOKIE)

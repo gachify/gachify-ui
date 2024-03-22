@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core'
 import { take } from 'rxjs'
 
 import { RemixRepository } from '@core/repositories'
-import { FetchStatus, PageOptions, PageResponse, Remix, StateModel } from '@core/models'
+import { FetchStatus, PageResponse, Remix, StateModel } from '@core/models'
 
 interface RemixListStateModel {}
 
@@ -29,7 +29,7 @@ export class RemixListState implements StateModel<RemixListStateModel> {
   fetch(): void {
     this.status.set(FetchStatus.Loading)
 
-    const offset = this.remixes()?.length || 0
+    const offset = this.remixes()?.length ?? 0
 
     this.repository
       .get({ offset, limit: this.LIMIT })

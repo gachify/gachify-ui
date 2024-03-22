@@ -63,9 +63,6 @@ const routes: RouteWithLayout[] = [
     path: '404',
     pathMatch: 'full',
     loadComponent: () => import('./pages/not-found').then((c) => c.NotFoundPage),
-    data: {
-      layout: Layout.Blank,
-    },
   },
   {
     path: '**',

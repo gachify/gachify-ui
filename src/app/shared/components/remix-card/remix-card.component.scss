@@ -58,10 +58,6 @@ img {
   display: flex;
 }
 
-.gachi-remix-card:hover:not(.gachi-remix-card-active) > .gachi-remix-card-image button {
-  display: flex;
-}
-
 .gachi-remix-card-title {
   flex-grow: 1;
   overflow: hidden;

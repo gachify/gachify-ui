@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core'
 
-import { PlaylistDetailsComponent, PlaylistDetailsHeaderComponent, PlaylistDetailsRemixesComponent } from './components'
+import { PlaylistDetailsComponent, PlaylistDetailsHeaderComponent } from './components'
 
 import { SharedModule } from '@shared/shared.module'
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [PlaylistDetailsComponent, PlaylistDetailsHeaderComponent, PlaylistDetailsRemixesComponent],
+  declarations: [PlaylistDetailsComponent, PlaylistDetailsHeaderComponent],
   exports: [PlaylistDetailsComponent],
 })
 export class PlaylistDetailsModule {}

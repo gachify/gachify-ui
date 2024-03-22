@@ -31,7 +31,7 @@ export class RemixListItemComponent {
 
   readonly currentRemixId = this.playbackState.currentRemixId
   readonly isCurrentRemix = computed(
-    () => this.currentRemixId() === `${this.queue?.source.entityId || this.remix.id}:${this.remix.id}`,
+    () => this.currentRemixId() === `${this.queue?.source.entityId ?? this.remix.id}:${this.remix.id}`,
   )
 
   constructor() {

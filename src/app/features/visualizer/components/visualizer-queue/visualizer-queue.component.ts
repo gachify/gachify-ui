@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { DOCUMENT } from '@angular/common'
 
 import { PlaybackState } from '@core/state'
-import { Remix } from '@core/models'
 
 @Component({
   selector: 'gachi-visualizer-queue',

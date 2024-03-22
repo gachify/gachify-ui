@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, computed, inject } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { DOCUMENT } from '@angular/common'
 

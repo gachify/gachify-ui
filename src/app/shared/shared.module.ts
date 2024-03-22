@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router'
 import {
   IsAuthenticatedDirective,
   IsUnauthenticatedDirective,
-  MenuTriggerDirective,
   SelectorDirective,
   SliderDirective,
   ValidationDirective,
@@ -35,7 +34,6 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     IsUnauthenticatedDirective,
     LogoComponent,
     MenuComponent,
-    MenuTriggerDirective,
     PlayIconComponent,
     RemixCardComponent,
     RemixCardSkeletonComponent,
@@ -56,7 +54,6 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     IsUnauthenticatedDirective,
     LogoComponent,
     MenuComponent,
-    MenuTriggerDirective,
     PlayIconComponent,
     ReactiveFormsModule,
     RemixCardComponent,

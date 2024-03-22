@@ -25,7 +25,7 @@ export class ArtistDetailsState extends EntityState<ArtistDetails, FetchPayload>
 
     return {
       remixes,
-      source: { entityId: artist?.id, name: artist?.name || '' },
+      source: { entityId: artist?.id, name: artist?.name ?? '' },
     }
   })
 

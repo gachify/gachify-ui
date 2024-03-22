@@ -1,5 +1,3 @@
-// @use 'tokens' as tokens;
-
 :host {
   height: 100%;
   display: flex;
@@ -7,10 +5,6 @@
 
 .gachi-login-sidebar {
   width: 460px;
-
-  // @include mixins.md {
-  //   display: none;
-  // }
 }
 
 .gachi-login-sidebar-video {
@@ -26,22 +20,10 @@
   width: 100%;
   margin-left: 100px;
   max-width: 416px;
-
-  // @include mixins.lg {
-  //   margin: 0;
-  // }
-
-  // @include mixins.md {
-  //   margin: auto;
-  // }
 }
 
 h1 {
   margin-bottom: 24px;
-}
-
-.gachi-login-content-invalid-credentials-error {
-  // color: tokens.$color-error;
 }
 
 form {

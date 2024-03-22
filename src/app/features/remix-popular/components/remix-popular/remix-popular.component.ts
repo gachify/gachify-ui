@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core'
 
-import { Remix } from '@core/models'
 import { RemixPopularState } from '@features/remix-popular/state'
 import { PlaybackState } from '@core/state'
 import { popularRemixesSelectors } from '@selectors'

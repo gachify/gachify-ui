@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Host,
-  HostListener,
-  OnInit,
-  ViewChild,
-  inject,
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild, inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 
 import { PlaybackState } from '@core/state'

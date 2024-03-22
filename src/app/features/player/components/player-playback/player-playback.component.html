@@ -5,18 +5,6 @@
   {{ currentTime() | duration }}
 </span>
 
-<!-- <input
-  [max]="duration()"
-  [selector]="selectors.playbackSlider"
-  [value]="currentTime()"
-  aria-label="Playback"
-  min="0"
-  slider
-  (input)="seek($event)"
-  (mousedown)="pause()"
-  (mouseup)="play()"
-/> -->
-
 <input
   [max]="duration()"
   [selector]="selectors.playbackSlider"

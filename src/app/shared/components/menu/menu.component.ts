@@ -10,7 +10,6 @@ import {
   ViewContainerRef,
   inject,
 } from '@angular/core'
-import { abort } from 'process'
 
 import { ScrollService } from '@core/services/scroll.service'
 
