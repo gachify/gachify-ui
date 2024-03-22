@@ -62,6 +62,10 @@ $logo-width: 124px;
   justify-content: flex-end;
   width: $logo-width;
   margin-bottom: 8px;
+
+  img {
+    font-family: var(--typography-font-family);
+  }
 }
 
 .gachi-header-right-panel {

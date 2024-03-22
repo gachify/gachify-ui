@@ -1,4 +1,5 @@
 export * from './chip/chip.component'
+export * from './logo/logo.component'
 export * from './menu/menu.component'
 export * from './play-icon/play-icon.component'
 export * from './remix-card/remix-card.component'

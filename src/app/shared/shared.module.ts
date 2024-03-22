@@ -13,6 +13,7 @@ import {
 } from './directives'
 import {
   ChipComponent,
+  LogoComponent,
   MenuComponent,
   PlayIconComponent,
   RemixCardComponent,
@@ -32,6 +33,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     ImageUrlPipe,
     IsAuthenticatedDirective,
     IsUnauthenticatedDirective,
+    LogoComponent,
     MenuComponent,
     MenuTriggerDirective,
     PlayIconComponent,
@@ -52,6 +54,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     ImageUrlPipe,
     IsAuthenticatedDirective,
     IsUnauthenticatedDirective,
+    LogoComponent,
     MenuComponent,
     MenuTriggerDirective,
     PlayIconComponent,
