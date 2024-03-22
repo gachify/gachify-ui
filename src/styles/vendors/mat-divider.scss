@@ -1,5 +1,0 @@
-@use '../tokens' as tokens;
-
-mat-divider {
-  --mat-divider-color: #{tokens.$color-outline-variant};
-}

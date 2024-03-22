@@ -1,26 +1,13 @@
-import { CommonModule } from '@angular/common'
 import { NgModule, Optional, SkipSelf } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
-import { NgxsModule } from '@ngxs/store'
 
-import { EnsureModuleLoadedOnceGuard } from './guards'
-import { AudioState, AuthState, PlaybackState, UserPlaylistsState } from './state'
 import { WithCredentialsInterceptor } from './interceptors'
-
-import { environment } from '@environment'
+import { EnsureModuleLoadedOnceGuard } from './guards'
+import { devtoolsImports } from '../../devtools/devtools'
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    NgxsModule.forRoot([AuthState, AudioState, PlaybackState, UserPlaylistsState], {
-      developmentMode: !environment.production,
-    }),
-    CommonModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, devtoolsImports, HttpClientModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

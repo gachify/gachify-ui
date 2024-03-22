@@ -1,12 +1,27 @@
-<ng-container *ngIf="song()">
+@if (currentRemix(); as remix) {
   <img
-    [ngSrc]="imageUrl"
+    [src]="remix.images | imageUrl: 'small'"
     alt=""
     height="56"
     width="56"
   />
+
   <div class="title">
-    <p class="title-m">{{ song()?.artist?.name }}</p>
-    <p class="body-m">{{ song()?.title }}</p>
+    <p
+      [selector]="selectors.remixLabel"
+      [title]="remix.title"
+      class="title-m"
+    >
+      {{ remix.title }}
+    </p>
+
+    <a
+      [routerLink]="['/artists', remix.artist.id]"
+      [selector]="selectors.artistLabel"
+      [title]="remix.artist.name"
+      class="body-m secondary-text"
+    >
+      {{ remix.artist.name }}
+    </a>
   </div>
-</ng-container>
+}

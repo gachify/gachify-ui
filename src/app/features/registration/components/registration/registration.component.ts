@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Store } from '@ngxs/store'
 
-import { RegistrationActions, RegistrationSelectors } from '@features/registration/state'
+import { RegistrationState } from '@features/registration/state'
 
 @Component({
   selector: 'gachi-registration',
@@ -11,13 +10,13 @@ import { RegistrationActions, RegistrationSelectors } from '@features/registrati
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent {
-  private readonly store = inject(Store)
+  private readonly registrationState = inject(RegistrationState)
 
   hide = true
 
-  readonly isLoading$ = this.store.select(RegistrationSelectors.isLoading)
-  readonly isEmailTaken$ = this.store.select(RegistrationSelectors.isEmailTaken)
-  readonly isUsernameTaken$ = this.store.select(RegistrationSelectors.isUsernameTaken)
+  readonly loading = this.registrationState.loading
+  readonly emailTaken = this.registrationState.emailTaken
+  readonly usernameTaken = this.registrationState.usernameTaken
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, this.emailValidator]),
@@ -31,7 +30,7 @@ export class RegistrationComponent {
       const email = this.form.controls.email.value || ''
       const password = this.form.controls.password.value || ''
 
-      this.store.dispatch(new RegistrationActions.Register({ username, email, password }))
+      this.registrationState.register({ username, email, password })
     } else {
       this.form.markAllAsTouched()
     }

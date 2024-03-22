@@ -1,55 +1,41 @@
-import { Injectable, inject } from '@angular/core'
-import { Action, State, StateContext } from '@ngxs/store'
-import { catchError, tap } from 'rxjs'
+import { Injectable, inject, signal } from '@angular/core'
+import { take } from 'rxjs'
 import { HttpErrorResponse } from '@angular/common/http'
 
 import { LoginService } from '../services'
-import { LoginActions } from './login.actions'
 
-import { AuthActions } from '@core/state'
+import { StateModel } from '@core/models'
 
 export interface LoginStateModel {
   loading: boolean
   invalidCredentials: boolean
 }
 
-@State<LoginStateModel>({
-  name: 'login',
-  defaults: {
-    loading: false,
-    invalidCredentials: false,
-  },
-})
 @Injectable()
-export class LoginState {
+export class LoginState implements StateModel<LoginStateModel> {
   private readonly loginService = inject(LoginService)
 
-  @Action(LoginActions.Login)
-  login(ctx: StateContext<LoginStateModel>, action: LoginActions.Login) {
-    ctx.patchState({ loading: true, invalidCredentials: false })
+  readonly loading = signal(false)
+  readonly invalidCredentials = signal(false)
 
-    return this.loginService.login(action.payload).pipe(
-      tap((response) => {
-        ctx.patchState({
-          loading: false,
-        })
-        ctx.dispatch(new AuthActions.Login({ username: response.username }))
-      }),
-      catchError((error) => {
-        ctx.patchState({
-          loading: false,
-        })
-        return ctx.dispatch(new LoginActions.HandleError(error))
-      }),
-    )
+  login(payload: { email: string; password: string }): void {
+    this.loading.set(true)
+    this.invalidCredentials.set(false)
+
+    this.loginService
+      .login(payload)
+      .pipe(take(1))
+      .subscribe({
+        next: () => this.loading.set(false),
+        error: (error) => this.handleError({ error }),
+      })
   }
 
-  @Action(LoginActions.HandleError)
-  handleError(ctx: StateContext<LoginStateModel>, action: LoginActions.HandleError) {
-    if (action.error.name === 'HttpErrorResponse' && (action.error as HttpErrorResponse).status === 401) {
-      ctx.patchState({ invalidCredentials: true })
-    } else {
-      throw action.error
+  private handleError(payload: { error: Error }): void {
+    if (payload.error.name === 'HttpErrorResponse' && (payload.error as HttpErrorResponse).status === 401) {
+      this.invalidCredentials.set(true)
     }
+
+    this.loading.set(false)
   }
 }

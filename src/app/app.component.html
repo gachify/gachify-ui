@@ -1,7 +1,11 @@
-<ng-container [ngSwitch]="layout$ | async">
-  <gachi-default-layout *ngSwitchCase="Layout.Default" />
-  <gachi-blank-layout *ngSwitchCase="Layout.Blank" />
-  <gachi-side-banner-layout *ngSwitchCase="Layout.SideBanner" />
-
-  <gachi-default-layout *ngSwitchDefault />
-</ng-container>
+@switch (layout$ | async) {
+  @case (layouts.Default) {
+    <gachi-default-layout />
+  }
+  @case (layouts.Blank) {
+    <gachi-blank-layout />
+  }
+  @default {
+    <gachi-default-layout />
+  }
+}

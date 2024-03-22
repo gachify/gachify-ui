@@ -1,61 +1,71 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes, TitleStrategy } from '@angular/router'
+import { PreloadAllModules, Route, RouterModule, TitleStrategy } from '@angular/router'
 
 import { canActivateAuthorized, canActivateUnauthorized } from '@core/guards'
+import { Layout } from '@core/models'
 import { PageTitleStrategy } from '@core/strategies'
-import { Layout } from '@layouts/models'
 
-const routes: Routes = [
+interface RouteWithLayout extends Route {
+  data?: {
+    layout: Layout
+  }
+}
+
+const routes: RouteWithLayout[] = [
   {
     path: '',
-    data: {
-      layout: Layout.Default,
-    },
+    loadComponent: () => import('./pages/home').then((c) => c.HomePage),
+  },
+  {
+    path: 'artists/:id',
+    loadComponent: () => import('./pages/artist-details').then((c) => c.ArtistDetailsPage),
+  },
+  {
+    path: 'remixes',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/remixes').then((c) => c.RemixesPage),
+  },
+  {
+    path: 'playlists',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/playlists').then((c) => c.PlaylistsPage),
     canActivate: [canActivateAuthorized],
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./pages/home/home-page.module').then((m) => m.HomePageModule),
-        pathMatch: 'full',
-      },
-      {
-        path: 'library',
-        loadChildren: () => import('./pages/library/library-page.module').then((m) => m.LibraryPageModule),
-      },
-      {
-        path: 'playlist/:id',
-        loadChildren: () =>
-          import('./pages/playlist-details/playlist-details-page.module').then((m) => m.PlaylistDetailsPageModule),
-      },
-      {
-        path: 'songs',
-        loadChildren: () => import('./pages/songs/songs-page.module').then((m) => m.SongsPageModule),
-      },
-    ],
+  },
+  {
+    path: 'playlists/:id',
+    loadComponent: () => import('./pages/playlist-details').then((c) => c.PlaylistsDetailsPage),
+    canActivate: [canActivateAuthorized],
+  },
+  {
+    path: 'library',
+    loadComponent: () => import('./pages/playlist-details').then((c) => c.PlaylistsDetailsPage),
+    canActivate: [canActivateAuthorized],
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login-page.module').then((m) => m.LoginPageModule),
-    data: {
-      layout: Layout.SideBanner,
-    },
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/login').then((c) => c.LoginPage),
     canActivate: [canActivateUnauthorized],
-  },
-  {
-    path: 'registration',
-    loadChildren: () => import('./pages/registration/registration-page.module').then((m) => m.RegistrationPageModule),
-    data: {
-      layout: Layout.SideBanner,
-    },
-    canActivate: [canActivateUnauthorized],
-  },
-  {
-    path: '404',
-    loadChildren: () => import('./pages/not-found/not-found-page.module').then((m) => m.NotFoundPageModule),
     data: {
       layout: Layout.Blank,
     },
+  },
+  {
+    path: 'registration',
     pathMatch: 'full',
+    loadComponent: () => import('./pages/registration').then((c) => c.RegistrationPage),
+    canActivate: [canActivateUnauthorized],
+    data: {
+      layout: Layout.Blank,
+    },
+  },
+  {
+    path: '404',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/not-found').then((c) => c.NotFoundPage),
+    data: {
+      layout: Layout.Blank,
+    },
   },
   {
     path: '**',
@@ -65,12 +75,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabledBlocking',
-      bindToComponentInputs: true,
-    }),
-  ],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true, preloadingStrategy: PreloadAllModules })],
   providers: [
     {
       provide: TitleStrategy,

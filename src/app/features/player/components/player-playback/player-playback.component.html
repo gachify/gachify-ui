@@ -1,18 +1,35 @@
-<span class="label-l">{{ currentTime() | duration }}</span>
-
-<mat-slider
-  [max]="duration()"
-  [min]="0"
-  class="hide-thumb"
+<span
+  [selector]="selectors.currentTimeLabel"
+  class="label-l"
 >
-  <input
-    [value]="currentTime()"
-    aria-label="Playback"
-    matSliderThumb
-    (input)="seek($event)"
-    (mousedown)="pause()"
-    (mouseup)="play()"
-  />
-</mat-slider>
+  {{ currentTime() | duration }}
+</span>
 
-<span class="label-l">{{ duration() | duration }}</span>
+<!-- <input
+  [max]="duration()"
+  [selector]="selectors.playbackSlider"
+  [value]="currentTime()"
+  aria-label="Playback"
+  min="0"
+  slider
+  (input)="seek($event)"
+  (mousedown)="pause()"
+  (mouseup)="play()"
+/> -->
+
+<input
+  [max]="duration()"
+  [selector]="selectors.playbackSlider"
+  [value]="currentTime()"
+  aria-label="Playback"
+  min="0"
+  slider
+  (input)="seek($event)"
+/>
+
+<span
+  [selector]="selectors.totalTimeLabel"
+  class="label-l"
+>
+  {{ duration() | duration }}
+</span>

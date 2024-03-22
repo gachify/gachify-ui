@@ -7,9 +7,10 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "changeDetection": "OnPush",
           "style": "scss",
-          "skipTests": true
+          "skipTests": true,
+          "standalone": false,
+          "changeDetection": "OnPush"
         },
         "@schematics/angular:class": {
           "skipTests": true
@@ -38,19 +39,17 @@
       "prefix": "gachi",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/gachify-ui",
+            "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/assets",
-              { "glob": "**/robots.txt", "input": "./src/assets", "output": "./" }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles/main.scss"
@@ -64,12 +63,7 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "statsJson": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -82,15 +76,22 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/devtools/devtools.ts",
+                  "with": "src/devtools/devtools.prod.ts"
+                }
+              ]
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -99,10 +100,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gachify-ui:build:production"
+              "buildTarget": "gachify-ui:build:production"
             },
             "development": {
-              "browserTarget": "gachify-ui:build:development"
+              "buildTarget": "gachify-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -110,7 +111,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gachify-ui:build"
+            "buildTarget": "gachify-ui:build"
           }
         },
         "lint": {
@@ -121,11 +122,15 @@
               "src/**/*.html"
             ]
           }
+        },
+        "test": {
+          "builder": "@analogjs/platform:vitest"
         }
       }
     }
   },
   "cli": {
+    "analytics": false,
     "schematicCollections": [
       "@angular-eslint/schematics"
     ]

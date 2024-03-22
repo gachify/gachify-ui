@@ -1,0 +1,51 @@
+@use '../abstracts' as abstracts;
+
+@mixin default() {
+  :root {
+    --color-primary: #04ca96;
+    --color-primary-rgb: #{abstracts.hex-to-rgb(#04ca96)};
+
+    --color-text-high-emphasis: #ffffff;
+    --color-text-high-emphasis-rgba: #{abstracts.hex-to-rgb(#ffffff)};
+    --color-text-medium-emphasis: #9f9f9f;
+    --color-text-disabled: #363636;
+
+    --color-surface: #101010;
+    --color-surface-rgb: #{abstracts.hex-to-rgb(#101010)};
+    --color-surface-container: #191919;
+
+    --color-outline: #363636;
+
+    --color-green: #32D84C;
+    --color-red: #FF443B;
+  }
+
+  html {
+    color: var(--color-text-high-emphasis);
+    background-color: var(--color-surface);
+  }
+
+  .primary {
+    color: var(--color-primary);
+  }
+
+  .primary-text {
+    color: var(--color-text-high-emphasis);
+  }
+
+  .secondary-text {
+    color: var(--color-text-medium-emphasis);
+  }
+
+  .disabled-text {
+    color: var(--color-text-disabled);
+  }
+
+  .green {
+    color: var(--color-green);
+  }
+
+  .red {
+    color: var(--color-red);
+  }
+}

@@ -1,0 +1,32 @@
+// @use 'tokens' as tokens;
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 320px;
+  font-weight: 500;
+  line-height: 1;
+  column-gap: 8px;
+  margin-bottom: 32px;
+}
+
+.circle {
+  width: 256px;
+  height: 256px;
+  background: url(/assets/img/oh-shit.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+h2 {
+  margin-bottom: 8px;
+}

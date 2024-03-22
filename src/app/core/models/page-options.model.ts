@@ -1,4 +1,4 @@
 export interface PageOptions {
-  page: number
-  take: number
+  limit: number
+  offset: number
 }

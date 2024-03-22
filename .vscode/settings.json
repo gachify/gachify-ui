@@ -4,8 +4,6 @@
   "editor.detectIndentation": true,
   "files.eol": "\n",
   "editor.formatOnSave": false,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs":"active",
   "eslint.options": {
     "extensions": [".ts", ".html"]
   },
@@ -17,7 +15,7 @@
     "html"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "javascript.suggestionActions.enabled": false
 }

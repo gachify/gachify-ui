@@ -1,0 +1,36 @@
+<h2 class="display-m">New Releases</h2>
+
+<div class="gachi-remix-new-releases-container">
+  @for (n of numSequence(5); track n) {
+    <div class="remix-media-card">
+      <div class="remix-media-card-image">
+        <img
+          alt=""
+          height="256"
+          src="https://yt3.googleusercontent.com/og3xm2GoRLvtqdxnIKzdWLDTHFBufaFKpW1t8Q7Vx0AHyU62twoLspAw4d-1FRdxNj1hSV_kkhM=s576"
+          width="256"
+        />
+
+        <button class="icon">
+          <gachi-play-icon [isPlaying]="false" />
+        </button>
+      </div>
+
+      <div class="remix-media-card-content">
+        <h3
+          class="title-m truncate"
+          title="Король и Шут - Танец Злобного ♂Gay♂ния (Right Version)"
+        >
+          Король и Шут - Танец Злобного ♂Gay♂ния (Right Version)"
+        </h3>
+        <a
+          [routerLink]="['/artists', 1]"
+          class="title-s secondary-text truncate"
+          title="GachiMafia"
+        >
+          GachiMafia
+        </a>
+      </div>
+    </div>
+  }
+</div>

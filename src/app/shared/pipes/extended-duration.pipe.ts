@@ -13,7 +13,8 @@ export class ExtendedDurationPipe implements PipeTransform {
 
     const hoursDisplay = hours > 0 ? `${hours} hr` : ''
     const minutesDisplay = minutes > 0 ? `${minutes} min` : ''
+    const separator = hoursDisplay && minutesDisplay ? ' ' : ''
 
-    return hoursDisplay + minutesDisplay
+    return hoursDisplay + separator + minutesDisplay
   }
 }

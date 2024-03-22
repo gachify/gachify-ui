@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
-import { toSignal } from '@angular/core/rxjs-interop'
-import { Store } from '@ngxs/store'
 
-import { AudioActions, AudioSelectors } from '@core/state'
+import { AudioState } from '@core/state'
+import { playerSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-player-playback',
@@ -11,21 +10,24 @@ import { AudioActions, AudioSelectors } from '@core/state'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerPlaybackComponent {
-  private readonly store = inject(Store)
+  private readonly audioState = inject(AudioState)
 
-  readonly duration = toSignal(this.store.select(AudioSelectors.duration))
-  readonly currentTime = toSignal(this.store.select(AudioSelectors.currentTime))
+  readonly currentTime = this.audioState.currentTime
+  readonly duration = this.audioState.duration
+
+  readonly selectors = playerSelectors
 
   seek(event: Event) {
     const time = Number((event.target as HTMLInputElement).value)
-    this.store.dispatch(new AudioActions.Seek({ time }))
+
+    this.audioState.seek({ time })
   }
 
   pause() {
-    this.store.dispatch(new AudioActions.Pause())
+    this.audioState.pause()
   }
 
   play() {
-    this.store.dispatch(new AudioActions.Play())
+    this.audioState.play()
   }
 }

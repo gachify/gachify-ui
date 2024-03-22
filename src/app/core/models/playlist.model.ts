@@ -1,7 +1,7 @@
-import { Song } from './song.model'
+import { Remix } from './remix.model'
 
 export interface Playlist {
   id: string
   name: string
-  songs: Song[]
+  remixes: Remix[]
 }

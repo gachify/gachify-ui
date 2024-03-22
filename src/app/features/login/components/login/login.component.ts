@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Store } from '@ngxs/store'
 
-import { LoginActions, LoginSelectors } from '@features/login/state'
+import { LoginState } from '@features/login/state'
 
 @Component({
   selector: 'gachi-login',
@@ -11,13 +10,13 @@ import { LoginActions, LoginSelectors } from '@features/login/state'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  private readonly store = inject(Store)
+  private readonly loginState = inject(LoginState)
 
-  readonly isInvalidCredentials$ = this.store.select(LoginSelectors.isInvalidCredentials)
-  readonly isLoading$ = this.store.select(LoginSelectors.isLoading)
+  readonly invalidCredentials = this.loginState.invalidCredentials
+  readonly loading = this.loginState.loading
 
   form = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required]),
   })
 
@@ -26,7 +25,7 @@ export class LoginComponent {
       const email = this.form.controls.email.value || ''
       const password = this.form.controls.password.value || ''
 
-      this.store.dispatch(new LoginActions.Login({ email, password }))
+      this.loginState.login({ email, password })
     } else {
       this.form.markAllAsTouched()
     }

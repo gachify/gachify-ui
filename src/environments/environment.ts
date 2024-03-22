@@ -1,7 +1,7 @@
-import { Environment } from '@core/models'
+import { Environment } from './environment.model'
 
 export const environment: Environment = {
+  applicationName: 'Gachify Local',
   production: false,
-  applicationName: 'Gachify',
   apiUrl: 'http://localhost:3000',
 }

@@ -1,0 +1,63 @@
+<div class="gachi-remix-list-item-image">
+  <img
+    [src]="remix.images | imageUrl: 'small'"
+    alt=""
+    height="56"
+    width="56"
+  />
+
+  <button
+    class="icon"
+    (click)="handleTogglePlay()"
+  >
+    <gachi-play-icon [isPlaying]="isCurrentRemix()" />
+  </button>
+</div>
+
+<h3
+  [attr.tabindex]="false"
+  [title]="remix.title"
+  class="title-m truncate gachi-remix-list-item-title"
+  (click)="handleTogglePlay()"
+  (keyup)="handleTogglePlay()"
+>
+  {{ remix.title }}
+</h3>
+
+<a
+  [routerLink]="['/artists', remix.artist.id]"
+  [title]="remix.artist.name"
+  class="title-s secondary-text truncate gachi-remix-list-item-artist"
+>
+  {{ remix.artist.name }}
+</a>
+
+<span class="title-s secondary-text truncate"> 3K plays </span>
+
+<div class="title-s secondary-text truncate gachi-remix-list-item-rating">
+  <i class="green">trending_up</i>
+  <span>320</span>
+
+  <div class="green gachi-remix-list-item-rating-change">
+    <i>arrow_drop_up</i>
+    <span class="label-m">12</span>
+  </div>
+
+  <!-- arrow_drop_down arrow_drop_up -->
+  <!-- trending_up trending_down trending_flat -->
+</div>
+
+<span class="title-s secondary-text truncate gachi-remix-list-item-duration">
+  {{ remix.duration | duration }}
+</span>
+
+<div>
+  <button
+    class="icon secondary-text"
+    (click)="menu.open($event)"
+  >
+    <i>more_vert</i>
+  </button>
+
+  <gachi-menu #menu><h1>Test</h1></gachi-menu>
+</div>

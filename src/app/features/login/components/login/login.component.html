@@ -1,78 +1,55 @@
-<h1 class="headline-l">Sign in to Gachify</h1>
+<section class="gachi-login-sidebar"></section>
 
-<div
-  *ngIf="isInvalidCredentials$ | async"
-  class="invalid-credentials-banner"
->
-  Sorry, couldn’t find an account matching the username and password you entered. Please try again.
-</div>
+<section class="gachi-login-content">
+  <h1 class="headline-l">Sign in to Gachify</h1>
 
-<form
-  [formGroup]="form"
-  autocomplete="off"
->
-  <fieldset>
-    <mat-label>Email</mat-label>
+  <div
+    *ngIf="invalidCredentials()"
+    class="gachi-login-content-invalid-credentials-error"
+  >
+    Sorry, couldn’t find an account matching the username and password you entered. Please try again.
+  </div>
 
-    <mat-form-field>
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+  >
+    <label for="email">Email</label>
+
+    <fieldset>
       <input
         formControlName="email"
-        matInput
+        id="email"
         type="text"
       />
+    </fieldset>
 
-      <mat-icon
-        *ngIf="form.controls.email.errors && form.controls.email.touched"
-        color="error"
-        matSuffix
-      >
-        error
-      </mat-icon>
+    <label for="password">Password</label>
 
-      <mat-error
-        [control]="form.controls.email"
-        [valid]="form.controls.email.valid"
-        fieldName="Email"
-        validationError
-      ></mat-error>
-    </mat-form-field>
-  </fieldset>
-
-  <fieldset>
-    <mat-label>Password</mat-label>
-
-    <mat-form-field>
+    <fieldset>
       <input
         formControlName="password"
-        matInput
+        id="password"
         type="password"
       />
+    </fieldset>
 
-      <mat-icon
-        *ngIf="form.controls.password.errors && form.controls.password.touched"
-        color="error"
-        matSuffix
-      >
-        error
-      </mat-icon>
+    <button
+      [disabled]="loading()"
+      class="gachi-login-content-submit-button filled"
+      (click)="handleSubmit()"
+    >
+      Sign In
+    </button>
+  </form>
 
-      <mat-error
-        [control]="form.controls.password"
-        [valid]="form.controls.password.valid"
-        fieldName="Password"
-        validationError
-      ></mat-error>
-    </mat-form-field>
-  </fieldset>
-
-  <button
-    [disabled]="isLoading$ | async"
-    class="submit-button"
-    mat-flat-button
-    (click)="handleSubmit()"
-  >
-    Sign In
-  </button>
-</form>
-
-<p class="link">Don't have an account? <a routerLink="/registration">Sign up</a></p>
+  <p class="body-m">
+    Don't have an account?
+    <a
+      class="link"
+      routerLink="/registration"
+    >
+      Sign up
+    </a>
+  </p>
+</section>

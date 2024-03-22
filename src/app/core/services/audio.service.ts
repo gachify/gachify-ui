@@ -1,12 +1,12 @@
-import { Injectable, OnDestroy, inject } from '@angular/core'
-import { Store } from '@ngxs/store'
+import { Injectable, Injector, OnDestroy, inject } from '@angular/core'
 
-import { environment } from '@environment'
-import { AudioActions, PlaybackActions } from '@core/state'
+import { AudioState, PlaybackState } from '@core/state'
 
 enum AudioEvents {
   TIME_UPDATE = 'timeupdate',
+  DURATION_CHANGE = 'durationchange',
   LOADED_DATA = 'loadeddata',
+  LOADED_METADATA = 'loadedmetadata',
   ENDED = 'ended',
 }
 
@@ -15,7 +15,7 @@ enum AudioEvents {
 })
 export class AudioService implements OnDestroy {
   private readonly audio = new Audio()
-  private readonly store = inject(Store)
+  private readonly injector = inject(Injector)
 
   constructor() {
     this.registerEvents()
@@ -34,6 +34,7 @@ export class AudioService implements OnDestroy {
     this.audio.pause()
   }
 
+  // Buffer implementation
   // https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/buffering_seeking_time_ranges
   seek(seconds: number) {
     this.audio.currentTime = seconds
@@ -56,31 +57,37 @@ export class AudioService implements OnDestroy {
   }
 
   load(songId: string) {
-    this.audio.src = `${environment.apiUrl}/songs/${songId}/stream`
+    this.audio.src = `/assets/mocks/${songId}.mp3`
     this.audio.load()
   }
 
   private registerEvents() {
     this.audio.addEventListener(AudioEvents.LOADED_DATA, this.onLoadedData)
     this.audio.addEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
+    this.audio.addEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
     this.audio.addEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private removeEvents() {
     this.audio.removeEventListener(AudioEvents.LOADED_DATA, this.onLoadedData)
     this.audio.removeEventListener(AudioEvents.TIME_UPDATE, this.onTimeUpdate)
+    this.audio.removeEventListener(AudioEvents.LOADED_METADATA, this.onLoadedMetadata)
     this.audio.removeEventListener(AudioEvents.ENDED, this.onEnded)
   }
 
   private readonly onLoadedData = () => {
-    this.store.dispatch(new AudioActions.Play())
+    this.injector.get(AudioState).play()
   }
 
   private readonly onTimeUpdate = () => {
-    this.store.dispatch(new AudioActions.SetCurrentTime({ time: Math.round(this.audio.currentTime) }))
+    this.injector.get(AudioState).setTime({ time: Math.floor(this.audio.currentTime) })
+  }
+
+  private readonly onLoadedMetadata = () => {
+    // this.store.dispatch(new AudioActions.SetDuration({ duration: Math.floor(this.audio.duration) }))
   }
 
   private readonly onEnded = () => {
-    this.store.dispatch(new PlaybackActions.SongEnded())
+    this.injector.get(PlaybackState).ended()
   }
 }

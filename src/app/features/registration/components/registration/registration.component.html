@@ -1,115 +1,72 @@
-<h1 class="headline-l">Sign up to Gachify</h1>
+<section class="gachi-registration-sidebar"></section>
 
-<div class="error-banner">
-  <p *ngIf="isUsernameTaken$ | async">Username has already been taken</p>
-  <p *ngIf="isEmailTaken$ | async">Email has already been taken</p>
-</div>
+<section class="gachi-registration-content">
+  <h1 class="headline-l">Sign up to Gachify</h1>
 
-<form
-  [formGroup]="form"
-  autocomplete="off"
->
-  <fieldset>
-    <mat-label>Username</mat-label>
+  <div class="gachi-registration-content-error-banner">
+    <p *ngIf="usernameTaken()">Username has already been taken</p>
+    <p *ngIf="emailTaken()">Email has already been taken</p>
+  </div>
 
-    <mat-form-field>
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+  >
+    <label for="username">Username</label>
+
+    <fieldset>
       <input
         formControlName="username"
-        matInput
+        id="username"
         type="text"
       />
+    </fieldset>
 
-      <mat-icon
-        *ngIf="form.controls.username.errors && form.controls.username.touched"
-        color="error"
-        matSuffix
-      >
-        error
-      </mat-icon>
+    <label for="email">Email</label>
 
-      <mat-error
-        [control]="form.controls.username"
-        [valid]="form.controls.username.valid"
-        fieldName="Username"
-        validationError
-      ></mat-error>
-    </mat-form-field>
-  </fieldset>
-
-  <fieldset>
-    <mat-label>Email</mat-label>
-
-    <mat-form-field>
+    <fieldset>
       <input
         formControlName="email"
-        matInput
+        id="email"
         type="email"
       />
+    </fieldset>
 
-      <mat-icon
-        *ngIf="form.controls.email.errors && form.controls.email.touched"
-        color="error"
-        matSuffix
-      >
-        error
-      </mat-icon>
+    <label for="password">Password</label>
 
-      <mat-error
-        [control]="form.controls.email"
-        [valid]="form.controls.email.valid"
-        fieldName="Email"
-        validationError
-      ></mat-error>
-    </mat-form-field>
-  </fieldset>
-
-  <fieldset>
-    <mat-label>Password</mat-label>
-
-    <mat-form-field>
+    <fieldset>
       <input
         [type]="hide ? 'password' : 'text'"
         formControlName="password"
-        matInput
+        id="password"
       />
 
       <button
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide"
-        mat-icon-button
-        matSuffix
+        class="icon"
         (click)="hide = !hide"
       >
-        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <i>{{ hide ? 'visibility_off' : 'visibility' }}</i>
       </button>
+    </fieldset>
 
-      <mat-icon
-        *ngIf="form.controls.password.errors && form.controls.password.touched"
-        color="error"
-        matSuffix
-      >
-        error
-      </mat-icon>
+    <button
+      [disabled]="loading()"
+      class="gachi-registration-content-submit-button filled"
+      (click)="handleSubmit()"
+    >
+      Create Account
+    </button>
+  </form>
 
-      <mat-error
-        [control]="form.controls.password"
-        [valid]="form.controls.password.valid"
-        fieldName="Password"
-        validationError
-      ></mat-error>
-    </mat-form-field>
-  </fieldset>
-
-  <!-- <mat-checkbox>I agree with <a>Terms of Service</a></mat-checkbox> -->
-
-  <button
-    [disabled]="isLoading$ | async"
-    class="submit-button"
-    mat-flat-button
-    (click)="handleSubmit()"
-  >
-    Create Account
-  </button>
-</form>
-
-<p class="link">Already have an account? <a routerLink="/login"> Sign In</a></p>
+  <p class="body-m">
+    Already have an account?
+    <a
+      class="link"
+      routerLink="/login"
+    >
+      Sign In
+    </a>
+  </p>
+</section>

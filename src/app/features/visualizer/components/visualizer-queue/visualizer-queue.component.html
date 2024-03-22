@@ -1,0 +1,14 @@
+<div class="gachi-visualizer-queue-container">
+  <span class="label-l secondary-text">Playing from</span>
+  <h2 class="title-m">{{ queue().source.name }}</h2>
+
+  <div class="gachi-visualizer-queue-container-remixes">
+    @for (remix of queue().remixes; track remix.id) {
+      <gachi-remix-card
+        [attr.id]="remix.id"
+        [queue]="queue()"
+        [remix]="remix"
+      />
+    }
+  </div>
+</div>

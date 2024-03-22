@@ -1,47 +1,57 @@
 <button
-  [ngClass]="{ inactive: !shuffle() }"
-  mat-icon-button
+  [class]="{ inactive: !shuffle() }"
+  [selector]="selectors.shuffleButton"
+  aria-label="Shuffle"
+  class="icon"
   (click)="handleToggleShuffle()"
 >
-  <mat-icon>shuffle</mat-icon>
+  <i>shuffle</i>
 </button>
 
 <button
-  [disabled]="!hasPreviousSong()"
-  mat-icon-button
+  [disabled]="!hasPrevious()"
+  [selector]="selectors.skipPreviousButton"
+  aria-label="Previous"
+  class="icon"
   (click)="handleSkipPrevious()"
 >
-  <mat-icon>skip_previous</mat-icon>
+  <i>skip_previous</i>
 </button>
 
-<gachi-play-button
-  [status]="status()"
+<button
+  [selector]="selectors.playButton"
+  aria-label="Play"
+  class="icon player-controls-button"
   (click)="handleTogglePlay()"
-/>
+>
+  <gachi-play-icon [isPlaying]="true" />
+</button>
 
 <button
-  [disabled]="!hasNextSong()"
-  mat-icon-button
+  [disabled]="!hasNext()"
+  [selector]="selectors.skipNextButton"
+  aria-label="Next"
+  class="icon"
   (click)="handleSkipNext()"
 >
-  <mat-icon>skip_next</mat-icon>
+  <i>skip_next</i>
 </button>
 
 <button
-  [ngClass]="{ inactive: !repeat() }"
-  mat-icon-button
+  [selector]="selectors.repeatButton"
+  aria-label="Repeat"
+  class="icon"
   (click)="handleToggleRepeat()"
 >
-  <ng-container [ngSwitch]="repeat()">
-    <mat-icon
-      *ngSwitchCase="repeatOption.None"
-      class="inactive"
-    >
-      repeat
-    </mat-icon>
-
-    <mat-icon *ngSwitchCase="repeatOption.All">repeat</mat-icon>
-
-    <mat-icon *ngSwitchCase="repeatOption.Single">repeat_one</mat-icon>
-  </ng-container>
+  @switch (repeat()) {
+    @case (repeatOption.None) {
+      <i class="inactive">repeat</i>
+    }
+    @case (repeatOption.All) {
+      <i>repeat</i>
+    }
+    @case (repeatOption.Single) {
+      <i>repeat_one</i>
+    }
+  }
 </button>

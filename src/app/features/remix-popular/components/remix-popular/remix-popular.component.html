@@ -1,0 +1,17 @@
+<span class="label-l primary">Trending</span>
+<h2 class="display-m">Popular Remixes</h2>
+
+<div class="gachi-remix-popular-container">
+  @if (loading()) {
+    @for (n of numSequence(12); track n) {
+      <gachi-remix-card-skeleton />
+    }
+  } @else {
+    @for (remix of remixes(); track remix.id) {
+      <gachi-remix-card
+        [queue]="queue()"
+        [remix]="remix"
+      />
+    }
+  }
+</div>

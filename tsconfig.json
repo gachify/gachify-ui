@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -10,11 +9,13 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
@@ -24,6 +25,7 @@
       "ES2022",
       "dom"
     ],
+    "types": ["vitest/globals"],
     "paths": {
       "@core/*": ["src/app/core/*"],
       "@layouts/*": ["src/app/layouts/*"],
@@ -32,14 +34,15 @@
       "@shared/*": ["src/app/shared/*"],
       "@features/*": ["src/app/features/*"],
       "@features": ["src/app/features"],
+      "@selectors": ["acceptance-tests/constants/selectors"],
       "@environment": ["src/environments/environment"]
     }
   },
+  "exclude": ["cypress.config.ts", "cypress"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "strictNullInputTypes": false
+    "strictTemplates": true
   }
 }

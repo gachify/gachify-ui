@@ -1,24 +1,18 @@
 :host {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.main-btn {
-  --mdc-icon-button-icon-size: 48px;
-  --mdc-icon-button-state-layer-size: 72px;
-  
-  mat-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 48px;
-  }
-}
-
-mat-spinner {
-  margin: 0 12px;
+  gap: 16px;
 }
 
 .inactive {
   opacity: 0.4;
+}
+
+.player-controls-button {
+  color: var(--color-surface-container);
+  background-color: var(--color-text-high-emphasis) !important;
+
+  &:hover {
+    background-color: var(--color-text-high-emphasis);
+  }
 }

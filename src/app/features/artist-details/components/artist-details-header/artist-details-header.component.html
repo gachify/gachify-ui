@@ -1,0 +1,37 @@
+<img
+  [src]="artist()?.images | imageUrl: 'medium'"
+  alt=""
+  class="gachi-artist-details-header-image"
+  height="256"
+  width="256"
+/>
+
+<div class="gachi-artist-details-header-title">
+  <h1 class="display-m">{{ artist()?.name }}</h1>
+
+  <span class="title-m secondary-text">20 songs • 1 hour, 12 minutes</span>
+
+  <div class="gachi-artist-details-header-actions">
+    <button class="filled">
+      <i>play_arrow</i>
+      Play
+    </button>
+
+    <ng-container *isAuthenticated>
+      <button class="outlined">
+        <i>heart_plus</i>
+        Follow
+      </button>
+
+      <!-- <button class="outlined">
+        <i class="outlined">heart_minus</i>
+        Unfollow
+      </button> -->
+    </ng-container>
+
+    <button class="outlined">
+      <i>media_link</i>
+      YouTube
+    </button>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div
+  [style.height.px]="size$ | async"
+  [style.width.px]="size$ | async"
+  class="gachi-visualizer-media-container"
+>
+  <img
+    [class.paused]="!playing()"
+    [src]="currentRemix()?.images | imageUrl: 'large'"
+    alt=""
+    aria-hidden="true"
+    (click)="handleClick()"
+  />
+
+  @if (playing()) {
+    <div
+      [style.background-color]="currentRemix()?.color"
+      class="gachi-visualizer-media-container-animation"
+    ></div>
+  }
+</div>

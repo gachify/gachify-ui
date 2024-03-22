@@ -1,11 +1,47 @@
-@use 'tokens' as tokens;
+// @use 'tokens' as tokens;
+
+:host {
+  height: 100%;
+  display: flex;
+}
+
+.gachi-registration-sidebar {
+  width: 460px;
+
+  // @include mixins.md {
+  //   display: none;
+  // }
+}
+
+.gachi-registration-sidebar-video {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.gachi-registration-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 100px;
+  max-width: 416px;
+
+  // @include mixins.lg {
+  //   margin: 0;
+  // }
+
+  // @include mixins.md {
+  //   margin: auto;
+  // }
+}
 
 h1 {
   margin-bottom: 24px;
 }
 
-.error-banner {
-  color: tokens.$color-error;
+.gachi-registration-content-error-banner {
+  // color: tokens.$color-error;
 }
 
 form {
@@ -13,32 +49,16 @@ form {
 }
 
 fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border: none;
-  padding: 0;
+  margin-bottom: 24px;
 }
 
-.submit-button {
-  margin-top: 24px;
+.gachi-registration-content-submit-button {
   width: 100%;
+  justify-content: center;
+  margin-top: 28px;
 }
 
-.link {
+p {
   text-align: center;
-  margin-top: 24px;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-mat-icon {
-  animation: fade-in 1s;
+  margin-top: 20px;
 }

@@ -1,0 +1,82 @@
+<ul class="gachi-header-menu body-l">
+  <li>
+    <a
+      #home="routerLinkActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink=""
+      routerLinkActive="active"
+    >
+      Home
+    </a>
+  </li>
+
+  <li>
+    <a
+      #songs="routerLinkActive"
+      routerLink="/remixes"
+      routerLinkActive="active"
+    >
+      Explore
+    </a>
+  </li>
+
+  <li>
+    <a
+      #artists="routerLinkActive"
+      routerLink="/search"
+      routerLinkActive="active"
+    >
+      Search
+    </a>
+  </li>
+
+  <li>
+    <a
+      #library="routerLinkActive"
+      routerLink="/library"
+      routerLinkActive="active"
+    >
+      Library
+    </a>
+  </li>
+</ul>
+
+<a
+  class="gachi-header-logo"
+  routerLink="/"
+>
+  <img
+    alt="Gachify"
+    height="47"
+    src="assets/svg/logo.svg"
+    width="114"
+  />
+</a>
+
+<div class="gachi-header-right-panel">
+  <gachi-search />
+
+  <button
+    *isUnauthenticated
+    class="outlined button-large"
+    routerLink="login"
+  >
+    Log in
+  </button>
+
+  <button
+    *isUnauthenticated
+    class="filled button-large"
+    routerLink="registration"
+  >
+    Sign up
+  </button>
+
+  <button
+    *isAuthenticated
+    class="filled button-large"
+    routerLink="registration"
+  >
+    Test
+  </button>
+</div>

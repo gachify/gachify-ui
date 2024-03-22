@@ -1,29 +1,12 @@
-@use 'tokens' as tokens;
-@use 'mixins' as mixins;
-
-.player {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+:host {
   display: flex;
   align-items: center;
   height: 80px;
-  background-color: #{tokens.$color-surface-container};
-  // border-top: 1px solid #{tokens.$color-outline-variant};
-  box-shadow: #{tokens.$elevation-2};
-  gap: 64px;
+  gap: 48px;
   padding: 0 32px;
-  color: #{tokens.$color-on-surface};
-  z-index: 10;
+  background-color: var(--color-surface-container);
 }
 
 gachi-player-playback {
   flex-grow: 1;
-}
-
-gachi-player-song {
-  @include mixins.lg {
-    display: none;
-  }
 }

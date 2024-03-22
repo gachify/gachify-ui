@@ -1,12 +1,12 @@
-import { Injectable, inject } from '@angular/core'
-import { Action, State, StateContext } from '@ngxs/store'
-import { catchError, tap } from 'rxjs'
+import { Injectable, inject, signal } from '@angular/core'
+import { take } from 'rxjs'
 import { HttpErrorResponse } from '@angular/common/http'
 
 import { RegistrationService } from '../services'
-import { RegistrationActions } from './registration.actions'
 
-import { AuthActions } from '@core/state'
+import { StateModel } from '@core/models'
+
+// import { AuthActions } from '@core/state'
 
 export interface RegistrationStateModel {
   loading: boolean
@@ -14,43 +14,35 @@ export interface RegistrationStateModel {
   usernameTaken: boolean
 }
 
-@State<RegistrationStateModel>({
-  name: 'registration',
-  defaults: {
-    loading: false,
-    emailTaken: false,
-    usernameTaken: false,
-  },
-})
 @Injectable()
-export class RegistrationState {
+export class RegistrationState implements StateModel<RegistrationStateModel> {
   private readonly registrationService = inject(RegistrationService)
 
-  @Action(RegistrationActions.Register)
-  login(ctx: StateContext<RegistrationStateModel>, action: RegistrationActions.Register) {
-    ctx.patchState({ loading: true })
+  readonly loading = signal(false)
+  readonly emailTaken = signal(false)
+  readonly usernameTaken = signal(false)
 
-    return this.registrationService.register(action.payload).pipe(
-      tap((response) => {
-        ctx.patchState({
-          loading: false,
-        })
+  register(payload: { username: string; email: string; password: string }) {
+    this.loading.set(true)
+    this.emailTaken.set(false)
+    this.usernameTaken.set(false)
 
-        ctx.dispatch(new AuthActions.Login({ username: response.username }))
-      }),
-      catchError((error) => {
-        ctx.patchState({
-          loading: false,
-        })
-        return ctx.dispatch(new RegistrationActions.HandleError(error))
-      }),
-    )
+    this.registrationService
+      .register(payload)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.loading.set(false)
+        },
+        error: (error) => {
+          this.handleError({ error })
+        },
+      })
   }
 
-  @Action(RegistrationActions.HandleError)
-  handleError(ctx: StateContext<RegistrationStateModel>, action: RegistrationActions.HandleError) {
-    if (action.error.name === 'HttpErrorResponse') {
-      const httpError = action.error as HttpErrorResponse
+  private handleError(payload: { error: Error }) {
+    if (payload.error.name === 'HttpErrorResponse') {
+      const httpError = payload.error as HttpErrorResponse
 
       if (httpError.status !== 400 || !httpError.error) {
         throw httpError
@@ -58,9 +50,9 @@ export class RegistrationState {
 
       const { emailTaken, usernameTaken } = httpError.error
 
-      ctx.patchState({ emailTaken, usernameTaken, loading: false })
-    } else {
-      throw action.error
+      this.emailTaken.set(emailTaken)
+      this.usernameTaken.set(usernameTaken)
+      this.loading.set(false)
     }
   }
 }

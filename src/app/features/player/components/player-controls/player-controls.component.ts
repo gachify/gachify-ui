@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
-import { toSignal } from '@angular/core/rxjs-interop'
-import { Store } from '@ngxs/store'
 
-import { AudioActions, AudioSelectors, PlaybackActions, PlaybackSelectors } from '@core/state'
+import { PlaybackState, AudioState } from '@core/state'
 import { RepeatOption } from '@core/models'
+import { playerSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-player-controls',
@@ -12,33 +11,35 @@ import { RepeatOption } from '@core/models'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerControlsComponent {
-  private readonly store = inject(Store)
+  private readonly playbackState = inject(PlaybackState)
+  private readonly audioState = inject(AudioState)
 
   readonly repeatOption = RepeatOption
 
-  readonly repeat = toSignal(this.store.select(PlaybackSelectors.repeat))
-  readonly shuffle = toSignal(this.store.select(PlaybackSelectors.shuffle))
-  readonly status = toSignal(this.store.select(AudioSelectors.status))
-  readonly hasNextSong = toSignal(this.store.select(PlaybackSelectors.hasNextSong))
-  readonly hasPreviousSong = toSignal(this.store.select(PlaybackSelectors.hasPreviousSong))
+  readonly selectors = playerSelectors
+
+  readonly repeat = this.playbackState.repeat
+  readonly shuffle = this.playbackState.shuffle
+  readonly hasPrevious = this.playbackState.hasPrevious
+  readonly hasNext = this.playbackState.hasNext
 
   handleTogglePlay() {
-    this.store.dispatch(new AudioActions.TogglePlay())
+    this.audioState.togglePlay()
   }
 
   handleToggleRepeat() {
-    this.store.dispatch(new PlaybackActions.ToggleRepeat())
+    this.playbackState.toggleRepeat()
   }
 
   handleSkipNext() {
-    this.store.dispatch(new PlaybackActions.NextSong())
+    this.playbackState.next()
   }
 
   handleSkipPrevious() {
-    this.store.dispatch(new PlaybackActions.PreviousSong())
+    this.playbackState.previous()
   }
 
   handleToggleShuffle() {
-    this.store.dispatch(new PlaybackActions.ToggleShuffle())
+    this.playbackState.toggleShuffle()
   }
 }
