@@ -8,7 +8,6 @@
     "watch": "ng build --watch --configuration development",
     "bundle": "ng build && esbuild-visualizer --metadata dist/stats.json --filename dist/stats.html",
     "lint": "ng lint",
-    "test:unit2": "jest --no-cache",
     "test:unit": "ng test",
     "test:integration": "start-server-and-test 'ng serve --configuration=production' http://localhost:4200 'cypress run --e2e --browser chrome'",
     "cy": "cypress open"

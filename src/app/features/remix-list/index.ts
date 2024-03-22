@@ -1,1 +1,1 @@
-export * from './remix-popular.module'
+export * from './remix-list.module'

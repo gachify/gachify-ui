@@ -100,7 +100,7 @@ describe('AudioService', () => {
     audioService.load(songId)
 
     // Assert
-    expect(audioElementMock.src).toBe('http://localhost:4200/assets/mocks/audio-stream.mp3')
+    expect(audioElementMock.src).toBe('/assets/mocks/123.mp3')
   })
 
   it('should dispatch audio play action on loaded data', () => {

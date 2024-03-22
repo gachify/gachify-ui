@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
-import { RemixListModule } from '@features/remix-list/remix-list.module'
+import { RemixListModule } from '@features/remix-list'
 
 @Component({
   standalone: true,

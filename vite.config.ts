@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => ({
   ],
   test: {
     globals: true,
+    watch: false,
     setupFiles: ['src/test-setup.ts'],
     environment: 'jsdom',
     include: ['src/**/*.spec.ts'],
@@ -20,6 +21,7 @@ export default defineConfig(({ mode }) => ({
       enabled: true,
       include: ['src/**/*.ts'],
       exclude: ['main.ts', 'src/devtools/**', 'src/environments/**', '**/index.ts', '**/*.model.ts', '**/*.module.ts'],
+      reporter: ['text', 'lcov'],
     },
   },
   define: {
