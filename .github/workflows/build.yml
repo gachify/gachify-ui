@@ -9,6 +9,11 @@ on:
 env:
   NODE_VERSION: 20.x
 
+permissions:
+  contents: read
+  statuses: write
+  checks: write
+
 jobs:
   build:
     name: Build
@@ -32,7 +37,7 @@ jobs:
         run: npm run test:unit
 
       - name: Publish unit test report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.8.0
         if: always()
         with:
           name: Unit Tests
