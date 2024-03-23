@@ -10,11 +10,10 @@ $logo-width: 124px;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(var(--color-surface-rgb), 0.9);
+  background: rgba(var(--color-surface-rgb), 0.96);
   box-shadow: 0 8px 24px var(--color-surface);
   backdrop-filter: blur(5px);
   z-index: 100;
-  animation: slide-down .3s ease-out;
 }
 
 .gachi-header-menu {
@@ -73,13 +72,4 @@ $logo-width: 124px;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
-}
-
-@keyframes slide-down {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
 }

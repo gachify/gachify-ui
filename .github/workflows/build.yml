@@ -6,20 +6,20 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  NODE_VERSION: 20.x
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install dependencies
@@ -28,12 +28,19 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Test and coverage
+      - name: Run unit tests
         run: npm run test:unit
+
+      - name: Publish unit test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Unit Tests
+          path: junit/junit.xml
+          reporter: java-junit
 
       - name: Build application
         run: npm run build
-  
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master

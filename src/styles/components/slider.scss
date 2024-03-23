@@ -10,7 +10,7 @@ $slider-height: 4px;
     outline: none;
     border-radius: $slider-height;
     height: $slider-height;
-    background: var(--color-text-disabled);
+    background: var(--color-outline);
 
     &::-webkit-slider-thumb {
       appearance: none;

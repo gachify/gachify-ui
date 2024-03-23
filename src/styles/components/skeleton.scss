@@ -17,7 +17,7 @@
     display: block;
     border-radius: 8px;
     min-height: 1.2em;
-    background-color: var(--color-text-disabled);
+    background-color: var(--color-outline);
     animation: 2s ease-in-out 0.5s infinite normal none running skeleton-blink;
   }
 }

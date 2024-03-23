@@ -16,6 +16,8 @@ export class BlankLayoutComponent implements OnInit {
   private readonly audioState = inject(AudioState)
 
   ngOnInit(): void {
-    this.audioState.pause()
+    if (this.audioState.playing()) {
+      this.audioState.pause()
+    }
   }
 }

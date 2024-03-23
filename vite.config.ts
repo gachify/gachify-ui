@@ -16,7 +16,10 @@ export default defineConfig(({ mode }) => ({
     setupFiles: ['src/test-setup.ts'],
     environment: 'jsdom',
     include: ['src/**/*.spec.ts'],
-    reporters: ['default'],
+    reporters: ['default', 'junit'],
+    outputFile: {
+      junit: './reports/junit-report.xml',
+    },
     coverage: {
       enabled: true,
       include: ['src/**/*.ts'],

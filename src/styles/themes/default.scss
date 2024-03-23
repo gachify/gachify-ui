@@ -5,16 +5,16 @@
     --color-primary: #04ca96;
     --color-primary-rgb: #{abstracts.hex-to-rgb(#04ca96)};
 
-    --color-text-high-emphasis: #ffffff;
+    --color-text-high-emphasis: rgba(255, 255, 255, .96);
     --color-text-high-emphasis-rgba: #{abstracts.hex-to-rgb(#ffffff)};
-    --color-text-medium-emphasis: #9f9f9f;
-    --color-text-disabled: #363636;
+    --color-text-medium-emphasis: rgba(255, 255, 255, .6);
+    --color-text-disabled: rgba(255, 255, 255, .38);
 
     --color-surface: #101010;
     --color-surface-rgb: #{abstracts.hex-to-rgb(#101010)};
     --color-surface-container: #191919;
 
-    --color-outline: #363636;
+    --color-outline: rgba(255, 255, 255, .16);
 
     --color-green: #32D84C;
     --color-red: #FF443B;
