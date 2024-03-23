@@ -36,7 +36,7 @@ jobs:
         if: always()
         with:
           name: Unit Tests
-          path: junit/junit.xml
+          path: reports/junit-report.xml
           reporter: jest-junit
 
       - name: Build application
