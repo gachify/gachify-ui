@@ -37,7 +37,7 @@ jobs:
         with:
           name: Unit Tests
           path: junit/junit.xml
-          reporter: java-junit
+          reporter: jest-junit
 
       - name: Build application
         run: npm run build
