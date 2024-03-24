@@ -45,7 +45,7 @@ export class CookieService {
 
         cookieString += 'Expires=' + dateExpires.toUTCString() + ';'
       } else {
-        cookieString += 'Expires=' + (expires as Date).toUTCString() + ';'
+        cookieString += 'Expires=' + expires.toUTCString() + ';'
       }
     }
 
@@ -59,9 +59,8 @@ export class CookieService {
   }
 
   delete(name: string): void {
-    const nameWithPrefix = COOKIE_PREFIX + name
     const expires = new Date('Thu, 01 Jan 1970 00:00:01 GMT')
-    this.set({ name: nameWithPrefix, value: '', expires })
+    this.set({ name, value: '', expires })
   }
 
   private check(name: string): boolean {

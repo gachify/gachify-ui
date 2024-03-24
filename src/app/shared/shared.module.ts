@@ -3,13 +3,7 @@ import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 
-import {
-  IsAuthenticatedDirective,
-  IsUnauthenticatedDirective,
-  SelectorDirective,
-  SliderDirective,
-  ValidationDirective,
-} from './directives'
+import { IsAuthenticatedDirective, IsUnauthenticatedDirective, SelectorDirective, SliderDirective } from './directives'
 import {
   ChipComponent,
   LogoComponent,
@@ -43,7 +37,6 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     SelectorDirective,
     SkeletonComponent,
     SliderDirective,
-    ValidationDirective,
   ],
   exports: [
     ChipComponent,
@@ -65,7 +58,6 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     SelectorDirective,
     SkeletonComponent,
     SliderDirective,
-    ValidationDirective,
   ],
 })
 export class SharedModule {}
