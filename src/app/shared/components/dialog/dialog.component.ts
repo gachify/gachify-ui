@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular
 @Component({
   selector: 'gachi-dialog',
   templateUrl: 'dialog.component.html',
-  styleUrls: ['dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
