@@ -28,6 +28,6 @@ export class ArtistRepository {
 
   getSimilarArtists() {
     // /artists/:id/similar-artists
-    return this.httpClient.get<PageResponse<Artist>>(`assets/mocks/artists.json`)
+    return this.httpClient.get<PageResponse<Artist>>(`assets/mocks/artists.json`).pipe(map((response) => response.data))
   }
 }

@@ -50,6 +50,7 @@ describe('PlaybackState', () => {
     playbackState.togglePlay({ queue, remixId })
 
     // Assert
+    expect(playbackState.currentRemix()).toEqual({ id: remixId })
     expect(audioStateMock.togglePlay).toHaveBeenCalled()
     expect(audioStateMock.load).not.toHaveBeenCalled()
     expect(uiStateMock.openVisualizer).not.toHaveBeenCalled()
@@ -168,6 +169,38 @@ describe('PlaybackState', () => {
     playbackState.currentRemix.set(currentRemix)
     playbackState.queue.set(queue)
     playbackState.repeat.set(RepeatOption.All)
+
+    // Act
+    playbackState.ended()
+
+    // Assert
+    expect(playbackState.currentRemix()).toEqual(nextRemix)
+    expect(audioStateMock.load).toHaveBeenCalledWith({ remix: nextRemix })
+  })
+
+  it('should pause when current remix is the last one and repeat option is set to None', () => {
+    // Arrange
+    const currentRemix = { id: 'remix1' } as Remix
+    const queue: Queue = { source: { name: 'source1' }, remixes: [currentRemix] }
+    playbackState.currentRemix.set(currentRemix)
+    playbackState.queue.set(queue)
+    playbackState.repeat.set(RepeatOption.None)
+
+    // Act
+    playbackState.ended()
+
+    // Assert
+    expect(audioStateMock.pause).toHaveBeenCalled()
+  })
+
+  it('should play the next remix when current remix is not the last one and repeat option is set to None', () => {
+    // Arrange
+    const currentRemix = { id: 'remix1' } as Remix
+    const nextRemix = { id: 'remix2' } as Remix
+    const queue: Queue = { source: { name: 'source1' }, remixes: [currentRemix, nextRemix] }
+    playbackState.currentRemix.set(currentRemix)
+    playbackState.queue.set(queue)
+    playbackState.repeat.set(RepeatOption.None)
 
     // Act
     playbackState.ended()

@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => ({
     },
     coverage: {
       enabled: true,
+      provider: 'v8',
       include: ['src/**/*.ts'],
       exclude: ['main.ts', 'src/devtools/**', 'src/environments/**', '**/index.ts', '**/*.model.ts', '**/*.module.ts'],
       reporter: ['text', 'lcov'],
