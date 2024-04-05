@@ -37,7 +37,7 @@ jobs:
         run: npm run test:unit
 
       - name: Publish unit test report
-        uses: dorny/test-reporter@v1.8.0
+        uses: dorny/test-reporter@v1.9.0
         if: always()
         with:
           name: Unit Tests
