@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, computed, inject } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+  computed,
+  inject,
+} from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { DOCUMENT } from '@angular/common'
 
@@ -48,11 +57,10 @@ export class VisualizerMediaComponent implements OnInit {
   private calculateContainerSize(): void {
     const MAX_SIZE = 720
 
-    const VERTICAL_PADDING = 64
-    const HORIZONTAL_PADDING = 96
+    const PADDING = 96
 
-    const OFFSET_HEIGHT = VERTICAL_PADDING * 2 + 96 + 80
-    const OFFSET_WIDTH = HORIZONTAL_PADDING * 2
+    const OFFSET_HEIGHT = PADDING * 2 + 96 + 80
+    const OFFSET_WIDTH = PADDING * 2
 
     const body = this.document.body
 

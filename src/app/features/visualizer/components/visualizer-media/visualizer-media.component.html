@@ -8,13 +8,16 @@
     [src]="currentRemix()?.images | imageUrl: 'large'"
     alt=""
     aria-hidden="true"
+    class="gachi-visualizer-media"
     (click)="handleClick()"
   />
 
-  @if (playing()) {
-    <div
-      [style.background-color]="currentRemix()?.color"
-      class="gachi-visualizer-media-container-animation"
-    ></div>
-  }
+  <img
+    [class.paused]="!playing()"
+    [src]="currentRemix()?.images | imageUrl: 'large'"
+    alt=""
+    aria-hidden="true"
+    class="gachi-visualizer-media-animation"
+    (click)="handleClick()"
+  />
 </div>

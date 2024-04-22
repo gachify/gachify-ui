@@ -34,6 +34,7 @@ gachi-remix-list-item:hover,
 }
 
 gachi-remix-list-item:hover + gachi-remix-list-item,
+.gachi-remix-list-item-active,
 .gachi-remix-list-item-active + gachi-remix-list-item {
   border-color: transparent !important;
 }
