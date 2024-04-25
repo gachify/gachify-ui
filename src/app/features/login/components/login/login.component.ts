@@ -22,8 +22,8 @@ export class LoginComponent {
 
   handleSubmit(): void {
     if (this.form.valid) {
-      const email = this.form.controls.email.value || ''
-      const password = this.form.controls.password.value || ''
+      const email = this.form.controls.email.value ?? ''
+      const password = this.form.controls.password.value ?? ''
 
       this.loginState.login({ email, password })
     } else {

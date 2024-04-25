@@ -26,9 +26,9 @@ export class RegistrationComponent {
 
   handleSubmit(): void {
     if (this.form.valid) {
-      const username = this.form.controls.username.value || ''
-      const email = this.form.controls.email.value || ''
-      const password = this.form.controls.password.value || ''
+      const username = this.form.controls.username.value ?? ''
+      const email = this.form.controls.email.value ?? ''
+      const password = this.form.controls.password.value ?? ''
 
       this.registrationState.register({ username, email, password })
     } else {
