@@ -37,7 +37,7 @@
     "@angular-eslint/template-parser": "17.3.0",
     "@angular/cli": "^17.3.0",
     "@angular/compiler-cli": "^17.3.0",
-    "@nx/vite": "^18.0.8",
+    "@nx/vite": "^19.0.0",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "7.7.1",
     "@typescript-eslint/parser": "7.7.1",
