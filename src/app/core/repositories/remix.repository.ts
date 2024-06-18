@@ -18,7 +18,7 @@ export class RemixRepository {
     //   .pipe(map((response) => response.data))
 
     // /remixes/popular
-    return this.httpClient.get<PageResponse<Remix>>(`assets/mocks/remixes.json`).pipe(map((response) => response.data))
+    return this.httpClient.get<PageResponse<Remix>>('/remixes/popular').pipe(map((response) => response.data))
   }
 
   get({ limit, offset }: PageOptions) {

@@ -1,6 +1,6 @@
 import { Directive, HostBinding, Input } from '@angular/core'
 
-import { SelectorWithSuffix } from 'acceptance-tests/constants/selectors/selector.type'
+import { SelectorWithSuffix } from 'integration-tests/support/types'
 
 @Directive({
   selector: '[selector]',

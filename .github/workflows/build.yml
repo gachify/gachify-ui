@@ -41,7 +41,18 @@ jobs:
         if: always()
         with:
           name: Unit Tests
-          path: reports/junit-report.xml
+          path: reports/unit/junit-report.xml
+          reporter: java-junit
+
+      - name: Run integration tests
+        run: npm run test:integration
+
+      - name: Publish integration test report
+        uses: dorny/test-reporter@v1.8.0
+        if: always()
+        with:
+          name: Integration Tests
+          path: reports/integration/junit-*.xml
           reporter: java-junit
 
       - name: Build application

@@ -6,11 +6,16 @@ export default defineConfig({
       // implement node event listeners here
     },
     baseUrl: 'http://localhost:4200/',
-    specPattern: 'acceptance-tests/**/*.spec.ts',
-    screenshotsFolder: 'report/acceptance-tests/screenshots',
-    videosFolder: 'reports/acceptance-tests/videos',
+    specPattern: 'integration-tests/**/*.spec.ts',
+    screenshotsFolder: 'reports/integration/screenshots',
+    videosFolder: 'reports/integration/videos',
     viewportWidth: 1920,
     viewportHeight: 1080,
-    supportFile: 'acceptance-tests/drivers/cypress/config.ts',
+    supportFile: 'integration-tests/config.ts',
+    fixturesFolder: 'integration-tests/fixtures',
+    reporter: 'junit',
+    reporterOptions: {
+        mochaFile: 'reports/integration/junit-[hash].xml'
+    }
   },
 })

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, provideExperimentalZonelessChangeDetection } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -21,7 +21,7 @@ import { SharedModule } from '@shared/shared.module'
     RouterOutlet,
     SharedModule,
   ],
-  providers: [],
+  providers: [provideExperimentalZonelessChangeDetection()],
   bootstrap: [AppComponent],
 })
 export class AppModule {

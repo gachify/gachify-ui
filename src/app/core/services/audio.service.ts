@@ -57,7 +57,8 @@ export class AudioService implements OnDestroy {
   }
 
   load(songId: string) {
-    this.audio.src = `/assets/mocks/${songId}.mp3`
+    // this.audio.src = `/assets/mocks/${songId}.mp3`
+    this.audio.src = `/assets/mocks/audio.mp3`
     this.audio.load()
   }
 

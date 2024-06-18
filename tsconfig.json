@@ -34,7 +34,7 @@
       "@shared/*": ["src/app/shared/*"],
       "@features/*": ["src/app/features/*"],
       "@features": ["src/app/features"],
-      "@selectors": ["acceptance-tests/constants/selectors"],
+      "@selectors": ["integration-tests/support/selectors"],
       "@environment": ["src/environments/environment"]
     }
   },
