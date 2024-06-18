@@ -18,5 +18,6 @@ Cypress.Commands.addAll(
 )
 
 beforeEach(() => {
-  cy.intercept('GET', /.*\.(jpg|png)$/, { fixture: 'image.jpg' }).as('getImage')
+  cy.intercept('GET', /\/.+\.(jpg|jpeg|png)$/, { fixture: 'image.jpg' }).as('getImage')
+  cy.intercept('GET', /\/.+\.(mp3|mp4)$/, { fixture: 'audio.mp3,null' }).as('getAudio')
 })

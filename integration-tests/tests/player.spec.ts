@@ -3,7 +3,6 @@ import { player, popularRemixes } from '../support/utils'
 
 describe('Player', () => {
   beforeEach(() => {
-    player.mock()
     popularRemixes.mock()
 
     cy.visit(routes.HOME)
