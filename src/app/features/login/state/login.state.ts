@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { LoginService } from '../services'
 
 import { StateModel } from '@core/models'
+import { AuthState } from '@core/state'
 
 export interface LoginStateModel {
   loading: boolean
@@ -14,6 +15,7 @@ export interface LoginStateModel {
 @Injectable()
 export class LoginState implements StateModel<LoginStateModel> {
   private readonly loginService = inject(LoginService)
+  private readonly authState = inject(AuthState)
 
   readonly loading = signal(false)
   readonly invalidCredentials = signal(false)
@@ -26,7 +28,10 @@ export class LoginState implements StateModel<LoginStateModel> {
       .login(payload)
       .pipe(take(1))
       .subscribe({
-        next: () => this.loading.set(false),
+        next: (user) => {
+          this.loading.set(false)
+          this.authState.login(user)
+        },
         error: (error) => this.handleError({ error }),
       })
   }

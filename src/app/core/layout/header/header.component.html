@@ -3,6 +3,7 @@
     <a
       #home="routerLinkActive"
       [routerLinkActiveOptions]="{ exact: true }"
+      [selector]="selectors.homeLink"
       routerLink=""
       routerLinkActive="active"
     >
@@ -13,6 +14,7 @@
   <li>
     <a
       #songs="routerLinkActive"
+      [selector]="selectors.exploreLink"
       routerLink="/remixes"
       routerLinkActive="active"
     >
@@ -23,6 +25,7 @@
   <li>
     <a
       #artists="routerLinkActive"
+      [selector]="selectors.searchLink"
       routerLink="/search"
       routerLinkActive="active"
     >
@@ -33,6 +36,7 @@
   <li>
     <a
       #library="routerLinkActive"
+      [selector]="selectors.libraryLink"
       routerLink="/library"
       routerLinkActive="active"
     >

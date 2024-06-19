@@ -6,7 +6,7 @@
 >
   <div class="gachi-remix-card-image">
     <img
-      [selector]="selectors.remixCardRemixImage"
+      [selector]="selectors.remixImage"
       [src]="remix.images | imageUrl: 'small'"
       alt=""
       height="56"
@@ -14,7 +14,7 @@
     />
 
     <button
-      [selector]="selectors.remixCardPlayButton"
+      [selector]="selectors.playButton"
       class="icon"
       (click)="handleTogglePlay()"
     >
@@ -25,7 +25,7 @@
   <div class="gachi-remix-card-title">
     <h3
       [attr.tabindex]="false"
-      [selector]="selectors.remixCardRemixLabel"
+      [selector]="selectors.remixLabel"
       [title]="remix.title"
       class="title-m truncate"
       (click)="handleTogglePlay()"
@@ -36,7 +36,7 @@
 
     <a
       [routerLink]="['/artists', remix.artist.id]"
-      [selector]="selectors.remixCardArtistLabel"
+      [selector]="selectors.artistLabel"
       [title]="remix.artist.name"
       class="title-s truncate secondary-text"
     >
@@ -46,7 +46,7 @@
 
   <div class="gachi-remix-card-actions">
     <button
-      [selector]="selectors.remixCardMenuButton"
+      [selector]="selectors.menuButton"
       class="icon"
       (click)="menu.open($event)"
     >

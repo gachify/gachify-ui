@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { RegistrationState } from '@features/registration/state'
+import { registrationSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-registration',
@@ -18,9 +19,11 @@ export class RegistrationComponent {
   readonly emailTaken = this.registrationState.emailTaken
   readonly usernameTaken = this.registrationState.usernameTaken
 
+  readonly selectors = registrationSelectors
+
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, this.emailValidator]),
     username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   })
 

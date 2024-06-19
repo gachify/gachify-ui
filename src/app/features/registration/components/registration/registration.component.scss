@@ -1,10 +1,21 @@
+@use 'abstracts' as abstracts;
+
 :host {
   height: 100%;
   display: flex;
+  gap: 100px;
+
+  @include abstracts.md {
+    justify-content: center;
+  }
 }
 
 .gachi-registration-sidebar {
   width: 460px;
+
+  @include abstracts.md {
+    display: none;
+  }
 }
 
 .gachi-registration-sidebar-video {
@@ -18,7 +29,6 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  margin-left: 100px;
   max-width: 416px;
 }
 

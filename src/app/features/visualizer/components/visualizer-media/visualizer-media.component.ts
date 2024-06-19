@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common'
 
 import { AudioState, PlaybackState } from '@core/state'
 import { PlayerStatus } from '@core/models'
+import { visualizerSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-visualizer-media',
@@ -21,6 +22,8 @@ export class VisualizerMediaComponent implements OnInit {
 
   private readonly sizeSubject = new BehaviorSubject<number>(0)
   readonly size$ = this.sizeSubject.asObservable()
+
+  readonly selectors = visualizerSelectors
 
   readonly icon = computed(() => {
     switch (this.audioState.status()) {

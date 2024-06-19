@@ -11,8 +11,7 @@ export class ArtistRepository {
   private readonly httpClient = inject(HttpClient)
 
   getPopular() {
-    // /artists/popular
-    return this.httpClient.get<PageResponse<Artist>>(`assets/mocks/artists.json`).pipe(map((response) => response.data))
+    return this.httpClient.get<PageResponse<Artist>>('/artists/popular').pipe(map((response) => response.data))
   }
 
   getDetails(artistId: string) {

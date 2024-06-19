@@ -5,6 +5,7 @@
 >
   <img
     [class.paused]="!playing()"
+    [selector]="selectors.mediaRemixImage"
     [src]="currentRemix()?.images | imageUrl: 'large'"
     alt=""
     aria-hidden="true"
@@ -15,6 +16,7 @@
 
   <img
     [class.paused]="!playing()"
+    [selector]="selectors.mediaBackgroundImage"
     [src]="currentRemix()?.images | imageUrl: 'large'"
     alt=""
     aria-hidden="true"

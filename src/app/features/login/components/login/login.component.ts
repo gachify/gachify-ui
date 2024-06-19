@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { LoginState } from '@features/login/state'
+import { loginSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-login',
@@ -15,8 +16,10 @@ export class LoginComponent {
   readonly invalidCredentials = this.loginState.invalidCredentials
   readonly loading = this.loginState.loading
 
+  readonly selectors = loginSelectors
+
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   })
 

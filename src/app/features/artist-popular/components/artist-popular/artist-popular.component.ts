@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core'
 
 import { ArtistPopularState } from '@features/artist-popular/state'
+import { popularArtistsSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-artist-popular',
@@ -13,6 +14,8 @@ export class ArtistPopularComponent implements OnInit {
 
   readonly artists = this.artistPopularState.data
   readonly loading = this.artistPopularState.loading
+
+  readonly selectors = popularArtistsSelectors
 
   ngOnInit(): void {
     this.artistPopularState.fetch()

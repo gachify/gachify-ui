@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core'
 
+import { popularRemixesSelectors } from '@selectors'
 import { RemixPopularState } from '@features/remix-popular/state'
 import { PlaybackState } from '@core/state'
-import { popularRemixesSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-remix-popular',

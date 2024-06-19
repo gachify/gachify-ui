@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 
+import { visualizerSelectors } from '@selectors'
 import { PlaybackState } from '@core/state'
 
 @Component({
@@ -15,6 +16,8 @@ export class VisualizerQueueComponent {
 
   readonly currentRemixId = this.playbackState.currentRemixId
   readonly queue = this.playbackState.queue
+
+  readonly selectors = visualizerSelectors
 
   constructor() {
     this.scrollToCurrentRemix()

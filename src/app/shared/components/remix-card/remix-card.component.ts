@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, computed, injec
 
 import { Queue, Remix } from '@core/models'
 import { PlaybackState } from '@core/state'
-import { commonSelectors } from '@selectors'
+import { remixCardSelectors } from '@selectors'
 
 type Variant = 'elevated' | 'outlined' | 'default'
 
@@ -22,7 +22,7 @@ export class RemixCardComponent {
   @Input()
   variant: Variant = 'default'
 
-  readonly selectors = commonSelectors
+  readonly selectors = remixCardSelectors
 
   readonly currentRemixId = this.playbackState.currentRemixId
   readonly isCurrentRemix = computed(() => this.currentRemixId() === `${this.queue.source.entityId}:${this.remix.id}`)

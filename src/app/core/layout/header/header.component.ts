@@ -1,8 +1,8 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { navigationSelectors } from '@selectors'
 
 import { SharedModule } from '@shared/shared.module'
-import { commonSelectors } from '@selectors'
 
 @Component({
   standalone: true,
@@ -13,5 +13,5 @@ import { commonSelectors } from '@selectors'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  readonly selectors = commonSelectors
+  readonly selectors = navigationSelectors
 }

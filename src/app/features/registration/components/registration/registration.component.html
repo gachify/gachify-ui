@@ -1,7 +1,12 @@
 <section class="gachi-registration-sidebar"></section>
 
 <section class="gachi-registration-content">
-  <h1 class="headline-l">Sign up to Gachify</h1>
+  <h1
+    [selector]="selectors.titleLabel"
+    class="headline-l"
+  >
+    Sign up to Gachify
+  </h1>
 
   <div class="gachi-registration-content-error-banner">
     <p *ngIf="usernameTaken()">Username has already been taken</p>
@@ -12,57 +17,97 @@
     [formGroup]="form"
     autocomplete="off"
   >
-    <label for="username">Username</label>
-
     <fieldset>
+      <label
+        [selector]="selectors.usernameLabel"
+        for="username"
+      >
+        Username
+      </label>
+
       <input
+        [selector]="selectors.usernameInput"
         formControlName="username"
         id="username"
         type="text"
       />
+
+      <gachi-control-error
+        [selector]="selectors.usernameErrorLabel"
+        controlName="username"
+      />
     </fieldset>
 
-    <label for="email">Email</label>
-
     <fieldset>
+      <label
+        [selector]="selectors.emailLabel"
+        for="email"
+      >
+        Email
+      </label>
+
       <input
+        [selector]="selectors.emailInput"
         formControlName="email"
         id="email"
         type="email"
       />
+
+      <gachi-control-error
+        [selector]="selectors.emailErrorLabel"
+        controlName="email"
+      />
     </fieldset>
 
-    <label for="password">Password</label>
-
     <fieldset>
+      <label
+        [selector]="selectors.passwordLabel"
+        for="password"
+      >
+        Password
+      </label>
+
       <input
+        [selector]="selectors.passwordInput"
         [type]="hide ? 'password' : 'text'"
         formControlName="password"
         id="password"
       />
 
-      <button
-        [attr.aria-label]="'Hide password'"
+      <!-- <button
         [attr.aria-pressed]="hide"
+        aria-label="Show password"
         class="icon"
+        type="button"
         (click)="hide = !hide"
       >
         <i>{{ hide ? 'visibility_off' : 'visibility' }}</i>
-      </button>
+      </button> -->
+
+      <gachi-control-error
+        [selector]="selectors.passwordErrorLabel"
+        controlName="password"
+      />
     </fieldset>
 
     <button
       [disabled]="loading()"
+      [selector]="selectors.submitButton"
       class="gachi-registration-content-submit-button filled"
+      type="submit"
       (click)="handleSubmit()"
     >
       Create Account
     </button>
   </form>
 
-  <p class="body-m">
+  <p
+    [selector]="selectors.hasAccountLabel"
+    class="body-m"
+  >
     Already have an account?
     <a
+      [selector]="selectors.loginLink"
       class="link"
       routerLink="/login"
     >

@@ -1,5 +1,5 @@
 import { routes } from '../support/routes'
-import { player, popularRemixes } from '../support/utils'
+import { player, popularRemixes, visualizer } from '../support/utils'
 
 describe('Player', () => {
   beforeEach(() => {
@@ -65,11 +65,13 @@ describe('Player', () => {
 
   it('should toggle visualizer mode on', () => {
     player.assertVisualizerOn()
+    visualizer.assertVisible()
   })
 
   it('should toggle visualizer mode off', () => {
     player.toggleVisualizer()
     player.assertVisualizerOff()
+    visualizer.assertHidden()
   })
 
   it('should set the volume', () => {

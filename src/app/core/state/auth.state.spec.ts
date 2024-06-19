@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
 import { of, throwError } from 'rxjs'
-import { Router } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
 
 import { AuthState } from './auth.state'
 
@@ -22,7 +21,7 @@ describe('AuthState', () => {
     }
 
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterModule],
       providers: [
         AuthState,
         { provide: UserRepository, useValue: userRepositoryMock },

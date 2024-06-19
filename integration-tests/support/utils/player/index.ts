@@ -1,4 +1,4 @@
-import { playerActions } from './player.actions'
-import { playerAssertions } from './player.assertions'
+import { actions } from './actions'
+import { assertions } from './assertions'
 
-export const player = { ...playerActions, ...playerAssertions }
+export const player = { ...actions, ...assertions }

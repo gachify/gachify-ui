@@ -1,4 +1,4 @@
-import { RequestMock } from '../types'
+import { RequestMock } from '../support/types'
 
 declare global {
   namespace Cypress {

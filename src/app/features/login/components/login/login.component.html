@@ -1,11 +1,17 @@
 <section class="gachi-login-sidebar"></section>
 
 <section class="gachi-login-content">
-  <h1 class="headline-l">Sign in to Gachify</h1>
+  <h1
+    [selector]="selectors.titleLabel"
+    class="headline-l"
+  >
+    Sign in to Gachify
+  </h1>
 
   <div
     *ngIf="invalidCredentials()"
-    class="gachi-login-content-invalid-credentials-error"
+    [selector]="selectors.invalidCredentialsLabel"
+    class="gachi-login-content-invalid-credentials-error red"
   >
     Sorry, couldn’t find an account matching the username and password you entered. Please try again.
   </div>
@@ -14,28 +20,51 @@
     [formGroup]="form"
     autocomplete="off"
   >
-    <label for="email">Email</label>
-
     <fieldset>
+      <label
+        [selector]="selectors.emailLabel"
+        for="email"
+      >
+        Email
+      </label>
+
       <input
+        [selector]="selectors.emailInput"
         formControlName="email"
         id="email"
-        type="text"
+        type="email"
+      />
+
+      <gachi-control-error
+        [selector]="selectors.emailErrorLabel"
+        controlName="email"
       />
     </fieldset>
 
-    <label for="password">Password</label>
-
     <fieldset>
+      <label
+        [selector]="selectors.passwordLabel"
+        for="password"
+      >
+        Password
+      </label>
+
       <input
+        [selector]="selectors.passwordInput"
         formControlName="password"
         id="password"
         type="password"
+      />
+
+      <gachi-control-error
+        [selector]="selectors.passwordErrorLabel"
+        controlName="password"
       />
     </fieldset>
 
     <button
       [disabled]="loading()"
+      [selector]="selectors.submitButton"
       class="gachi-login-content-submit-button filled"
       (click)="handleSubmit()"
     >
@@ -43,9 +72,13 @@
     </button>
   </form>
 
-  <p class="body-m">
+  <p
+    [selector]="selectors.noAccountLabel"
+    class="body-m"
+  >
     Don't have an account?
     <a
+      [selector]="selectors.registrationLink"
       class="link"
       routerLink="/registration"
     >

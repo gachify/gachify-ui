@@ -1,50 +1,48 @@
 import { Injectable, computed, inject, signal } from '@angular/core'
 import { Router } from '@angular/router'
-import { EMPTY, catchError, of, tap } from 'rxjs'
+import { Observable, catchError, map, mapTo, of, tap } from 'rxjs'
 
 import { UserRepository } from '@core/repositories'
-import { StateModel } from '@core/models'
-
-interface AuthStateModel {
-  username: string | null
-}
+import { User } from '@core/models'
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthState implements StateModel<AuthStateModel> {
+export class AuthState {
   private readonly router = inject(Router)
   private readonly repository = inject(UserRepository)
 
-  readonly username = signal<string | null>(null)
+  private readonly user = signal<User | null>(null)
+  private readonly initialCheck = signal<boolean>(true)
 
-  readonly isAuthenticated = computed(() => Boolean(this.username()))
+  readonly isAuthenticated = computed(() => Boolean(this.user()))
 
-  constructor() {
-    this.whoAmI()
+  isAuthenticated$(): Observable<boolean> {
+    if (!this.initialCheck()) {
+      return of(Boolean(this.user()))
+    }
+
+    return this.repository.whoAmI().pipe(
+      tap((user) => {
+        this.user.set(user)
+        this.initialCheck.set(false)
+      }),
+      map((user) => Boolean(user)),
+      catchError(() => {
+        this.initialCheck.set(false)
+        return of(false)
+      }),
+    )
   }
 
-  whoAmI(): void {
-    this.repository
-      .whoAmI()
-      .pipe(
-        tap((response) => this.username.set(response.username)),
-        catchError(() => {
-          this.username.set(null)
-          return of(EMPTY)
-        }),
-      )
-      .subscribe()
-  }
-
-  login(payload: { username: string }): void {
-    this.username.set(payload.username)
+  login(payload: User): void {
+    this.user.set(payload)
 
     this.router.navigate(['/'])
   }
 
   logout(): void {
-    this.username.set(null)
+    this.user.set(null)
 
     this.router.navigate(['/login'])
   }

@@ -1,6 +1,6 @@
 import { playerSelectors } from '../../selectors'
 
-export const playerAssertions = {
+export const assertions = {
   assertPlaying() {
     cy.getBySelector(playerSelectors.playButton).contains('pause').should('exist')
   },

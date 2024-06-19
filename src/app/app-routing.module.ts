@@ -14,32 +14,36 @@ interface RouteWithLayout extends Route {
 const routes: RouteWithLayout[] = [
   {
     path: '',
-    loadComponent: () => import('./pages/home').then((c) => c.HomePage),
-  },
-  {
-    path: 'artists/:id',
-    loadComponent: () => import('./pages/artist-details').then((c) => c.ArtistDetailsPage),
-  },
-  {
-    path: 'remixes',
-    pathMatch: 'full',
-    loadComponent: () => import('./pages/remixes').then((c) => c.RemixesPage),
-  },
-  {
-    path: 'playlists',
-    pathMatch: 'full',
-    loadComponent: () => import('./pages/playlists').then((c) => c.PlaylistsPage),
     canActivate: [canActivateAuthorized],
-  },
-  {
-    path: 'playlists/:id',
-    loadComponent: () => import('./pages/playlist-details').then((c) => c.PlaylistsDetailsPage),
-    canActivate: [canActivateAuthorized],
-  },
-  {
-    path: 'library',
-    loadComponent: () => import('./pages/playlist-details').then((c) => c.PlaylistsDetailsPage),
-    canActivate: [canActivateAuthorized],
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/home').then((c) => c.HomePage),
+        pathMatch: 'full',
+      },
+      {
+        path: 'artists/:id',
+        loadComponent: () => import('./pages/artist-details').then((c) => c.ArtistDetailsPage),
+      },
+      {
+        path: 'remixes',
+        pathMatch: 'full',
+        loadComponent: () => import('./pages/remixes').then((c) => c.RemixesPage),
+      },
+      {
+        path: 'playlists',
+        pathMatch: 'full',
+        loadComponent: () => import('./pages/playlists').then((c) => c.PlaylistsPage),
+      },
+      {
+        path: 'playlists/:id',
+        loadComponent: () => import('./pages/playlist-details').then((c) => c.PlaylistsDetailsPage),
+      },
+      {
+        path: 'library',
+        loadComponent: () => import('./pages/playlist-details').then((c) => c.PlaylistsDetailsPage),
+      },
+    ],
   },
   {
     path: 'login',

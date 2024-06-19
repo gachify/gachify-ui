@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router'
 import { IsAuthenticatedDirective, IsUnauthenticatedDirective, SelectorDirective, SliderDirective } from './directives'
 import {
   ChipComponent,
+  ControlErrorComponent,
   LogoComponent,
   MenuComponent,
   PlayIconComponent,
@@ -22,6 +23,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
   imports: [CommonModule, RouterModule],
   declarations: [
     ChipComponent,
+    ControlErrorComponent,
     DurationPipe,
     ImageUrlPipe,
     IsAuthenticatedDirective,
@@ -41,6 +43,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
   exports: [
     ChipComponent,
     CommonModule,
+    ControlErrorComponent,
     DurationPipe,
     ImageUrlPipe,
     IsAuthenticatedDirective,

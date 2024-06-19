@@ -9,6 +9,7 @@
 
 // Include custom components
 @include components.button();
+@include components.fieldset();
 @include components.icon();
 @include components.input();
 @include components.slider();

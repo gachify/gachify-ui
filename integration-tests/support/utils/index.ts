@@ -1,2 +1,7 @@
+export * from './common'
+export * from './login'
 export * from './player'
 export * from './popular-remixes'
+export * from './popular-artists'
+export * from './registration'
+export * from './visualizer'

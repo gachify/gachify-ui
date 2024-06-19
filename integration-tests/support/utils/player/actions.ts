@@ -1,6 +1,6 @@
 import { playerSelectors } from '../../selectors'
 
-export const playerActions = {
+export const actions = {
   play() {
     cy.getBySelector(playerSelectors.playButton).contains('play_arrow').click()
   },
