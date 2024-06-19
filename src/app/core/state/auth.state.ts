@@ -12,8 +12,8 @@ export class AuthState {
   private readonly router = inject(Router)
   private readonly repository = inject(UserRepository)
 
-  private readonly user = signal<User | null>(null)
-  private readonly initialCheck = signal<boolean>(true)
+  readonly user = signal<User | null>(null)
+  readonly initialCheck = signal<boolean>(true)
 
   readonly isAuthenticated = computed(() => Boolean(this.user()))
 

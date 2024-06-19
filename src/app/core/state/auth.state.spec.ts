@@ -13,7 +13,7 @@ describe('AuthState', () => {
 
   beforeEach(() => {
     userRepositoryMock = {
-      whoAmI: vi.fn().mockReturnValue(of({ username: 'test' })),
+      whoAmI: vi.fn().mockReturnValue(of({ uuid: '123', username: 'test', email: 'user@example.com' })),
     }
 
     routerMock = {
@@ -36,52 +36,55 @@ describe('AuthState', () => {
     vi.clearAllMocks()
   })
 
-  it('should set username and navigate to home on successful login', () => {
+  it('should set user and navigate to home on successful login', () => {
     // Arrange
+    const uuid = '123'
     const username = 'testuser'
+    const email = 'user@example.com'
 
     // Act
-    authState.login({ username })
+    authState.login({ uuid, username, email })
 
     // Assert
-    expect(authState.username()).toBe(username)
+    expect(authState.user()?.uuid).toBe(uuid)
+    expect(authState.user()?.username).toBe(username)
+    expect(authState.user()?.email).toBe(email)
     expect(routerMock.navigate).toHaveBeenCalledWith(['/'])
   })
 
-  it('should set username to null and navigate to login on logout', () => {
+  it('should set user to null and navigate to login on logout', () => {
     // Arrange
+    const uuid = '123'
     const username = 'testuser'
-    authState.username.set(username)
+    const email = 'user@example.com'
+    authState.user.set({ uuid, username, email })
 
     // Act
     authState.logout()
 
-    expect(authState.username()).toBeNull()
+    expect(authState.user()).toBeNull()
     expect(routerMock.navigate).toHaveBeenCalledWith(['/login'])
   })
 
-  it('should set username to null and handle error on whoAmI failure', () => {
-    // Arrange
-    userRepositoryMock.whoAmI = vi.fn().mockReturnValue(throwError(() => new Error('Failed to fetch user')))
-
+  it('should set user and initialCheck to false on successful isAuthenticated$', () => {
     // Act
-    authState.whoAmI()
+    authState.isAuthenticated$().subscribe()
 
     // Assert
-    expect(userRepositoryMock.whoAmI).toHaveBeenCalled()
-    expect(authState.username()).toBeNull()
+    expect(authState.user()?.uuid).toBe('123')
+    expect(authState.user()?.username).toBe('test')
+    expect(authState.user()?.email).toBe('user@example.com')
+    expect(authState.initialCheck()).toBeFalsy()
   })
 
-  it('should set username and handle response on whoAmI success', () => {
+  it('should set initialCheck to false on failed isAuthenticated$', () => {
     // Arrange
-    const username = 'testuser'
-    userRepositoryMock.whoAmI = vi.fn().mockReturnValue(of({ username }))
+    userRepositoryMock.whoAmI = vi.fn().mockReturnValue(throwError(() => new Error()))
 
     // Act
-    authState.whoAmI()
+    authState.isAuthenticated$().subscribe()
 
     // Assert
-    expect(userRepositoryMock.whoAmI).toHaveBeenCalled()
-    expect(authState.username()).toBe(username)
+    expect(authState.initialCheck()).toBeFalsy()
   })
 })
