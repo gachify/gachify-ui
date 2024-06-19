@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, catchError, map, mapTo, of, tap } from 'rxjs'
+import { Observable, catchError, map, of, tap } from 'rxjs'
 
 import { UserRepository } from '@core/repositories'
 import { User } from '@core/models'

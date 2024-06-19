@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { navigationSelectors } from '@selectors'
 
+import { navigationSelectors } from '@selectors'
 import { SharedModule } from '@shared/shared.module'
 
 @Component({
