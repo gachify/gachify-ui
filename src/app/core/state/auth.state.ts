@@ -17,24 +17,6 @@ export class AuthState {
 
   readonly isAuthenticated = computed(() => Boolean(this.user()))
 
-  isAuthenticated$(): Observable<boolean> {
-    if (!this.initialCheck()) {
-      return of(Boolean(this.user()))
-    }
-
-    return this.repository.whoAmI().pipe(
-      tap((user) => {
-        this.user.set(user)
-        this.initialCheck.set(false)
-      }),
-      map((user) => Boolean(user)),
-      catchError(() => {
-        this.initialCheck.set(false)
-        return of(false)
-      }),
-    )
-  }
-
   login(payload: User): void {
     this.user.set(payload)
 

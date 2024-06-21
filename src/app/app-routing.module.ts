@@ -64,6 +64,15 @@ const routes: RouteWithLayout[] = [
     },
   },
   {
+    path: 'sso',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/sso').then((c) => c.SsoPage),
+    canActivate: [canActivateUnauthorized],
+    data: {
+      layout: Layout.Blank,
+    },
+  },
+  {
     path: '404',
     pathMatch: 'full',
     loadComponent: () => import('./pages/not-found').then((c) => c.NotFoundPage),

@@ -20,7 +20,7 @@ describe('Login', () => {
     login.assertCredentialsErrorVisible()
   })
 
-  it.only('should navigate to homepage after login', () => {
+  it('should navigate to homepage after login', () => {
     login.login({
       email: 'valid-email@example.com',
       password: 'valid-password',
