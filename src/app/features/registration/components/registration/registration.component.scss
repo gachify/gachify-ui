@@ -11,17 +11,23 @@
 }
 
 .gachi-registration-sidebar {
+  position: relative;
   width: 460px;
+  overflow: hidden;
+
+  background: linear-gradient(0deg, rgba(var(--color-surface-rgb), 0.69), rgba(var(--color-surface-rgb), 0.69)), url(/assets/img/wrong-door.png);
+  background-position: center;
+  background-size: cover;
 
   @include abstracts.md {
     display: none;
   }
 }
 
-.gachi-registration-sidebar-video {
-  width: 100%;
-  object-fit: cover;
-  height: 100%;
+gachi-logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
 }
 
 .gachi-registration-content {

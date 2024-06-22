@@ -1,4 +1,3 @@
-// https://codepen.io/rachsmith/pen/BNKJme
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 import { ArtistPopularModule } from '@features/artist-popular'

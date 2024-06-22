@@ -11,10 +11,17 @@
   justify-content: center;
   align-items: center;
   font-size: 320px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   column-gap: 8px;
   margin-bottom: 32px;
+
+  background: url(/assets/img/oh-shit.png);
+  background-size: cover;
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
 }
 
 .circle {

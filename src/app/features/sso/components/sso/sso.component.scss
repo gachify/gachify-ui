@@ -31,15 +31,16 @@ $elevation: 10;
 
   animation: rotate 2s linear;
 
-  .circle {
+  .doughnut {
     width: $size;
     height: $size;
-    background-color: var(--color-primary);
     border-radius: 50%;
     z-index: $elevation;
+    border: #{$circle-width} solid var(--color-primary);
   }
 
-  .donut {
+  // Required only for arrow animation
+  .circle {
     position: absolute;
     left: $circle-width;
     top: $circle-width;
@@ -47,7 +48,7 @@ $elevation: 10;
     height: calc(#{$size} - #{$circle-width * 2});
     background-color: var(--color-surface);
     border-radius: 50%;
-    z-index: $elevation + 1;
+    z-index: calc(#{$elevation} - 1);
   }
 
   .arrow {
@@ -55,7 +56,7 @@ $elevation: 10;
     flex-direction: column;
     position: absolute;
     animation: grow 2s ease-in;
-    z-index: $elevation;
+    z-index: calc(#{$elevation} - 2);
 
     right: calc((#{$arrow-width} + #{$line-width}) / -2.5);
     top: calc((#{$arrow-width} + #{$line-width}) / -2.5);
@@ -154,7 +155,6 @@ $elevation: 10;
 
 h1 {
   animation: fade-in 2s ease-in;
-  // animation-delay: 2s;
   animation-fill-mode: forwards;
   opacity: 0;
 }

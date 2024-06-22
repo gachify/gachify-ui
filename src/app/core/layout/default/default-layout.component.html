@@ -1,4 +1,7 @@
-<header class="gachi-header"></header>
+<header
+  *isAuthenticated
+  class="gachi-header"
+></header>
 
 <main [class]="{ hidden: isVisualizerOpen() }">
   <router-outlet />
