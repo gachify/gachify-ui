@@ -6,8 +6,6 @@ import { RegistrationService } from '../services'
 
 import { StateModel } from '@core/models'
 
-// import { AuthActions } from '@core/state'
-
 export interface RegistrationStateModel {
   loading: boolean
   emailTaken: boolean
