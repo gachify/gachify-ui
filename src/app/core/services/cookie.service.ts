@@ -29,7 +29,7 @@ export class CookieService {
       const regExp = this.getCookieRegExp(name)
       const result = regExp.exec(this.document.cookie)
 
-      return result && result[1] ? this.safeDecodeURIComponent(result[1]) : ''
+      return result?.[1] ? this.safeDecodeURIComponent(result[1]) : ''
     }
 
     return ''

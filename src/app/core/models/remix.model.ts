@@ -7,7 +7,7 @@ export interface Remix {
   images: Image[]
   artist: Artist
   duration: number
-  color: string
+  // color: string
   // tags
   // original song
   // original artist

@@ -9,14 +9,14 @@ export const canActivateAuthorized: CanActivateFn = (route: ActivatedRouteSnapsh
   const router = inject(Router)
   const isAuthenticated = authState.isAuthenticated()
 
-  let currentRoute = route
-  while (currentRoute.firstChild) {
-    currentRoute = currentRoute.firstChild
-  }
-
-  const redirectUrl = currentRoute.url.join('/')
-
   if (!isAuthenticated) {
+    let currentRoute = route
+    while (currentRoute.firstChild) {
+      currentRoute = currentRoute.firstChild
+    }
+
+    const redirectUrl = currentRoute.url.join('/')
+
     router.navigate(['/sso'], { queryParams: { [REDIRECT_URL_PARAM]: redirectUrl } })
   }
 

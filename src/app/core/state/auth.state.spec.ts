@@ -1,32 +1,20 @@
 import { TestBed } from '@angular/core/testing'
-import { of, throwError } from 'rxjs'
 import { Router, RouterModule } from '@angular/router'
 
 import { AuthState } from './auth.state'
 
-import { UserRepository } from '@core/repositories'
-
 describe('AuthState', () => {
   let authState: AuthState
-  let userRepositoryMock: Partial<UserRepository>
   let routerMock: Partial<Router>
 
   beforeEach(() => {
-    userRepositoryMock = {
-      whoAmI: vi.fn().mockReturnValue(of({ uuid: '123', username: 'test', email: 'user@example.com' })),
-    }
-
     routerMock = {
       navigate: vi.fn(),
     }
 
     TestBed.configureTestingModule({
       imports: [RouterModule],
-      providers: [
-        AuthState,
-        { provide: UserRepository, useValue: userRepositoryMock },
-        { provide: Router, useValue: routerMock },
-      ],
+      providers: [AuthState, { provide: Router, useValue: routerMock }],
     })
 
     authState = TestBed.inject(AuthState)

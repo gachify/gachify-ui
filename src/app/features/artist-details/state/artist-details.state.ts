@@ -3,7 +3,7 @@ import { combineLatest, map } from 'rxjs'
 
 import { ArtistRepository } from '@core/repositories'
 import { Artist, Queue, Remix } from '@core/models'
-import { EntityState, PlaybackState } from '@core/state'
+import { EntityState } from '@core/state'
 
 type FetchPayload = { artistId: string }
 
@@ -15,7 +15,6 @@ interface ArtistDetails {
 @Injectable()
 export class ArtistDetailsState extends EntityState<ArtistDetails, FetchPayload> {
   private readonly repository = inject(ArtistRepository)
-  private readonly playbackState = inject(PlaybackState)
 
   readonly artist = computed(() => this.data()?.artist)
   readonly remixes = computed(() => this.data()?.remixes || [])
