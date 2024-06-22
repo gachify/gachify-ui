@@ -76,6 +76,7 @@ $elevation: 10;
       height: $arrow-height;
       background-color: var(--color-primary);
       border-radius: $arrow-shape 0 0 $arrow-shape;
+      animation: grow-triangle-before 2s ease-in;
     }
 
     &::after {
@@ -86,6 +87,7 @@ $elevation: 10;
       height: $arrow-width;
       background-color: var(--color-primary);
       border-radius: 0 $arrow-shape $arrow-shape $arrow-shape;
+      animation: grow-triangle-after 2s ease-in;
     }
   }
 
@@ -112,9 +114,29 @@ $elevation: 10;
   }
 }
 
+@keyframes grow-triangle-before {
+  0% {
+    width: calc(#{$arrow-height} + 1px);
+  }
+  75%,
+  100% {
+    width: calc(#{$arrow-width} - #{$arrow-height} + 1px);
+  }
+}
+
+@keyframes grow-triangle-after {
+  0% {
+    height: calc(#{$arrow-height} * 2);;
+  }
+  75%,
+  100% {
+    height: $arrow-width;
+  }
+}
+
 @keyframes rotate {
   0% {
-    transform: rotate(100deg);
+    transform: rotate(110deg);
   }
   85% {
     transform: rotate(-12deg);

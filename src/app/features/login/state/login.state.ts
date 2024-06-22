@@ -20,7 +20,7 @@ export class LoginState implements StateModel<LoginStateModel> {
   readonly loading = signal(false)
   readonly invalidCredentials = signal(false)
 
-  login(payload: { email: string; password: string }): void {
+  login(payload: { email: string; password: string; redirectUrl: string }): void {
     this.loading.set(true)
     this.invalidCredentials.set(false)
 
@@ -30,7 +30,7 @@ export class LoginState implements StateModel<LoginStateModel> {
       .subscribe({
         next: (user) => {
           this.loading.set(false)
-          this.authState.login(user)
+          this.authState.login({ user, redirectUrl: payload.redirectUrl })
         },
         error: (error) => this.handleError({ error }),
       })

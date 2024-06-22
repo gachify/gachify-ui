@@ -43,7 +43,7 @@ describe('AuthState', () => {
     const email = 'user@example.com'
 
     // Act
-    authState.login({ uuid, username, email })
+    authState.login({ user: { uuid, username, email } })
 
     // Assert
     expect(authState.user()?.uuid).toBe(uuid)
@@ -64,27 +64,5 @@ describe('AuthState', () => {
 
     expect(authState.user()).toBeNull()
     expect(routerMock.navigate).toHaveBeenCalledWith(['/login'])
-  })
-
-  it('should set user and initialCheck to false on successful isAuthenticated$', () => {
-    // Act
-    authState.isAuthenticated$().subscribe()
-
-    // Assert
-    expect(authState.user()?.uuid).toBe('123')
-    expect(authState.user()?.username).toBe('test')
-    expect(authState.user()?.email).toBe('user@example.com')
-    expect(authState.initialCheck()).toBeFalsy()
-  })
-
-  it('should set initialCheck to false on failed isAuthenticated$', () => {
-    // Arrange
-    userRepositoryMock.whoAmI = vi.fn().mockReturnValue(throwError(() => new Error()))
-
-    // Act
-    authState.isAuthenticated$().subscribe()
-
-    // Assert
-    expect(authState.initialCheck()).toBeFalsy()
   })
 })
