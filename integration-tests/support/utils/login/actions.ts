@@ -1,20 +1,24 @@
-import { loginSelectors } from '../../selectors'
+import { loginSelectors, textFieldSelectors } from '../../selectors'
 
 export const actions = {
   setPassword(password: string) {
-    if (password) {
-      cy.getBySelector(loginSelectors.passwordInput).clear().type(password).blur()
-    } else {
-      cy.getBySelector(loginSelectors.passwordInput).clear().click().blur()
-    }
+    cy.getBySelector(loginSelectors.passwordTextField).within(() => {
+      if (password) {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().type(password).blur()
+      } else {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().click().blur()
+      }
+    })
   },
 
   setEmail(email: string) {
-    if (email) {
-      cy.getBySelector(loginSelectors.emailInput).clear().type(email).blur()
-    } else {
-      cy.getBySelector(loginSelectors.emailInput).clear().click().blur()
-    }
+    cy.getBySelector(loginSelectors.emailTextField).within(() => {
+      if (email) {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().type(email).blur()
+      } else {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().click().blur()
+      }
+    })
   },
 
   login(payload: { email: string; password: string }) {

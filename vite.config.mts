@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => ({
       include: ['src/**/*.ts'],
       exclude: ['main.ts', 'src/devtools/**', 'src/environments/**', '**/index.ts', '**/*.model.ts', '**/*.module.ts'],
       reporter: ['text', 'lcov'],
+      all: true,
     },
   },
   define: {

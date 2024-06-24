@@ -1,22 +1,33 @@
-import { loginSelectors } from '../../selectors'
+import { loginSelectors, textFieldSelectors } from '../../selectors'
 
 export const assertions = {
   assertVisible() {
     cy.getBySelector(loginSelectors.titleLabel).contains('Sign in to Gachify').should('be.visible')
-    cy.getBySelector(loginSelectors.emailLabel).should('be.visible')
-    cy.getBySelector(loginSelectors.emailInput).should('be.visible')
-    cy.getBySelector(loginSelectors.passwordLabel).should('be.visible')
-    cy.getBySelector(loginSelectors.passwordInput).should('be.visible')
+
+    cy.getBySelector(loginSelectors.emailTextField).within(() => {
+      cy.getBySelector(textFieldSelectors.fieldLabel).should('be.visible')
+      cy.getBySelector(textFieldSelectors.fieldInput).should('be.visible')
+    })
+
+    cy.getBySelector(loginSelectors.passwordTextField).within(() => {
+      cy.getBySelector(textFieldSelectors.fieldLabel).should('be.visible')
+      cy.getBySelector(textFieldSelectors.fieldInput).should('be.visible')
+    })
+
     cy.getBySelector(loginSelectors.submitButton).should('be.visible')
     cy.getBySelector(loginSelectors.noAccountLabel).should('be.visible')
   },
 
   assertEmailError(error: string) {
-    cy.getBySelector(loginSelectors.emailErrorLabel).contains(error).should('be.visible')
+    cy.getBySelector(loginSelectors.emailTextField).within(() => {
+      cy.getBySelector(textFieldSelectors.errorLabel).contains(error).should('be.visible')
+    })
   },
 
   assertPasswordError(error: string) {
-    cy.getBySelector(loginSelectors.passwordErrorLabel).contains(error).should('be.visible')
+    cy.getBySelector(loginSelectors.passwordTextField).within(() => {
+      cy.getBySelector(textFieldSelectors.errorLabel).contains(error).should('be.visible')
+    })
   },
 
   assertCredentialsErrorVisible() {

@@ -1,6 +1,19 @@
-<section class="gachi-login-form-sidebar">
+<section class="gachi-login-media-sidebar">
   <gachi-logo />
 
+  <video
+    [autoplay]="true"
+    [loop]="true"
+    [muted]="true"
+  >
+    <source
+      src="/assets/vid/videoplayback.mp4"
+      type="video/mp4"
+    />
+  </video>
+</section>
+
+<section class="gachi-login-form-sidebar">
   <div class="gachi-login-form-content">
     <h1
       [selector]="selectors.titleLabel"
@@ -21,47 +34,19 @@
       [formGroup]="form"
       autocomplete="off"
     >
-      <fieldset>
-        <label
-          [selector]="selectors.emailLabel"
-          for="email"
-        >
-          Email
-        </label>
+      <gachi-text-field
+        [selector]="selectors.emailTextField"
+        formControlName="email"
+        label="Email"
+        type="email"
+      />
 
-        <input
-          [selector]="selectors.emailInput"
-          formControlName="email"
-          id="email"
-          type="email"
-        />
-
-        <gachi-control-error
-          [selector]="selectors.emailErrorLabel"
-          controlName="email"
-        />
-      </fieldset>
-
-      <fieldset>
-        <label
-          [selector]="selectors.passwordLabel"
-          for="password"
-        >
-          Password
-        </label>
-
-        <input
-          [selector]="selectors.passwordInput"
-          formControlName="password"
-          id="password"
-          type="password"
-        />
-
-        <gachi-control-error
-          [selector]="selectors.passwordErrorLabel"
-          controlName="password"
-        />
-      </fieldset>
+      <gachi-text-field
+        [selector]="selectors.passwordTextField"
+        formControlName="password"
+        label="Password"
+        type="password"
+      />
 
       <button
         [disabled]="loading()"
@@ -87,17 +72,4 @@
       </a>
     </p>
   </div>
-</section>
-
-<section class="gachi-login-media-sidebar">
-  <video
-    [autoplay]="true"
-    [loop]="true"
-    [muted]="true"
-  >
-    <source
-      src="/assets/vid/videoplayback.mp4"
-      type="video/mp4"
-    />
-  </video>
 </section>

@@ -19,7 +19,7 @@ describe('Registration', () => {
     it('should display an error message when the password is empty', () => {
       registration.setUsername('valid-username')
       registration.setUsername('')
-      registration.assertUsernameError('Field is required')
+      registration.assertUsernameError('Username is required')
     })
   })
 
@@ -27,12 +27,12 @@ describe('Registration', () => {
     it('should display an error message when the email is empty', () => {
       registration.setEmail('valid-email@example.com')
       registration.setEmail('')
-      registration.assertEmailError('Field is required')
+      registration.assertEmailError('Email is required')
     })
 
     it('should display an error message when the email is invalid', () => {
       registration.setEmail('invalid-email')
-      registration.assertEmailError('Field must be in the format name@example.com')
+      registration.assertEmailError('Email must be in the format name@example.com')
     })
   })
 
@@ -40,12 +40,12 @@ describe('Registration', () => {
     it('should display an error message when the password is empty', () => {
       registration.setPassword('valid-password')
       registration.setPassword('')
-      registration.assertPasswordError('Field is required')
+      registration.assertPasswordError('Password is required')
     })
 
     it('should display an error message when the password is too short', () => {
       registration.setPassword('short')
-      registration.assertPasswordError('Field must be at least 6 characters long')
+      registration.assertPasswordError('Password must be at least 6 characters long')
     })
   })
 })

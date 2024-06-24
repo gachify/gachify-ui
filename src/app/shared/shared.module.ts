@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router'
 import { IsAuthenticatedDirective, IsUnauthenticatedDirective, SelectorDirective, SliderDirective } from './directives'
 import {
   ChipComponent,
-  ControlErrorComponent,
   LogoComponent,
   MenuComponent,
   PlayIconComponent,
@@ -16,14 +15,14 @@ import {
   RemixListItemSkeletonComponent,
   SearchComponent,
   SkeletonComponent,
+  TextFieldComponent,
 } from './components'
 import { DurationPipe, ImageUrlPipe } from './pipes'
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   declarations: [
     ChipComponent,
-    ControlErrorComponent,
     DurationPipe,
     ImageUrlPipe,
     IsAuthenticatedDirective,
@@ -39,11 +38,11 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     SelectorDirective,
     SkeletonComponent,
     SliderDirective,
+    TextFieldComponent,
   ],
   exports: [
     ChipComponent,
     CommonModule,
-    ControlErrorComponent,
     DurationPipe,
     ImageUrlPipe,
     IsAuthenticatedDirective,
@@ -61,6 +60,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     SelectorDirective,
     SkeletonComponent,
     SliderDirective,
+    TextFieldComponent,
   ],
 })
 export class SharedModule {}

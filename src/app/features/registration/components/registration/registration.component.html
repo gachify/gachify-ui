@@ -1,79 +1,54 @@
-<section class="gachi-registration-sidebar">
+<section class="gachi-registration-media-sidebar">
   <gachi-logo />
+
+  <video
+    [autoplay]="true"
+    [loop]="true"
+    [muted]="true"
+  >
+    <source
+      src="/assets/vid/videoplayback.mp4"
+      type="video/mp4"
+    />
+  </video>
 </section>
 
-<section class="gachi-registration-content">
-  <h1
-    [selector]="selectors.titleLabel"
-    class="headline-l"
-  >
-    Sign up to Gachify
-  </h1>
+<section class="gachi-registration-form-sidebar">
+  <div class="gachi-registration-form-content">
+    <h1
+      [selector]="selectors.titleLabel"
+      class="headline-l"
+    >
+      Sign up to Gachify
+    </h1>
 
-  <div class="gachi-registration-content-error-banner">
-    <p *ngIf="usernameTaken()">Username has already been taken</p>
-    <p *ngIf="emailTaken()">Email has already been taken</p>
-  </div>
+    <div class="gachi-registration-content-error-banner">
+      <p *ngIf="usernameTaken()">Username has already been taken</p>
+      <p *ngIf="emailTaken()">Email has already been taken</p>
+    </div>
 
-  <form
-    [formGroup]="form"
-    autocomplete="off"
-  >
-    <fieldset>
-      <label
-        [selector]="selectors.usernameLabel"
-        for="username"
-      >
-        Username
-      </label>
-
-      <input
-        [selector]="selectors.usernameInput"
+    <form
+      [formGroup]="form"
+      autocomplete="off"
+    >
+      <gachi-text-field
+        [selector]="selectors.usernameTextField"
         formControlName="username"
-        id="username"
-        type="text"
+        label="Username"
       />
 
-      <gachi-control-error
-        [selector]="selectors.usernameErrorLabel"
-        controlName="username"
-      />
-    </fieldset>
-
-    <fieldset>
-      <label
-        [selector]="selectors.emailLabel"
-        for="email"
-      >
-        Email
-      </label>
-
-      <input
-        [selector]="selectors.emailInput"
+      <gachi-text-field
+        [selector]="selectors.emailTextField"
         formControlName="email"
-        id="email"
+        label="Email"
         type="email"
       />
 
-      <gachi-control-error
-        [selector]="selectors.emailErrorLabel"
-        controlName="email"
-      />
-    </fieldset>
-
-    <fieldset>
-      <label
-        [selector]="selectors.passwordLabel"
-        for="password"
-      >
-        Password
-      </label>
-
-      <input
-        [selector]="selectors.passwordInput"
-        [type]="hide ? 'password' : 'text'"
+      <gachi-text-field
+        [selector]="selectors.passwordTextField"
         formControlName="password"
-        id="password"
+        label="Password"
+        type="password"
       />
 
       <!-- <button
@@ -86,34 +61,29 @@
         <i>{{ hide ? 'visibility_off' : 'visibility' }}</i>
       </button> -->
 
-      <gachi-control-error
-        [selector]="selectors.passwordErrorLabel"
-        controlName="password"
-      />
-    </fieldset>
+      <button
+        [disabled]="loading()"
+        [selector]="selectors.submitButton"
+        class="gachi-registration-content-submit-button filled"
+        type="submit"
+        (click)="handleSubmit()"
+      >
+        Create Account
+      </button>
+    </form>
 
-    <button
-      [disabled]="loading()"
-      [selector]="selectors.submitButton"
-      class="gachi-registration-content-submit-button filled"
-      type="submit"
-      (click)="handleSubmit()"
+    <p
+      [selector]="selectors.hasAccountLabel"
+      class="body-m"
     >
-      Create Account
-    </button>
-  </form>
-
-  <p
-    [selector]="selectors.hasAccountLabel"
-    class="body-m"
-  >
-    Already have an account?
-    <a
-      [selector]="selectors.loginLink"
-      class="link"
-      routerLink="/login"
-    >
-      Sign In
-    </a>
-  </p>
+      Already have an account?
+      <a
+        [selector]="selectors.loginLink"
+        class="link"
+        routerLink="/login"
+      >
+        Sign In
+      </a>
+    </p>
+  </div>
 </section>

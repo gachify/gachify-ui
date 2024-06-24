@@ -1,28 +1,34 @@
-import { registrationSelectors } from '../../selectors'
+import { registrationSelectors, textFieldSelectors } from '../../selectors'
 
 export const actions = {
   setUsername(username: string) {
-    if (username) {
-      cy.getBySelector(registrationSelectors.usernameInput).clear().type(username).blur()
-    } else {
-      cy.getBySelector(registrationSelectors.usernameInput).clear().click().blur()
-    }
+    cy.getBySelector(registrationSelectors.usernameTextField).within(() => {
+      if (username) {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().type(username).blur()
+      } else {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().click().blur()
+      }
+    })
   },
 
   setPassword(password: string) {
-    if (password) {
-      cy.getBySelector(registrationSelectors.passwordInput).clear().type(password).blur()
-    } else {
-      cy.getBySelector(registrationSelectors.passwordInput).clear().click().blur()
-    }
+    cy.getBySelector(registrationSelectors.passwordTextField).within(() => {
+      if (password) {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().type(password).blur()
+      } else {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().click().blur()
+      }
+    })
   },
 
   setEmail(email: string) {
-    if (email) {
-      cy.getBySelector(registrationSelectors.emailInput).clear().type(email).blur()
-    } else {
-      cy.getBySelector(registrationSelectors.emailInput).clear().click().blur()
-    }
+    cy.getBySelector(registrationSelectors.emailTextField).within(() => {
+      if (email) {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().type(email).blur()
+      } else {
+        cy.getBySelector(textFieldSelectors.fieldInput).clear().click().blur()
+      }
+    })
   },
 
   login(payload: { email: string; password: string }) {

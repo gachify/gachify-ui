@@ -37,12 +37,12 @@ describe('Login', () => {
     it('should display an error message when the email is empty', () => {
       login.setEmail('valid-email@example.com')
       login.setEmail('')
-      login.assertEmailError('Field is required')
+      login.assertEmailError('Email is required')
     })
 
     it('should display an error message when the email is invalid', () => {
       login.setEmail('invalid-email')
-      login.assertEmailError('Field must be in the format name@example.com')
+      login.assertEmailError('Email must be in the format name@example.com')
     })
   })
 
@@ -50,7 +50,7 @@ describe('Login', () => {
     it('should display an error message when the password is empty', () => {
       login.setPassword('valid-password')
       login.setPassword('')
-      login.assertPasswordError('Field is required')
+      login.assertPasswordError('Password is required')
     })
   })
 })
