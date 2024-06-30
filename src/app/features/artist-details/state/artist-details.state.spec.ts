@@ -26,20 +26,25 @@ describe('ArtistDetailsState', () => {
   it('should fetch artist details and remixes', () => {
     // Arrange
     const artistId = '123'
+    const total = 2
     const artist: Artist = { id: artistId, name: 'Artist' }
     const remixes: Remix[] = [
       { id: '1', title: 'Remix 1', images: [], artist, duration: 0 },
       { id: '2', title: 'Remix 2', images: [], artist, duration: 0 },
     ]
+    const mockResponse: PageResponse<Remix> = {
+      data: remixes,
+      meta: { limit: 2, offset: 2, total, count: 2 },
+    }
 
     vi.spyOn(artistRepositoryMock, 'getDetails').mockReturnValue(of(artist))
-    vi.spyOn(artistRepositoryMock, 'getRemixes').mockReturnValue(of({ data: remixes } as PageResponse<Remix>))
+    vi.spyOn(artistRepositoryMock, 'getRemixes').mockReturnValue(of(mockResponse))
 
     // Act
     state.fetch({ artistId })
 
     // Assert
-    expect(state.data()).toEqual({ artist, remixes })
+    expect(state.data()).toEqual({ artist, remixes, total })
 
     expect(artistRepositoryMock.getDetails).toHaveBeenCalledWith(artistId)
     expect(artistRepositoryMock.getRemixes).toHaveBeenCalledWith(artistId)
@@ -53,7 +58,7 @@ describe('ArtistDetailsState', () => {
       { id: '1', title: 'Remix 1', images: [], artist, duration: 0 },
       { id: '2', title: 'Remix 2', images: [], artist, duration: 0 },
     ]
-    state.data.set({ artist, remixes })
+    state.data.set({ artist, remixes, total: 2 })
 
     // Act
     const queue = state.queue()

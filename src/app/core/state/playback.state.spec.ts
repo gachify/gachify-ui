@@ -43,8 +43,11 @@ describe('PlaybackState', () => {
   it('should toggle play if current remix id matches payload remix id', () => {
     // Arrange
     const remixId = 'remix1'
-    const queue = { source: { name: 'source1' }, remixes: [{ id: remixId }] } as Queue
+    const sourceId = 'source1'
+    const queue = { source: { name: sourceId, entityId: sourceId }, remixes: [{ id: remixId }] } as Queue
+
     playbackState.currentRemix.set({ id: remixId } as Remix)
+    playbackState.queue.set(queue)
 
     // Act
     playbackState.togglePlay({ queue, remixId })
