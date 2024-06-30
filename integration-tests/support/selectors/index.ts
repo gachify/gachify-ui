@@ -1,4 +1,5 @@
 export * from './common'
+export * from './artist-details'
 export * from './login'
 export * from './player'
 export * from './popular-artists'

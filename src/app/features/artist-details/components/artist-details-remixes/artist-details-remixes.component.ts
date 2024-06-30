@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 
 import { PlaybackState } from '@core/state'
 import { ArtistDetailsState } from '@features/artist-details/state'
+import { artistDetailsSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-artist-details-remixes',
@@ -18,6 +19,8 @@ export class ArtistDetailsRemixesComponent {
   readonly loading = this.artistDetailsState.loading
 
   readonly currentRemixId = this.playbackState.currentRemixId
+
+  readonly selectors = artistDetailsSelectors
 
   numSequence(n: number): Array<number> {
     return Array(n)

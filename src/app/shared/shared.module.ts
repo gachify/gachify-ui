@@ -6,9 +6,11 @@ import { RouterModule } from '@angular/router'
 import { IsAuthenticatedDirective, IsUnauthenticatedDirective, SelectorDirective, SliderDirective } from './directives'
 import {
   ChipComponent,
+  DialogComponent,
   LogoComponent,
   MenuComponent,
   PlayIconComponent,
+  PlayLabelComponent,
   RemixCardComponent,
   RemixCardSkeletonComponent,
   RemixListItemComponent,
@@ -23,6 +25,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   declarations: [
     ChipComponent,
+    DialogComponent,
     DurationPipe,
     ImageUrlPipe,
     IsAuthenticatedDirective,
@@ -30,6 +33,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     LogoComponent,
     MenuComponent,
     PlayIconComponent,
+    PlayLabelComponent,
     RemixCardComponent,
     RemixCardSkeletonComponent,
     RemixListItemComponent,
@@ -43,6 +47,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
   exports: [
     ChipComponent,
     CommonModule,
+    DialogComponent,
     DurationPipe,
     ImageUrlPipe,
     IsAuthenticatedDirective,
@@ -50,6 +55,7 @@ import { DurationPipe, ImageUrlPipe } from './pipes'
     LogoComponent,
     MenuComponent,
     PlayIconComponent,
+    PlayLabelComponent,
     ReactiveFormsModule,
     RemixCardComponent,
     RemixCardSkeletonComponent,

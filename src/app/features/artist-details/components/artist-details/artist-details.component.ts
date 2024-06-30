@@ -13,6 +13,8 @@ export class ArtistDetailsComponent implements OnInit {
 
   @Input({ required: true }) artistId: string
 
+  readonly loading = this.artistDetailsState.loading
+
   ngOnInit(): void {
     this.artistDetailsState.fetch({ artistId: this.artistId })
   }

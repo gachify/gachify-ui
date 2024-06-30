@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
-import { map } from 'rxjs'
+import { Observable, map } from 'rxjs'
 
 import { Artist, PageResponse, Remix } from '@core/models'
+import { environment } from '@environment'
 
 @Injectable({
   providedIn: 'root',
@@ -11,18 +12,19 @@ export class ArtistRepository {
   private readonly httpClient = inject(HttpClient)
 
   getPopular() {
-    return this.httpClient.get<PageResponse<Artist>>('/artists/popular').pipe(map((response) => response.data))
+    return this.httpClient
+      .get<PageResponse<Artist>>(`${environment.apiUrl}/artists/popular`)
+      .pipe(map((response) => response.data))
   }
 
   getDetails(artistId: string) {
-    // /artists/:id
-    return this.httpClient.get<Artist>(`assets/mocks/artist.json`)
+    return this.httpClient.get<Artist>(`${environment.apiUrl}/artists/${artistId}`, {
+      headers: { accept: 'application/json' },
+    })
   }
 
-  getRemixes(artistId: string) {
-    // /artists/:id/remixes
-    // Get first 5 remixes
-    return this.httpClient.get<PageResponse<Remix>>(`assets/mocks/remixes.json`)
+  getRemixes(artistId: string): Observable<PageResponse<Remix>> {
+    return this.httpClient.get<PageResponse<Remix>>(`${environment.apiUrl}/artists/${artistId}/remixes`)
   }
 
   getSimilarArtists() {

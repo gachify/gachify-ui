@@ -4,7 +4,7 @@ import { popularRemixesSelectors } from '@selectors'
 
 export const actions = {
   mock() {
-    cy.intercept('GET', '/remixes/popular', { fixture: 'popular-remixes.json' }).as('getPopularRemixes')
+    cy.intercept('GET', '/remixes/popular?take=12&page=1', { fixture: 'popular-remixes.json' }).as('getPopularRemixes')
   },
 
   playRemix(remix: string) {

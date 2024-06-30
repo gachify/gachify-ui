@@ -32,12 +32,6 @@
       autocomplete="off"
     >
       <gachi-text-field
-        [selector]="selectors.usernameTextField"
-        formControlName="username"
-        label="Username"
-      />
-
-      <gachi-text-field
         [selector]="selectors.emailTextField"
         formControlName="email"
         label="Email"
@@ -49,6 +43,12 @@
         formControlName="password"
         label="Password"
         type="password"
+      />
+
+      <gachi-text-field
+        [selector]="selectors.usernameTextField"
+        formControlName="username"
+        label="Username"
       />
 
       <!-- <button

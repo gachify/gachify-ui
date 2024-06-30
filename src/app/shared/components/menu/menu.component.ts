@@ -37,8 +37,7 @@ export class MenuComponent implements OnDestroy {
   private firstClick = true
 
   ngOnDestroy(): void {
-    this.removeEventListener()
-    this.embeddedViewRef?.destroy()
+    this.close()
   }
 
   open(event: Event): void {
@@ -73,8 +72,6 @@ export class MenuComponent implements OnDestroy {
     const anchorElement = event.target as HTMLElement
 
     const anchorRect = anchorElement.getBoundingClientRect()
-
-    console.log(anchorRect)
 
     const menuRect = this.container.getBoundingClientRect()
 

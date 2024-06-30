@@ -1,0 +1,30 @@
+<button
+  class="outlined"
+  (click)="dialog.open()"
+>
+  Invite
+</button>
+
+<gachi-dialog #dialog>
+  <i icon>person_add</i>
+
+  <span headline>Invite Friends to Gachify</span>
+
+  <div content>
+    <span>
+      Share the fun of Gachimuchi remixes with your friends! Use the options below to send them an invitation to join
+      Gachify
+    </span>
+  </div>
+
+  <div actions>
+    <button
+      class="primary"
+      (click)="dialog.close()"
+    >
+      Close
+    </button>
+
+    <button class="primary">Ok</button>
+  </div>
+</gachi-dialog>

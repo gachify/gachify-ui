@@ -10,6 +10,7 @@ type FetchPayload = { artistId: string }
 interface ArtistDetails {
   artist: Artist
   remixes: Remix[]
+  total: number
 }
 
 @Injectable()
@@ -17,6 +18,7 @@ export class ArtistDetailsState extends EntityState<ArtistDetails, FetchPayload>
   private readonly repository = inject(ArtistRepository)
 
   readonly artist = computed(() => this.data()?.artist)
+  readonly total = computed(() => this.data()?.total)
   readonly remixes = computed(() => this.data()?.remixes || [])
   readonly queue = computed<Queue>(() => {
     const artist = this.artist()
@@ -29,8 +31,11 @@ export class ArtistDetailsState extends EntityState<ArtistDetails, FetchPayload>
   })
 
   protected fetchFn = (payload: FetchPayload) =>
-    combineLatest([
-      this.repository.getDetails(payload.artistId),
-      this.repository.getRemixes(payload.artistId).pipe(map((response) => response.data)),
-    ]).pipe(map(([artist, remixes]) => ({ artist, remixes })))
+    combineLatest([this.repository.getDetails(payload.artistId), this.repository.getRemixes(payload.artistId)]).pipe(
+      map(([artist, remixesResponse]) => ({
+        artist,
+        remixes: remixesResponse.data,
+        total: remixesResponse.meta.total,
+      })),
+    )
 }

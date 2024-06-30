@@ -1,6 +1,9 @@
 <h2 class="headline-m">Remixes</h2>
 
-<div class="gachi-artist-details-remixes-container">
+<div
+  [selector]="selectors.remixContainer"
+  class="gachi-artist-details-remixes-container"
+>
   @if (loading()) {
     @for (n of numSequence(5); track n) {
       <gachi-remix-list-item-skeleton />

@@ -1,4 +1,5 @@
 <img
+  [selector]="selectors.artistImage"
   [src]="artist()?.images | imageUrl: 'medium'"
   alt=""
   class="gachi-artist-details-header-image"
@@ -7,26 +8,45 @@
 />
 
 <div class="gachi-artist-details-header-title">
-  <h1 class="display-m">{{ artist()?.name }}</h1>
+  <h1
+    [selector]="selectors.artistNameLabel"
+    class="display-m"
+  >
+    {{ artist()?.name }}
+  </h1>
 
-  <span class="title-m secondary-text">20 songs • 1 hour, 12 minutes</span>
+  <span
+    [selector]="selectors.artistMetadataLabel"
+    class="title-m secondary-text"
+  >
+    {{ total() }} remixes
+  </span>
 
   <div class="gachi-artist-details-header-actions">
-    <button class="filled">
-      <i>play_arrow</i>
-      Play
+    <button
+      [selector]="selectors.playButton"
+      aria-label="Play"
+      class="filled"
+      (click)="handleTogglePlay()"
+    >
+      <gachi-play-icon [isPlaying]="isPlaying()" />
+      <gachi-play-label [isPlaying]="isPlaying()" />
     </button>
 
-    <ng-container *isAuthenticated>
-      <button class="outlined">
-        <i>heart_plus</i>
-        Follow
-      </button>
-    </ng-container>
+    <!-- <button
+      [selector]="selectors.followButton"
+      class="outlined"
+    >
+      <i>heart_plus</i>
+      Follow
+    </button>
 
-    <button class="outlined">
+    <button
+      [selector]="selectors.youtubeButton"
+      class="outlined"
+    >
       <i>media_link</i>
       YouTube
-    </button>
+    </button> -->
   </div>
 </div>

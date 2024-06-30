@@ -1,5 +1,5 @@
 import { routes } from '../support/routes'
-import { player, popularRemixes } from '../support/utils'
+import { player, popularRemixes, visualizer } from '../support/utils'
 
 describe('Popular Remixes', () => {
   beforeEach(() => {
@@ -31,6 +31,7 @@ describe('Popular Remixes', () => {
   it('should display active remix in the list', () => {
     popularRemixes.playRemix('Король и Шут - Танец Злобного ♂Gay♂ния')
     player.pause()
+    visualizer.assertQueueTitle('Popular remixes')
     player.toggleVisualizer()
     popularRemixes.assertActiveRemix('Король и Шут - Танец Злобного ♂Gay♂ния')
   })

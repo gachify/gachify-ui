@@ -1,3 +1,4 @@
+export * from './artist-details'
 export * from './common'
 export * from './login'
 export * from './player'

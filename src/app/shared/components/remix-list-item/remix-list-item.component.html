@@ -1,5 +1,6 @@
 <div class="gachi-remix-list-item-image">
   <img
+    [selector]="selectors.remixImage"
     [src]="remix.images | imageUrl: 'small'"
     alt=""
     height="56"
@@ -7,6 +8,7 @@
   />
 
   <button
+    [selector]="selectors.playButton"
     class="icon"
     (click)="handleTogglePlay()"
   >
@@ -16,6 +18,7 @@
 
 <h3
   [attr.tabindex]="false"
+  [selector]="selectors.remixLabel"
   [title]="remix.title"
   class="title-m truncate gachi-remix-list-item-title"
   (click)="handleTogglePlay()"
@@ -26,13 +29,12 @@
 
 <a
   [routerLink]="['/artists', remix.artist.id]"
+  [selector]="selectors.artistLabel"
   [title]="remix.artist.name"
   class="title-s secondary-text truncate gachi-remix-list-item-artist"
 >
   {{ remix.artist.name }}
 </a>
-
-<span class="title-s secondary-text truncate"> 3K plays </span>
 
 <div class="title-s secondary-text truncate gachi-remix-list-item-rating">
   <i class="green">trending_up</i>
@@ -47,12 +49,16 @@
   <!-- trending_up trending_down trending_flat -->
 </div>
 
-<span class="title-s secondary-text truncate gachi-remix-list-item-duration">
+<span
+  [selector]="selectors.durationLabel"
+  class="title-s secondary-text truncate gachi-remix-list-item-duration"
+>
   {{ remix.duration | duration }}
 </span>
 
 <div>
   <button
+    [selector]="selectors.menuButton"
     class="icon secondary-text"
     (click)="menu.open($event)"
   >

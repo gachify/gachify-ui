@@ -96,21 +96,21 @@ describe('Player', () => {
     player.assertPlaybackTime(time)
   })
 
-  it('should assert the current time', () => {
+  it('should display the current time', () => {
     const currentTime = '0:00'
     player.assertCurrentTime(currentTime)
   })
 
-  it('should assert the total time', () => {
+  it('should display the total time', () => {
     const totalTime = '3:18'
     player.assertTotalTime(totalTime)
   })
 
-  it('should assert the remix', () => {
+  it('should display the remix', () => {
     player.assertRemix('Король и Шут - Танец Злобного ♂Gay♂ния')
   })
 
-  it('should assert the artist', () => {
+  it('should display the artist', () => {
     player.assertArtist('GachiMafia')
   })
 })

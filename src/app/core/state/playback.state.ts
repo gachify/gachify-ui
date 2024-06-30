@@ -43,7 +43,7 @@ export class PlaybackState implements StateModel<PlaybackStateModel> {
   readonly queueSourceId = computed(() => this.queue().source.entityId)
 
   togglePlay(payload: { queue: Queue; remixId?: string }): void {
-    if (this.currentRemix()?.id === payload.remixId) {
+    if (this.currentRemixId() === payload.remixId) {
       this.audioState.togglePlay()
       return
     }

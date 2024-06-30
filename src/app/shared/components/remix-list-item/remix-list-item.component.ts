@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   Input,
   Renderer2,
   ViewEncapsulation,
@@ -12,6 +13,7 @@ import {
 
 import { Queue, Remix } from '@core/models'
 import { PlaybackState } from '@core/state'
+import { remixListItemSelectors } from '@selectors'
 
 @Component({
   selector: 'gachi-remix-list-item',
@@ -28,6 +30,10 @@ export class RemixListItemComponent {
 
   @Input({ required: true }) remix: Remix
   @Input() queue?: Queue
+
+  readonly selectors = remixListItemSelectors
+
+  @HostBinding('attr.data-test') selector = this.selectors.remixListItemContainer
 
   readonly currentRemixId = this.playbackState.currentRemixId
   readonly isCurrentRemix = computed(
